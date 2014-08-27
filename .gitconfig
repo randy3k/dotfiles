@@ -1,0 +1,32 @@
+[user]
+    name = Randy Lai
+    email = randy.cs.lai@gmail.com
+[core]
+    excludesfile = /Users/Randy/.gitignore
+    editor = /usr/local/bin/vim
+[alias]
+    alias = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+    amend = commit --amend --reset-author
+    undo = reset --hard
+    update = !sh -c 'git commit '\"'$*'\"' -m '\"'Update $*'\" -
+    qc = !git add -A && git commit -m
+    fixup = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --fixup=$REV && git ri $REV^' -
+    squash = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --squash=$REV && git ri $REV^' -
+    qf = !git add -A && git fixup
+    ri = rebase --interactive --autosquash
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    st = status -s
+    br = branch
+    co = checkout
+    new = checkout --orphan
+    cb = checkout -b
+    cp = checkout -b
+    del = branch -D
+    cl = clean -fdx
+[push]
+    default = simple
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto

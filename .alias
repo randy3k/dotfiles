@@ -1,0 +1,38 @@
+# latex
+alias rmtex='rm -f *.aux *.dvi *.lis *.log *.blg *.bbl *.toc *.idx *.ind *.ilg *.thm *.out *.fdb_latexmk *.fls *.synctex.gz *.nav *.snm'
+
+# server
+# alias hannan-fs='mkdir -pv /Volumes/Hannan/ ; sshfs -o volname=Hannan,no_readahead,noappledouble,nolocalcaches cslai@hannan.ucdavis.edu: /Volumes/Hannan/'
+
+# ssh tunneling
+alias laihk='ssh -v -N -D 8080 -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 root@laihkhome.no-ip.info'
+alias solano='ssh -v -N -D 8080 -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 root@randy.noip.me'
+
+# vpn
+# alias tvb='sudo route add -net 202.126 -interface ppp0'
+# alias appledaily='sudo route add -net 202.85.162 -interface ppp0
+# sudo route add -net 202.82.200 -interface ppp0'
+
+# misc
+alias mvim="mvim --remote-tab-silent"
+alias rsync="rsync -av --exclude \".*\""
+alias nps='ps ar -o user,pid,pcpu,pmem,nice,stat,cputime,etime,command|cut -c-$COLUMNS|grep -v -e cut -e sshd -e user -e grep'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias h=history
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ijulia='ipython notebook --profile julia'
+alias j='julia'
+alias p='ipython'
+
+# for replace newline symbol
+alias fle="perl -pi -e 's/\r\n?/\n/g' "
+
+[ -z $ZSH_VERSION ] && return
+# zsh alias
+
+
+
