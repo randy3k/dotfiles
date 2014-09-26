@@ -25,7 +25,10 @@
     }
 
     if (interactive()) {
+        # mac only
         options(device='quartz')
+        setHook(packageEvent("grDevices", "onLoad"),
+                function(...) grDevices::quartz.options(width = 5, height = 5))
 
         package_list = c(
             "Rcpp",
