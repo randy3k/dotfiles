@@ -4,6 +4,9 @@
 # options
 setopt autocd
 
+# prevent zsh to print an error when no match can be found
+unsetopt nomatch
+
 # enable i-search
 stty -ixon -ixoff
 
@@ -34,7 +37,7 @@ fi
 
 # compsys initialization
 # setopt noautomenu
-setopt nomenucomplete
+# setopt nomenucomplete
 setopt nolistambiguous
 setopt correct
 autoload -U compinit
@@ -49,6 +52,14 @@ if [[ -r ~/.ssh/config ]]; then
     _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/^[ ]*HostName[=\t ]//p'))
 fi
 zstyle ':completion:*:hosts' hosts $_ssh_config
+
+# git update completion
+_git_update ()
+{
+    _git_commit
+}
+
+
 
 # PS1
 function git-branch-name {
