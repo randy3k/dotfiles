@@ -9,7 +9,6 @@
     amend = commit --amend --reset-author
     undo = reset --hard
     update = !sh -c '[ -z $GIT_PREFIX ] || cd $GIT_PREFIX && git commit $* -m '\"'Update $*'\" -
-    debug = !sh -c '[ -z $GIT_PREFIX ] || cd $GIT_PREFIX && git commit '\"'$*'\"' -m '\"'Update $*'\" -
     qc = !git add -A && git commit -m
     fixup = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --fixup=$REV && git ri $REV^' -
     squash = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --squash=$REV && git ri $REV^' -
@@ -20,9 +19,8 @@
     br = branch
     co = checkout
     new = checkout --orphan
-    cb = checkout -b
     cp = checkout -b
-    del = !sh -c 'git branch -D $1 2>/dev/null || git tag -d $1 2>/dev/null|| echo "error: $1 not found"' -
+    del = !sh -c 'git branch -D $1 2>/dev/null || git tag -d $1 2>/dev/null|| echo "error"' -
     cl = clean -fd
 [push]
     default = simple
