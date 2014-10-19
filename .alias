@@ -29,5 +29,8 @@ alias ipynb='ipython notebook'
 # for replace newline symbol
 alias fle="perl -pi -e 's/\r\n?/\n/g' "
 
+# otool
+alias ldd="otool -L"
+
 [ -z $ZSH_VERSION ] && return
 # zsh alias
