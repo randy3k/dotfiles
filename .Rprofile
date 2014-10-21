@@ -6,7 +6,6 @@
         help_type="html",
         max.print=1000)
 
-
     installed = function(pkg){
         pkg %in% rownames(utils::installed.packages())
     }
@@ -53,4 +52,5 @@
                                warn = 3, error= 1, verbose=FALSE)
         }
     }
+
 }

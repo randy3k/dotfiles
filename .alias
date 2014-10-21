@@ -25,6 +25,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias ipynb='ipython notebook'
+alias R='R --no-save'
+alias r='R --no-save'
 
 # for replace newline symbol
 alias fle="perl -pi -e 's/\r\n?/\n/g' "
