@@ -1,8 +1,9 @@
 # alias
 [[ -e ~/.alias ]] && emulate sh -c 'source ~/.alias'
 
-# options
-setopt autocd
+# case insensitive
+setopt extendedglob
+unsetopt CASE_GLOB
 
 # prevent zsh to print an error when no match can be found
 unsetopt nomatch
@@ -53,26 +54,24 @@ if [[ -r ~/.ssh/config ]]; then
 fi
 zstyle ':completion:*:hosts' hosts $_ssh_config
 
-# git update completion
-_git_update ()
-{
-    _git_commit
-}
-
-
 
 # PS1
-function git-branch-name {
+function git-branch-name 
+{
     echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(\(.*\))/\1/')`
 }
-function git-dirty {
+
+function git-dirty 
+{
     st=$(git status 2>/dev/null | tail -n 1)
     if [[ ! $st =~ "working directory clean" ]]
     then
         echo "*"
     fi
 }
-function git-unpushed {
+
+function git-unpushed 
+{
     brinfo=`git branch -v | grep "$(git-branch-name)"`
     if [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]]
     then
@@ -83,7 +82,9 @@ function git-unpushed {
         echo -n "-${match[2]}"
     fi
 }
-function gitify {
+
+function gitify 
+{
     st=$(git status 2>/dev/null | head -n 1)
     if [[ ! $st == "" ]]
     then
@@ -105,11 +106,13 @@ setopt prompt_subst
 PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
-update_terminal_cwd() {
+update_terminal_cwd() 
+{
     local SEARCH=' '
     local REPLACE='%20'
     local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
     printf '\e]0;\a'
+    printf '\e]1;%s\a' `basename $PWD`
     printf '\e]7;%s\a' "$PWD_URL"
 }
 

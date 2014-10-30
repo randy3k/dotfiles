@@ -4,7 +4,7 @@
         browserNLdisabled = TRUE,
         deparse.max.lines = 2,
         help_type="html",
-        max.print=1000)
+        max.print=200)
 
     installed = function(pkg){
         pkg %in% rownames(utils::installed.packages())

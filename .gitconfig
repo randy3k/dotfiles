@@ -8,7 +8,6 @@
     alias = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
     amend = commit --amend --reset-author
     undo = reset --hard
-    update = !sh -c '[ -z $GIT_PREFIX ] || cd $GIT_PREFIX && git commit $* -m '\"'Update $*'\" -
     qc = !git add -A && git commit -m
     fixup = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --fixup=$REV && git ri $REV^' -
     squash = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --squash=$REV && git ri $REV^' -

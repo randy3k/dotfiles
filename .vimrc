@@ -1,3 +1,6 @@
+set nocompatible
+set backspace=2
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
@@ -19,6 +22,7 @@ set tabstop=4
 set shiftwidth=2
 set expandtab
 set cursorline
+
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
