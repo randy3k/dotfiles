@@ -46,11 +46,11 @@
         if (!installed("devtools")) install("devtools")
         if (!installed("colorout")) install("jalvesaq/colorout", github=TRUE)
 
-        if (installed("colorout") && .Platform$GUI == "X11" && Sys.getenv("RSTUDIO")==""){
-            colorout::setOutputColors256(normal = 4, number = 4, negnum = 5,
-                               string = 2, const = 6, stderror = 3,
-                               warn = 3, error= 1, verbose=FALSE)
-        }
+        # if (installed("colorout") && .Platform$GUI == "X11" && Sys.getenv("RSTUDIO")==""){
+        #     colorout::setOutputColors256(normal = 4, number = 4, negnum = 5,
+        #                        string = 2, const = 6, stderror = 3,
+        #                        warn = 3, error= 1, verbose=FALSE)
+        # }
     }
 
 }

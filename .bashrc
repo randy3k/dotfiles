@@ -10,7 +10,7 @@ bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-. $(brew --prefix)/etc/bash_completion
+  . $(brew --prefix)/etc/bash_completion
 fi
 
 [[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]] && source /usr/local/etc/bash_completion.d/git-completion.bash

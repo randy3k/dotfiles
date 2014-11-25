@@ -2,7 +2,6 @@
 [[ -e ~/.alias ]] && emulate sh -c 'source ~/.alias'
 
 # case insensitive
-setopt extendedglob
 unsetopt CASE_GLOB
 
 # prevent zsh to print an error when no match can be found
@@ -54,14 +53,13 @@ if [[ -r ~/.ssh/config ]]; then
 fi
 zstyle ':completion:*:hosts' hosts $_ssh_config
 
-
 # PS1
-function git-branch-name 
+function git-branch-name
 {
     echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(\(.*\))/\1/')`
 }
 
-function git-dirty 
+function git-dirty
 {
     st=$(git status 2>/dev/null | tail -n 1)
     if [[ ! $st =~ "working directory clean" ]]
@@ -70,7 +68,7 @@ function git-dirty
     fi
 }
 
-function git-unpushed 
+function git-unpushed
 {
     brinfo=`git branch -v | grep "$(git-branch-name)"`
     if [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]]
@@ -83,7 +81,7 @@ function git-unpushed
     fi
 }
 
-function gitify 
+function gitify
 {
     st=$(git status 2>/dev/null | head -n 1)
     if [[ ! $st == "" ]]
@@ -106,7 +104,7 @@ setopt prompt_subst
 PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
-update_terminal_cwd() 
+update_terminal_cwd()
 {
     local SEARCH=' '
     local REPLACE='%20'
