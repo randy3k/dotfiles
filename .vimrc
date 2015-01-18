@@ -8,6 +8,7 @@ Plugin 'jinfield/wombat256.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/Vim-R-plugin'
 call vundle#end()
 
 if has("mouse")
@@ -31,6 +32,9 @@ color wombat256mod
 set gfn=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline:h13
 
 set laststatus=2
+let vimrplugin_applescript = 0
+let vimrplugin_term = "xterm"
+let vimrplugin_term = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
 let g:airline_theme             = 'wombat'
 let g:airline_powerline_fonts = 1
 set ttimeoutlen=50

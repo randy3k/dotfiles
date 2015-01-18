@@ -1,8 +1,3 @@
-# Hadoop
-# export JAVA_HOME=`/usr/libexec/java_home -v1.7`
-export HADOOP_HOME=/opt/local/hadoop
-export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-
 export PATH=/usr/local/cuda/bin:/opt/local/bin:/opt/local/sbin:$PATH
 
 # FSL Setup
@@ -23,5 +18,5 @@ eval "$(rbenv init -)"
 # for neovim
 export VIMRUNTIME=/usr/local/opt/vim/share/vim/vim74/
 
-# github token
+# homebrew github token
 source ~/.gittoken

@@ -1,4 +1,4 @@
-.First = function(){
+.First <- function(){
     options(
         repos = c(CRAN = "http://cran.rstudio.com/"),
         browserNLdisabled = TRUE,
@@ -6,10 +6,10 @@
         help_type="html",
         max.print=200)
 
-    installed = function(pkg){
+    installed <- function(pkg){
         pkg %in% rownames(utils::installed.packages())
     }
-    install = function(pkg, github=FALSE){
+    install <- function(pkg, github=FALSE){
         if (Sys.getenv("R_INSTALLING_PACKAGES")==""){
             Sys.setenv(R_INSTALLING_PACKAGES=TRUE)
             library(stats)
@@ -29,7 +29,7 @@
         setHook(packageEvent("grDevices", "onLoad"),
                 function(...) grDevices::quartz.options(width = 5, height = 5))
 
-        package_list = c(
+        package_list <- c(
             "Rcpp",
             "RcppArmadillo",
             "doParallel",
@@ -44,7 +44,7 @@
             if (!installed(pkg)) install(pkg)
         }
         if (!installed("devtools")) install("devtools")
-        if (!installed("colorout")) install("jalvesaq/colorout", github=TRUE)
+        # if (!installed("colorout")) install("jalvesaq/colorout", github=TRUE)
 
         # if (installed("colorout") && .Platform$GUI == "X11" && Sys.getenv("RSTUDIO")==""){
         #     colorout::setOutputColors256(normal = 4, number = 4, negnum = 5,
