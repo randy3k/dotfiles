@@ -34,6 +34,9 @@ if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# add zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 # compsys initialization
 # setopt noautomenu
 # setopt nomenucomplete
@@ -52,15 +55,21 @@ if [[ -r ~/.ssh/config ]]; then
 fi
 zstyle ':completion:*:hosts' hosts $_ssh_config
 
+
 # pyenv completion
 if [[ -f /usr/local/opt/pyenv/completions/pyenv.zsh ]]; then
     source /usr/local/opt/pyenv/completions/pyenv.zsh
 fi
 
+# rbenv completion
+if [[ -f /usr/local/opt/rbenv/completions/rbenv.zsh ]]; then
+    source /usr/local/opt/rbenv/completions/rbenv.zsh
+fi
+
 # PS1
 function git-branch-name
 {
-    echo `git symbolic-ref HEAD --short 2> /dev/null || 
+    echo `git symbolic-ref HEAD --short 2> /dev/null ||
     (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(\(.*\))/\1/')`
 }
 
