@@ -29,7 +29,6 @@ disable r
 export CLICOLOR=1
 LS_COLORS='di=34:fi=0:ln=35:pi=36;1:so=33;1:bd=0:cd=0:or=35;4:mi=0:ex=31:su=0;7;31:*.rpm=90'
 
-
 # syntax highlight
 if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -53,10 +52,16 @@ if [[ -r ~/.ssh/config ]]; then
 fi
 zstyle ':completion:*:hosts' hosts $_ssh_config
 
+# pyenv completion
+if [[ -f /usr/local/opt/pyenv/completions/pyenv.zsh ]]; then
+    source /usr/local/opt/pyenv/completions/pyenv.zsh
+fi
+
 # PS1
 function git-branch-name
 {
-    echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(\(.*\))/\1/')`
+    echo `git symbolic-ref HEAD --short 2> /dev/null || 
+    (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(\(.*\))/\1/')`
 }
 
 function git-dirty
