@@ -44,13 +44,13 @@ function git-dirty {
 }
 function git-unpushed {
     brinfo=`git branch -v | grep "$(git-branch-name)"`
-    if [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]]
-    then
-        echo -n "+${BASH_REMATCH[2]}"
-    fi
     if [[ $brinfo =~ ("behind "([[:digit:]]*)) ]]
     then
         echo -n "-${BASH_REMATCH[2]}"
+    fi
+    if [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]]
+    then
+        echo -n "+${BASH_REMATCH[2]}"
     fi
 }
 function gitcolor {
