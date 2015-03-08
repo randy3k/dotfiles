@@ -13,8 +13,12 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-[[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]] && source /usr/local/etc/bash_completion.d/git-completion.bash
-[[ -f /opt/local/etc/bash_completion.d/git-completion.bash ]] && source /opt/local/etc/bash_completion.d/git-completion.bash
+if [[ -f /usr/local/opt/git/share/git-core/contrib/completion/git-completion.bash ]]; then
+    source /usr/local/opt/git/share/git-core/contrib/completion/git-completion.bash
+fi
+if [[ -f /opt/local/etc/bash_completion.d/git-completion.bash ]]; then
+    source /opt/local/etc/bash_completion.d/git-completion.bash
+fi
 if [[ $BASH_VERSION >4.2 ]]; then
     [[ -f /usr/local/etc/bash_completion.d/R ]] && source /usr/local/etc/bash_completion.d/R
 fi
