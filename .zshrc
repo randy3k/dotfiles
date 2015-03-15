@@ -34,7 +34,7 @@ if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-# add zsh-completions
+# add zsh-completions of homebrew
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # compsys initialization

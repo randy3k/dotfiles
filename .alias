@@ -15,6 +15,7 @@ alias solano='ssh -v -N -D 8080 -o ConnectTimeout=15 -o ServerAliveInterval=30 -
 
 # misc
 # alias mvim="mvim --remote-tab-silent"
+alias vimr="open -a VimR.app $@"
 alias rsync="rsync -av --exclude \".*\""
 alias nps='ps ar -o user,pid,pcpu,pmem,nice,stat,cputime,etime,command'
 alias ll='ls -alF'
@@ -27,6 +28,8 @@ alias egrep='egrep --color=auto'
 alias ipynb='ipython notebook'
 alias R='R --no-save'
 alias r='R --no-save'
+alias p='ipython'
+alias j='julia'
 
 # for replace newline symbol
 alias fle="perl -pi -e 's/\r\n?/\n/g' "

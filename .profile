@@ -6,6 +6,9 @@ PATH=${FSLDIR}/bin:${PATH}
 export FSLDIR PATH
 . ${FSLDIR}/etc/fslconf/fsl.sh
 
+# HOMEBREW_EDITOR
+export HOMEBREW_EDITOR=subl
+
 #pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

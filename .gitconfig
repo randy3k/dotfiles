@@ -21,6 +21,8 @@
     cp = checkout -b
     del = !sh -c 'git branch -D $1 2>/dev/null || git tag -d $1 2>/dev/null|| echo "error"' -
     cl = clean -fd
+    pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
+    us = rev-parse --abbrev-ref --symbolic-full-name @{u}
 [push]
     default = simple
 [color]
