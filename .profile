@@ -24,3 +24,5 @@ export VIMRUNTIME=/usr/local/opt/vim/share/vim/vim74/
 
 # homebrew github token
 source ~/.gittoken
+
+eval "$(hub alias -s)"

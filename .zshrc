@@ -84,7 +84,7 @@ function git-dirty
 
 function git-unpushed
 {
-    brinfo=`git branch -v | grep "$(git-branch-name)"`
+    brinfo=`git branch -v | grep "* $(git-branch-name)"`
     if [[ $brinfo =~ ("behind "([[:digit:]]*)) ]]
     then
         echo -n "-${match[2]}"
