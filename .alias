@@ -30,7 +30,6 @@ alias R='R --no-save'
 alias r='R --no-save'
 alias p='ipython'
 alias j='julia'
-alias git='hub'
 
 # for replace newline symbol
 alias fle="perl -pi -e 's/\r\n?/\n/g' "
