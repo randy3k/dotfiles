@@ -29,21 +29,21 @@
         setHook(packageEvent("grDevices", "onLoad"),
                 function(...) grDevices::quartz.options(width = 5, height = 5))
 
-        package_list <- c(
-            "Rcpp",
-            "RcppArmadillo",
-            "doParallel",
-            "ggplot2",
-            "dplyr",
-            "reshape2",
-            "abind",
-            "knitr",
-            "roxygen2"
-            )
-        for (pkg in package_list){
-            if (!installed(pkg)) install(pkg)
-        }
-        if (!installed("devtools")) install("devtools")
+        # package_list <- c(
+        #     "Rcpp",
+        #     "RcppArmadillo",
+        #     "doParallel",
+        #     "ggplot2",
+        #     "dplyr",
+        #     "reshape2",
+        #     "abind",
+        #     "knitr",
+        #     "roxygen2"
+        #     )
+        # for (pkg in package_list){
+        #     if (!installed(pkg)) install(pkg)
+        # }
+        # if (!installed("devtools")) install("devtools")
         # if (!installed("colorout")) install("jalvesaq/colorout", github=TRUE)
 
         # if (installed("colorout") && .Platform$GUI == "X11" && Sys.getenv("RSTUDIO")==""){

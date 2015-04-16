@@ -5,8 +5,9 @@ alias rmtex='rm -f *.aux *.dvi *.lis *.log *.blg *.bbl *.toc *.idx *.ind *.ilg *
 # alias hannan-fs='mkdir -pv /Volumes/Hannan/ ; sshfs -o volname=Hannan,no_readahead,noappledouble,nolocalcaches cslai@hannan.ucdavis.edu: /Volumes/Hannan/'
 
 # ssh tunneling
-alias laihk='ssh -v -N -D 8080 -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 root@laihkhome.no-ip.info'
-alias solano='ssh -v -N -D 8080 -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 root@randy.noip.me'
+alias laihk='ssh -v -N -D 8080 root@laihkhome.no-ip.info'
+alias noip='ssh -v -N -D 8080 root@randy.noip.me'
+alias ucdavis='ssh -v -N -D 8080 cslai@gumbel'
 
 # vpn
 # alias tvb='sudo route add -net 202.126 -interface ppp0'
@@ -15,7 +16,6 @@ alias solano='ssh -v -N -D 8080 -o ConnectTimeout=15 -o ServerAliveInterval=30 -
 
 # misc
 # alias mvim="mvim --remote-tab-silent"
-alias vimr="open -a VimR.app $@"
 alias rsync="rsync -av --exclude \".*\""
 alias nps='ps ar -o user,pid,pcpu,pmem,nice,stat,cputime,etime,command'
 alias ll='ls -alF'

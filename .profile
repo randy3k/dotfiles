@@ -6,8 +6,9 @@ PATH=${FSLDIR}/bin:${PATH}
 export FSLDIR PATH
 . ${FSLDIR}/etc/fslconf/fsl.sh
 
-# HOMEBREW_EDITOR
+# EDITOR
 export HOMEBREW_EDITOR=subl
+export JULIA_EDITOR=subl
 
 #pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
@@ -26,3 +27,6 @@ export VIMRUNTIME=/usr/local/opt/vim/share/vim/vim74/
 source ~/.gittoken
 
 eval "$(hub alias -s)"
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
