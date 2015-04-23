@@ -16,6 +16,7 @@ alias ucdavis='ssh -v -N -D 8080 cslai@gumbel'
 
 # misc
 # alias mvim="mvim --remote-tab-silent"
+# alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
 alias rsync="rsync -av --exclude \".*\""
 alias nps='ps ar -o user,pid,pcpu,pmem,nice,stat,cputime,etime,command'
 alias ll='ls -alF'
@@ -30,6 +31,7 @@ alias R='R --no-save'
 alias r='R --no-save'
 alias p='ipython'
 alias j='julia'
+alias jnb='bash -l -c "pyenv shell jupyter-dev; jupyter notebook"'
 
 # for replace newline symbol
 alias fle="perl -pi -e 's/\r\n?/\n/g' "

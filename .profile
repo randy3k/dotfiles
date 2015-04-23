@@ -24,7 +24,7 @@ eval "$(rbenv init -)"
 export VIMRUNTIME=/usr/local/opt/vim/share/vim/vim74/
 
 # homebrew github token
-source ~/.gittoken
+source ~/.config/homebrew
 
 eval "$(hub alias -s)"
 

@@ -29,27 +29,31 @@
         setHook(packageEvent("grDevices", "onLoad"),
                 function(...) grDevices::quartz.options(width = 5, height = 5))
 
-        # package_list <- c(
-        #     "Rcpp",
-        #     "RcppArmadillo",
-        #     "doParallel",
-        #     "ggplot2",
-        #     "dplyr",
-        #     "reshape2",
-        #     "abind",
-        #     "knitr",
-        #     "roxygen2"
-        #     )
+        package_list <- c(
+            "Rcpp",
+            "RcppArmadillo",
+            "doParallel",
+            "ggplot2",
+            "dplyr",
+            "reshape2",
+            "abind",
+            "knitr",
+            "roxygen2",
+            "rex",
+            "numDeriv",
+            "partitions",
+            "lme4",
+            "lintr",
+            "lars",
+            "fields",
+            "fda",
+            "data.table",
+            "glmnet",
+            "caret",
+            "devtools"
+            )
         # for (pkg in package_list){
         #     if (!installed(pkg)) install(pkg)
-        # }
-        # if (!installed("devtools")) install("devtools")
-        # if (!installed("colorout")) install("jalvesaq/colorout", github=TRUE)
-
-        # if (installed("colorout") && .Platform$GUI == "X11" && Sys.getenv("RSTUDIO")==""){
-        #     colorout::setOutputColors256(normal = 4, number = 4, negnum = 5,
-        #                        string = 2, const = 6, stderror = 3,
-        #                        warn = 3, error= 1, verbose=FALSE)
         # }
     }
 

@@ -4,7 +4,7 @@ set backspace=2
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'jinfield/wombat256.vim'
+Plugin 'randy3k/wombat256.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'bling/vim-airline'
