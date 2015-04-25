@@ -21,6 +21,10 @@ export SAVEHIST=$HISTSIZE
 bindkey "^[[3~" delete-char
 autoload -U select-word-style
 select-word-style bash
+# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
+# zsh-autosuggestions is designed to be unobtrusive)
+bindkey '^T' autosuggest-toggle
+
 
 # disable redo command r
 disable r
@@ -30,9 +34,23 @@ export CLICOLOR=1
 LS_COLORS='di=34:fi=0:ln=35:pi=36;1:so=33;1:bd=0:cd=0:or=35;4:mi=0:ex=31:su=0;7;31:*.rpm=90'
 
 # syntax highlight
-if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# zsh-autosuggestions
+# source /Users/Randy/.zsh-autosuggestions/autosuggestions.zsh
+# zle-line-init() {
+#     zle autosuggest-start
+# }
+# zle -N zle-line-init
+
+# history-substring-search
+source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
+
 
 # add zsh-completions of homebrew
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -41,7 +59,6 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # setopt noautomenu
 # setopt nomenucomplete
 setopt nolistambiguous
-setopt correct
 autoload -U compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -67,13 +84,13 @@ if [[ -f /usr/local/opt/rbenv/completions/rbenv.zsh ]]; then
 fi
 
 # PS1
-function git-branch-name
+git-branch-name()
 {
     echo `git symbolic-ref HEAD --short 2> /dev/null ||
     (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(detached from \(.*\))/\1/')`
 }
 
-function git-dirty
+git-dirty()
 {
     st=$(git status 2>/dev/null | tail -n 1)
     if [[ ! $st =~ "working directory clean" ]]
@@ -82,7 +99,7 @@ function git-dirty
     fi
 }
 
-function git-unpushed
+git-unpushed()
 {
     brinfo=`git branch -v | grep "* $(git-branch-name)"`
     if [[ $brinfo =~ ("behind "([[:digit:]]*)) ]]
@@ -95,7 +112,7 @@ function git-unpushed
     fi
 }
 
-function gitify
+gitify()
 {
     st=$(git status 2>/dev/null | head -n 1)
     if [[ ! $st == "" ]]
@@ -113,11 +130,6 @@ function gitify
     fi
 }
 
-autoload -U colors && colors
-setopt prompt_subst
-PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
-RPROMPT='$(gitify)'
-
 update_terminal_cwd()
 {
     local SEARCH=' '
@@ -128,5 +140,10 @@ update_terminal_cwd()
     printf '\e]7;%s\a' "$PWD_URL"
 }
 
+autoload -U colors && colors
+setopt prompt_subst
+PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
+RPROMPT='$(gitify)'
 autoload -U add-zsh-hook
 add-zsh-hook precmd  update_terminal_cwd
+
