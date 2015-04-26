@@ -34,8 +34,8 @@ bash-ctrl-d()
 {   
     if [[ $CURSOR == 0 && -z $BUFFER ]]
     then
-        [[ -z $__BASH_IGNORE_EOF ]] && (( __BASH_IGNORE_EOF = IGNOREEOF ))
         [[ -z $IGNOREEOF || $IGNOREEOF == 0 ]] && exit
+        [[ -z $__BASH_IGNORE_EOF ]] && (( __BASH_IGNORE_EOF = IGNOREEOF ))
         if [[ $LASTWIDGET == "bash-ctrl-d" ]]
         then
             [[ $__BASH_IGNORE_EOF -le 0 ]] && exit
