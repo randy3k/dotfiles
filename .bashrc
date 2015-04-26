@@ -30,12 +30,11 @@ fi
 # alias
 [ -f ~/.alias ] && source ~/.alias
 
-
 # color
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
 
-# PS1
+# prompt
 function git-branch-name {
     echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(\(.*\))/\1/')`
 }
@@ -64,6 +63,9 @@ function gitcolor {
         if [[ $(git-dirty) == "*" ]];
         then
             echo -e "\033[31m"
+        elif [[ $(git-unpushed) != "" ]];
+        then
+            echo -e "\033[33m"
         else
             echo -e "\033[32m"
         fi
