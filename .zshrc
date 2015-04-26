@@ -1,35 +1,36 @@
 # alias
 [[ -e ~/.alias ]] && emulate sh -c 'source ~/.alias'
 
-# case insensitive
-unsetopt CASE_GLOB
-
-# prevent zsh to print an error when no match can be found
-unsetopt nomatch
-
-# enable i-search
-stty -ixon -ixoff
+unsetopt CASE_GLOB          # case insensitive
+unsetopt nomatch            # prevent zsh to print an error when no match can be found
+setopt ignoreeof            # ignore EOF ('^D') (i.e. don't log out on it)
+disable r                   # disable redo command r
+stty -ixon -ixoff           # enable i-search
 
 # history
-setopt share_history
-setopt inc_append_history
-export HISTSIZE=2000
+export HISTSIZE=20000
 export HISTFILE="$HOME/.zhistory"
 export SAVEHIST=$HISTSIZE
+setopt extendedhistory      # save timestamps in history
+setopt no_histbeep          # don't beep for erroneous history expansions
+setopt histignoredups       # ignore consecutive dups in history
+setopt histfindnodups       # backwards search produces diff result each time
+setopt histreduceblanks     # compact consecutive white space chars (cool)
+setopt histnostore          # don't store history related functions
+setopt incappendhistory     # incrementally add items to HISTFILE
+# setopt histverify           # confirm !: or ^ command results before execution
+# setopt share_history        # share history between sessions ???
+
 
 # keybind
+# bindkey -v                # vi mode
 bindkey "^[[3~" delete-char
 autoload -U select-word-style
 select-word-style bash
-# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive)
-bindkey '^T' autosuggest-toggle
-
-
-# disable redo command r
-disable r
 
 # color
+autoload -U colors
+colors
 export CLICOLOR=1
 LS_COLORS='di=34:fi=0:ln=35:pi=36;1:so=33;1:bd=0:cd=0:or=35;4:mi=0:ex=31:su=0;7;31:*.rpm=90'
 
@@ -43,6 +44,9 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #     zle autosuggest-start
 # }
 # zle -N zle-line-init
+# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
+# zsh-autosuggestions is designed to be unobtrusive)
+# bindkey '^T' autosuggest-toggle
 
 # history-substring-search
 source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -83,42 +87,24 @@ if [[ -f /usr/local/opt/rbenv/completions/rbenv.zsh ]]; then
     source /usr/local/opt/rbenv/completions/rbenv.zsh
 fi
 
-# PS1
-git-branch-name()
-{
-    echo `git symbolic-ref HEAD --short 2> /dev/null ||
-    (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(detached from \(.*\))/\1/')`
-}
-
-git-dirty()
-{
-    st=$(git status 2>/dev/null | tail -n 1)
-    if [[ ! $st =~ "working directory clean" ]]
-    then
-        echo "*"
-    fi
-}
-
-git-unpushed()
-{
-    brinfo=`git branch -v | grep "* $(git-branch-name)"`
-    if [[ $brinfo =~ ("behind "([[:digit:]]*)) ]]
-    then
-        echo -n "-${match[2]}"
-    fi
-    if [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]]
-    then
-        echo -n "+${match[2]}"
-    fi
-}
-
+# prompt
 gitify()
 {
-    st=$(git status 2>/dev/null | head -n 1)
+    st=$(git status 2>/dev/null | tail -n 1)
     if [[ ! $st == "" ]]
     then
-        local dirty=$(git-dirty)
-        local unpushed=$(git-unpushed)
+        local dirty
+        local unpushed
+        local branch
+        local brinfo
+        branch=`git symbolic-ref HEAD --short 2> /dev/null ||
+                (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(detached from \(.*\))/\1/')`
+        [[ ! $st =~ "working directory clean" ]] && dirty="*"
+        brinfo=`git branch -v | grep "* $branch"`
+
+        [[ $brinfo =~ ("behind "([[:digit:]]*)) ]] && unpushed="-${match[2]}"
+        [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]] && unpushed="$unpushed+${match[2]}"
+
         if [[ $dirty == "*" ]]; then
             echo -en " %{$fg[red]%}"
         elif [[ $unpushed != "" ]]; then
@@ -126,9 +112,12 @@ gitify()
         else
             echo -en " %{$fg[green]%}"
         fi
-        echo -en "($(git-branch-name)$dirty$unpushed)%{$reset_color%}"
+        echo -en "($branch$dirty$unpushed)%{$reset_color%}"
     fi
 }
+setopt prompt_subst
+PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
+RPROMPT='$(gitify)'
 
 update_terminal_cwd()
 {
@@ -139,11 +128,5 @@ update_terminal_cwd()
     printf '\e]1;%s\a' `basename $PWD`
     printf '\e]7;%s\a' "$PWD_URL"
 }
-
-autoload -U colors && colors
-setopt prompt_subst
-PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
-RPROMPT='$(gitify)'
 autoload -U add-zsh-hook
 add-zsh-hook precmd  update_terminal_cwd
-
