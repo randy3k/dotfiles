@@ -27,6 +27,31 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 bindkey "^[[3~" delete-char
 autoload -U select-word-style
 select-word-style bash
+bindkey "^d"  bash-ctrl-d
+
+# bash like ctrl d
+bash-ctrl-d() 
+{   
+    [[ -z $IGNOREEOF || $IGNOREEOF == 0 ]] && exit
+    [[ -z $__BASH_IGNORE_EOF ]] && (( __BASH_IGNORE_EOF = IGNOREEOF ))
+    if [[ $CURSOR == 0 && -z $BUFFER ]]
+    then
+        if [[ $LASTWIDGET == "bash-ctrl-d" ]]
+        then
+            [[ $__BASH_IGNORE_EOF -le 0 ]] && exit
+        fi
+        (( __BASH_IGNORE_EOF = __BASH_IGNORE_EOF - 1 ))
+        echo -n Use \"exit\" to leave the shell.
+        zle send-break
+    else
+        (( __BASH_IGNORE_EOF = IGNOREEOF ))
+        zle delete-char-or-list
+    fi
+}
+export IGNOREEOF=1
+autoload -U send-break
+autoload -U delete-char-or-list
+zle -N bash-ctrl-d
 
 # color
 autoload -U colors
