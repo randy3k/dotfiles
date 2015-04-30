@@ -4,7 +4,15 @@
         browserNLdisabled = TRUE,
         deparse.max.lines = 2,
         help_type="html",
-        max.print=200)
+        max.print=200,
+        repr.plot.width = 5,
+        repr.plot.height = 5,
+        jupyter.plot_mimetypes = c(
+        'text/plain',
+        'image/png',
+        'image/jpeg',
+        'image/svg+xml')
+        )
 
     installed <- function(pkg){
         pkg %in% rownames(utils::installed.packages())
