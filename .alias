@@ -33,6 +33,7 @@ alias r='R --no-save'
 alias p='ipython'
 alias j='julia'
 alias jnb='bash -l -c "pyenv shell jupyter-dev; jupyter notebook"'
+alias tm='tmux-manager'
 
 # for replace newline symbol
 alias fle="perl -pi -e 's/\r\n?/\n/g' "

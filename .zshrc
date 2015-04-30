@@ -49,7 +49,7 @@ bash-ctrl-d()
         zle delete-char-or-list
     fi
 }
-export IGNOREEOF=2
+export IGNOREEOF=1
 autoload -U send-break
 autoload -U delete-char-or-list
 zle -N bash-ctrl-d
