@@ -7,11 +7,11 @@
         max.print=200,
         repr.plot.width = 5,
         repr.plot.height = 5,
-        jupyter.plot_mimetypes = c(
-        'text/plain',
-        'image/png',
-        'image/jpeg',
-        'image/svg+xml')
+        repr.plot.res = 100,
+        repr.plot.pointsize=8,
+        repr.plot.quality = 100,
+        repr.plot.antialias = "default",
+        jupyter.plot_mimetypes = 'image/png'
         )
 
     installed <- function(pkg){
