@@ -30,8 +30,8 @@ select-word-style bash
 bindkey "^d"  bash-ctrl-d
 
 # bash like ctrl d
-bash-ctrl-d() 
-{   
+bash-ctrl-d()
+{
     if [[ $CURSOR == 0 && -z $BUFFER ]]
     then
         [[ -z $IGNOREEOF || $IGNOREEOF == 0 ]] && exit
@@ -58,7 +58,7 @@ zle -N bash-ctrl-d
 autoload -U colors
 colors
 export CLICOLOR=1
-LS_COLORS='di=34:fi=0:ln=35:pi=36;1:so=33;1:bd=0:cd=0:or=35;4:mi=0:ex=31:su=0;7;31:*.rpm=90'
+export LSCOLORS=exfxcxdxbxegedabagacad
 
 # syntax highlight
 export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters

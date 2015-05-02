@@ -20,9 +20,6 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# for neovim
-export VIMRUNTIME=/usr/local/opt/vim/share/vim/vim74/
-
 # homebrew github token
 source ~/.config/homebrew
 
