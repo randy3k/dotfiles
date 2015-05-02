@@ -12,6 +12,7 @@ call vundle#end()
 syntax enable
 filetype plugin on
 filetype indent on
+set wildignorecase
 set number
 set tabstop=4
 set shiftwidth=2

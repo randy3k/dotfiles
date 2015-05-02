@@ -5,7 +5,7 @@
     user = randy3k    
 [core]
     excludesfile = /Users/Randy/.gitignore
-    editor = /usr/local/bin/vim
+    editor = /usr/local/bin/nvim
 [alias]
     al = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
     amend = commit --amend --reset-author
