@@ -1,3 +1,22 @@
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#ff8787'
+let g:terminal_color_2  = '#87d75f'
+let g:terminal_color_3  = '#ffd75f'
+let g:terminal_color_4  = '#87afff'
+let g:terminal_color_5  = '#af87ff'
+let g:terminal_color_6  = '#d7ff87'
+let g:terminal_color_7  = '#bfbfbf'
+let g:terminal_color_8  = '#000000'
+let g:terminal_color_9  = '#ff8787'
+let g:terminal_color_10 = '#87d75f'
+let g:terminal_color_11 = '#ffd75f'
+let g:terminal_color_12 = '#87afff'
+let g:terminal_color_13 = '#af87ff'
+let g:terminal_color_14 = '#d7ff87'
+let g:terminal_color_15 = '#bfbfbf'
+
+let R_in_buffer = 1
+
 set rtp+=~/.nvim/bundle/Vundle.vim
 let path='~/.nvim/bundle'
 call vundle#begin(path)
@@ -8,6 +27,7 @@ call vundle#begin(path)
     Plugin 'bling/vim-airline'
     " Plugin 'terryma/vim-multiple-cursors'
     Plugin 'kien/ctrlp.vim'
+    Plugin 'jalvesaq/Nvim-R'
     " Plugin 'scrooloose/nerdtree'
 call vundle#end()
 

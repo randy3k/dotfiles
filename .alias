@@ -17,7 +17,7 @@ alias ucdavis='ssh -v -N -D 8080 cslai@gumbel'
 # misc
 # alias mvim="mvim --remote-tab-silent"
 # alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
-alias fuck='$(thefuck $(fc -ln -1))'
+alias vim=nvim
 alias rsync="rsync -av --exclude \".*\""
 alias nps='ps ar -o user,pid,pcpu,pmem,nice,stat,cputime,etime,command'
 alias ll='ls -alF'
@@ -27,11 +27,11 @@ alias h=history
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias ipynb='ipython notebook'
 alias R='R --no-save'
 alias r='R --no-save'
 alias p='ipython'
 alias j='julia'
+alias ipynb='ipython notebook'
 alias jnb='bash -l -c "pyenv shell jupyter-dev; jupyter notebook"'
 alias tm='tmux-manager'
 

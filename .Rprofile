@@ -11,58 +11,20 @@
         repr.plot.pointsize=8,
         repr.plot.quality = 100,
         repr.plot.antialias = "default",
-        jupyter.plot_mimetypes = 'image/png'
+        jupyter.plot_mimetypes = "image/png"
         )
-
-    installed <- function(pkg){
-        pkg %in% rownames(utils::installed.packages())
-    }
-    install <- function(pkg, github=FALSE){
-        if (Sys.getenv("R_INSTALLING_PACKAGES")==""){
-            Sys.setenv(R_INSTALLING_PACKAGES=TRUE)
-            library(stats)
-            library(utils)
-            if (github){
-                devtools::install_github(pkg)
-            }else{
-                install.packages(pkg)
-            }
-            Sys.unsetenv("R_INSTALLING_PACKAGES")
-        }
-    }
 
     if (interactive()) {
         # mac only
-        options(device='quartz')
+        options(device="quartz")
         setHook(packageEvent("grDevices", "onLoad"),
-                function(...) grDevices::quartz.options(width = 5, height = 5))
+                function(...) grDevices::quartz.options(
+                    width = 3.5,
+                    height = 3.5,
+                    pointsize=8
+                ))
 
-        package_list <- c(
-            "Rcpp",
-            "RcppArmadillo",
-            "doParallel",
-            "ggplot2",
-            "dplyr",
-            "reshape2",
-            "abind",
-            "knitr",
-            "roxygen2",
-            "rex",
-            "numDeriv",
-            "partitions",
-            "lme4",
-            "lintr",
-            "lars",
-            "fields",
-            "fda",
-            "data.table",
-            "glmnet",
-            "caret",
-            "devtools"
-            )
-        # for (pkg in package_list){
-        #     if (!installed(pkg)) install(pkg)
-        # }
+        # library(nvimcom)
     }
 
 }
