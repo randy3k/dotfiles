@@ -7,4 +7,4 @@ all:
 	&& git push
 
 bootstrap:
-	for f in $${files[@]}; do echo $$f; cp ./$$f ~/$$f
+	for f in $${files[@]}; do echo $$f; cp ./$$f ~/$$f; done
