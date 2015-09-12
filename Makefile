@@ -1,4 +1,4 @@
-files=: .alias .bashrc .bash_profile .profile .zshrc \
+files = .alias .bashrc .bash_profile .profile .zshrc \
 		.zprofile .Rprofile .vimrc .nvimrc .gitconfig .tmux.conf
 
 all:
@@ -8,4 +8,4 @@ all:
 	&& git push
 
 bootstrap:
-	for f in $${files[@]}; do echo $$f; cp ./$$f ~/$$f; done
+	for f in $(files); do echo $$f; cp ./$$f ~/$$f; done
