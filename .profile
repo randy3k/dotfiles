@@ -1,10 +1,13 @@
-export PATH=/usr/local/cuda/bin:/opt/local/bin:/opt/local/sbin:$PATH
-
+[ -d /usr/local/cuda/bin ] && export PATH=/usr/local/cuda/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+[ -d /usr/local/opt/go/libexec/bin ] && export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # FSL Setup
 FSLDIR=/opt/local/fsl
-PATH=${FSLDIR}/bin:${PATH}
-export FSLDIR PATH
-. ${FSLDIR}/etc/fslconf/fsl.sh
+if [ -d "$FSLDIR" ]; then
+    PATH=${FSLDIR}/bin:${PATH}
+    export FSLDIR PATH
+    . ${FSLDIR}/etc/fslconf/fsl.sh
+fi
 
 # EDITOR
 export HOMEBREW_EDITOR=subl
@@ -21,8 +24,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # homebrew github token
-source ~/.config/homebrew
+[ -f ~/.config/homebrew ] && source ~/.config/homebrew
 
+# hub alias
 eval "$(hub alias -s)"
-
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
