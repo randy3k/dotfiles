@@ -1,4 +1,5 @@
-files=( .alias .bashrc .bash_profile .profile .zshrc .zprofile .Rprofile .vimrc .nvimrc .gitconfig .tmux.conf ) \
+files=( .alias .bashrc .bash_profile .profile .zshrc \
+		.zprofile .Rprofile .vimrc .nvimrc .gitconfig .tmux.conf )
 
 all:
 	for f in $${files[@]}; do echo $$f; rm ./$$f 2>/dev/null; cp -r ~/$$f ./$$f; done \
