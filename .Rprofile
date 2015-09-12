@@ -1,6 +1,6 @@
 .First <- function(){
     options(
-        repos = c(CRAN = "http://cran.rstudio.com/"),
+        repos = c(CRAN = "https://cran.rstudio.com"),
         browserNLdisabled = TRUE,
         deparse.max.lines = 2,
         help_type="html",
@@ -10,8 +10,8 @@
         repr.plot.res = 100,
         repr.plot.pointsize=8,
         repr.plot.quality = 100,
-        repr.plot.antialias = "default",
-        jupyter.plot_mimetypes = "image/png"
+        repr.plot.antialias = "default"
+        # jupyter.plot_mimetypes = "image/png"
         )
 
     if (interactive()) {
