@@ -8,4 +8,4 @@ all:
 	&& git push
 
 bootstrap:
-	for f in $(files); do echo $$f; cp ./$$f ~/$$f; done
+	for f in $(files); do echo $$f; cp -r ./$$f ~/$$f; done
