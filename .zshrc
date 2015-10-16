@@ -101,7 +101,8 @@ if [[ -r ~/.ssh/config ]]; then
     _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/^[ ]*HostName[=\t ]//p'))
 fi
 zstyle ':completion:*:hosts' hosts $_ssh_config
-
+zstyle ':completion:*:hub:*' user-commands ${${(k)commands[(I)git-*]}#git-}
+zstyle ':completion:*:git:*' user-commands ${${(k)commands[(I)git-*]}#git-}
 
 # pyenv completion
 if [[ -f /usr/local/opt/pyenv/completions/pyenv.zsh ]]; then
@@ -156,3 +157,4 @@ update_terminal_cwd()
 }
 autoload -U add-zsh-hook
 add-zsh-hook precmd  update_terminal_cwd
+
