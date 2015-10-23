@@ -1,5 +1,5 @@
 [ -d /usr/local/cuda/bin ] && export PATH=/usr/local/cuda/bin:$PATH
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/opt/local/shell-script:/opt/local/bin:/opt/local/sbin:$PATH
 [ -d /usr/local/opt/go/libexec/bin ] && export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # FSL Setup
 FSLDIR=/opt/local/fsl
