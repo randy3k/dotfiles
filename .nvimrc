@@ -17,8 +17,8 @@ let g:terminal_color_15 = '#bfbfbf'
 
 let R_in_buffer = 1
 
-set rtp+=~/.nvim/bundle/Vundle.vim
-let path='~/.nvim/bundle'
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+let path='.config/nvim/bundle'
 call vundle#begin(path)
     Plugin 'gmarik/Vundle.vim'
     Plugin 'randy3k/wombat256.vim'
@@ -51,7 +51,7 @@ if bufwinnr(1)
   map - <C-W>5-
   map < <C-W>5<
   map > <C-W>5>
-endif 
+endif
 
 color wombat256mod
 set gfn=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline:h13
@@ -72,4 +72,3 @@ command! R execute "normal \<C-w>v\<C-w>\<C-w>:term\<CR>R\<CR>\<C-\>\<C-n>\<C-w>
 command! J execute "normal \<C-w>v\<C-w>\<C-w>:term\<CR>julia\<CR>\<C-\>\<C-n>\<C-w>p"
 
 tnoremap <esc> <C-\><C-n>
-
