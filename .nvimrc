@@ -18,7 +18,7 @@ let g:terminal_color_15 = '#bfbfbf'
 let R_in_buffer = 1
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
-let path='.config/nvim/bundle'
+let path='~/.config/nvim/bundle'
 call vundle#begin(path)
     Plugin 'gmarik/Vundle.vim'
     Plugin 'randy3k/wombat256.vim'
