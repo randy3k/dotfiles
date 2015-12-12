@@ -158,3 +158,6 @@ update_terminal_cwd()
 autoload -U add-zsh-hook
 add-zsh-hook precmd  update_terminal_cwd
 
+
+# added by travis gem
+[ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
