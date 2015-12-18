@@ -7,23 +7,23 @@
     excludesfile = /Users/Randy/.gitignore
     editor = /usr/local/bin/nvim
 [alias]
-    alias = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+    al = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
     amend = commit --amend --reset-author
     undo = reset --hard
-    qc = !git add -A && git commit -m
-    fixup = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --fixup=$REV && git ri $REV^' -
-    squash = !sh -c 'REV=$1 && REV=$(git rev-parse ${REV:=HEAD}) && git commit --squash=$REV && git ri $REV^' -
-    qf = !git add -A && git fixup
+    fixup = !sh -c 'git commit --fixup=$(git rev-parse ${1:-HEAD})' -
+    squash = !sh -c 'git commit --squash=$(git rev-parse ${1:-HEAD})' -
+    qc = !git add -A && git commit
+    qf = !git add -A && git fixup && git ri HEAD^
     ri = rebase --interactive --autosquash
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     st = status -s
     br = branch
     co = checkout
-    new = checkout --orphan
-    cb = checkout -b
-    d = delete
+    cob = checkout -b
+    coo = checkout --orphan
+    del = delete
     cl = clean -fd
-    pr = !sh -c 'git fetch origin pull/$1/head:pr$1' -
+    pr = !sh -c 'git fetch origin pull/$1/head:pr/$1' -
     upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
 [push]
     default = simple
