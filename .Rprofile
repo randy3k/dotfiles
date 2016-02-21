@@ -10,12 +10,20 @@
         repr.plot.res = 100,
         repr.plot.pointsize=8,
         repr.plot.quality = 100,
-        repr.plot.antialias = "default"
-        # jupyter.plot_mimetypes = "image/png"
+        repr.plot.antialias = "default",
+        jupyter.plot_mimetypes = "image/svg+xml",
+        jupyter.display_mimetypes =  c(
+            'text/plain',
+            'application/pdf',
+            'image/png',
+            'image/jpeg',
+            'image/svg+xml'
+            )
         )
 
     if (interactive()) {
         # mac only
+        # options(pkgType="mac.binary")
         options(device="quartz")
         setHook(packageEvent("grDevices", "onLoad"),
                 function(...) grDevices::quartz.options(

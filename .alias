@@ -32,7 +32,6 @@ alias R='R --no-save'
 alias r='R --no-save'
 alias p='ipython'
 alias j='julia'
-alias ipynb='ipython notebook'
 alias jnb='jupyter notebook'
 alias rs="open 'http://localhost:8787'; rstudio-server;"
 # alias jnb='bash -l -c "pyenv shell jupyter-dev; jupyter notebook"'

@@ -13,7 +13,7 @@
     fixup = !sh -c 'git commit --fixup=$(git rev-parse ${1:-HEAD})' -
     squash = !sh -c 'git commit --squash=$(git rev-parse ${1:-HEAD})' -
     qc = !git add -A && git commit -m
-    qf = !git add -A && git fixup && git ri HEAD^
+    qf = !git add -A && git fixup && git ri HEAD^^
     ri = rebase --interactive --autosquash
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     st = status -s
