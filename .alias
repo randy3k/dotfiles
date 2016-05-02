@@ -8,7 +8,7 @@ alias rmtex='rm -f *.aux *.dvi *.lis *.log *.blg *.bbl *.toc *.idx *.ind *.ilg *
 alias laihk='ssh -v -N -D 8080 root@laihkhome.no-ip.info'
 # alias noip='ssh -v -N -D 8080 root@randy.noip.me'
 alias umaine='ssh -v -N -D 8080 lai@math.umaine.edu'
-alias ucdavis='ssh -v -N -D 8080 cslai@gumbel'
+alias ucdavis='ssh -v -N -D 8080 cslai@hannan'
 
 # vpn
 # alias tvb='sudo route add -net 202.126 -interface ppp0'
