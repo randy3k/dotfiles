@@ -1,5 +1,5 @@
 # alias
-[[ -e ~/.alias ]] && emulate sh -c 'source ~/.alias'
+[[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
 unsetopt CASE_GLOB          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
@@ -81,6 +81,9 @@ bindkey '^[[B' history-substring-search-down
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
 
+# conda-zsh-completion
+fpath=(/Users/Randy/.zsh-conda-completion  $fpath)
+zstyle ':completion::complete:*' use-cache 1
 
 # add zsh-completions of homebrew
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -124,8 +127,7 @@ gitify()
         local unpushed
         local branch
         local brinfo
-        branch=`git symbolic-ref HEAD --short 2> /dev/null ||
-                (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(detached from \(.*\))/\1/')`
+        branch=`git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
         [[ ! $(git status 2>/dev/null | tail -n 1) =~ "working directory clean" ]] && dirty="*"
         brinfo=`git branch -v | grep "* $branch"`
 

@@ -27,8 +27,8 @@ fi
 # added by travis gem
 [ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
 
-# alias
-[ -f ~/.alias ] && source ~/.alias
+# aliases
+[ -f ~/.aliases ] && source ~/.aliases
 
 # color
 export CLICOLOR=1
@@ -36,7 +36,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 
 # prompt
 function git-branch-name {
-    echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/.*(\(.*\))/\1/')`
+    echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
 }
 function git-dirty {
     st=$(git status 2>/dev/null | tail -n 1)

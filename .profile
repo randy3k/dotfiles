@@ -10,14 +10,14 @@ if [ -d "$FSLDIR" ]; then
 fi
 
 # EDITOR
-export HOMEBREW_EDITOR=subl
-export JULIA_EDITOR=subl
+export HOMEBREW_EDITOR='subl -w'
+export JULIA_EDITOR='subl -w'
 
 #pyenv setup
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 #rbenv setup
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -28,3 +28,6 @@ eval "$(rbenv init -)"
 
 # hub alias
 eval "$(hub alias -s)"
+
+# miniconda
+export PATH=/Users/Randy/miniconda3/bin:$PATH
