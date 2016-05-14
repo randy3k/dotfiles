@@ -1,0 +1,3 @@
+[core]
+    excludesfile = /Users/Randy/.gitignore
+    editor = /usr/local/bin/nvim

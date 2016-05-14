@@ -3,9 +3,8 @@
     email = randy.cs.lai@gmail.com
 [github]
     user = randy3k    
-[core]
-    excludesfile = /Users/Randy/.gitignore
-    editor = /usr/local/bin/nvim
+[include]
+    path = .gitlocal
 [alias]
     al = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
     amend = commit --amend --reset-author
