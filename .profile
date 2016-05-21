@@ -30,4 +30,4 @@ eval "$(rbenv init -)"
 eval "$(hub alias -s)"
 
 # miniconda
-export PATH=/Users/Randy/miniconda3/bin:$PATH
+export PATH="/Users/Randy/miniconda3/bin:$PATH"
