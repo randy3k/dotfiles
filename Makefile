@@ -1,4 +1,4 @@
-files = .alias .bashrc .bash_profile .profile .zshrc \
+files = .aliases .bashrc .bash_profile .profile .zshrc \
 		.zprofile .Rprofile .vimrc .nvimrc .gitconfig .gitlocal .tmux.conf
 
 all:
