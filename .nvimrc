@@ -22,14 +22,16 @@ let path='~/.config/nvim/bundle'
 call vundle#begin(path)
     Plugin 'gmarik/Vundle.vim'
     Plugin 'randy3k/wombat256.vim'
+    " Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'godlygeek/tabular'
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
     " Plugin 'terryma/vim-multiple-cursors'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'jalvesaq/Nvim-R'
-    Plugin 'plasticboy/vim-markdown'
+    Plugin 'benmills/vimux'
+    " Plugin 'jalvesaq/Nvim-R'
+    " Plugin 'plasticboy/vim-markdown'
     " Plugin 'scrooloose/nerdtree'
 call vundle#end()
 
@@ -76,3 +78,17 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 tnoremap <esc> <C-\><C-n>
+
+" vim-tmux-navigator's fix for ctrl-h
+" nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+vmap <LocalLeader>vs "vy :call VimuxSlime()<CR>
+
+" Select current paragraph and send it to tmux
+nmap <LocalLeader>vs vip<LocalLeader>vs<CR>
