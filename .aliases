@@ -9,7 +9,7 @@ alias umaine='ssh -v -N -D 8080 lai@math.umaine.edu'
 alias ucdavis='ssh -v -N -D 8080 cslai@hannan'
 
 # vpn
-# alias tvb='sudo route add -net 202.126 -interface ppp0'
+alias tvb='sudo route add -net 202.126 -interface ppp0'
 # alias appledaily='sudo route add -net 202.85.162 -interface ppp0
 # sudo route add -net 202.82.200 -interface ppp0'
 

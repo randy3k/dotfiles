@@ -16,6 +16,7 @@ fi
 # EDITOR
 export HOMEBREW_EDITOR='subl -w'
 export JULIA_EDITOR='subl -w'
+export GIT_EDITOR='nvim'
 
 #pyenv setup
 # export PYENV_ROOT="$HOME/.pyenv"
