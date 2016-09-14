@@ -15,8 +15,6 @@ let g:terminal_color_13 = '#af87ff'
 let g:terminal_color_14 = '#d7ff87'
 let g:terminal_color_15 = '#bfbfbf'
 
-let R_in_buffer = 1
-
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 let path='~/.config/nvim/bundle'
 call vundle#begin(path)
@@ -78,7 +76,7 @@ tnoremap <esc> <C-\><C-n>
 " vim-tmux-navigator's fix for ctrl-h
 " nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
-let g:slimux_tmux_path = "/usr/local/bin/tmux"
+let g:slimux_tmux_path = "tmux"
 nmap <Leader>s :SlimuxREPLSendLine<CR>j
 vmap <Leader>s :SlimuxREPLSendSelection<CR>gv
 
