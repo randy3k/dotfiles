@@ -32,7 +32,6 @@ alias jnb='jupyter notebook'
 
 # local mac only
 # alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
-alias vim=nvim
 alias rs="open 'http://localhost:8787'; rstudio-server;"
 alias tm='tmux-manager'
 

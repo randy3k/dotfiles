@@ -4,9 +4,6 @@ call vundle#begin()
     Plugin 'randy3k/wombat256.vim'
     Plugin 'godlygeek/tabular'
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
-    Plugin 'bling/vim-airline'
-    " Plugin 'christoomey/vim-tmux-navigator'
-    Plugin 'benmills/vimux'
 call vundle#end()
 
 syntax enable
@@ -25,8 +22,6 @@ color wombat256mod
 set gfn=Meslo\ LG\ S\ Regular\ for\ Powerline:h13
 set laststatus =2
 set ttimeoutlen=50
-let g:airline_theme='wombat'
-let g:airline_powerline_fonts=1
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
