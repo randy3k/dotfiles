@@ -4,6 +4,10 @@ call vundle#begin()
     Plugin 'randy3k/wombat256.vim'
     Plugin 'godlygeek/tabular'
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'epeli/slimux'
 call vundle#end()
 
 syntax enable
@@ -114,3 +118,9 @@ function s:TWS()
 endfunction
 au FileType c,cpp,r,tex,vim au BufWritePre <buffer> call s:TWS()
 "}}}
+
+let g:slimux_tmux_path = "tmux"
+nmap <Leader>s :SlimuxREPLSendLine<CR>
+vmap <Leader>s :SlimuxREPLSendSelection<CR>
+
+

@@ -56,10 +56,12 @@ if bufwinnr(1)
   map > <C-W>5>
 endif
 
+if exists("neovim_dot_app")
+  set termguicolors
+endif
 color wombat256mod
 
 set laststatus =2
-set termguicolors
 let g:airline_theme='wombat'
 let g:airline_powerline_fonts=1
 set ttimeoutlen=50
