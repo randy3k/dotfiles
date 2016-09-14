@@ -128,7 +128,7 @@ gitify()
         local branch
         local brinfo
         branch=`git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
-        [[ ! $(git status 2>/dev/null | tail -n 1) =~ "working directory clean" ]] && dirty="*"
+        [[ ! $(git status 2>/dev/null | tail -n 1) =~ "working tree clean" ]] && dirty="*"
         brinfo=`git branch -v | grep "* $branch"`
 
         [[ $brinfo =~ ("behind "([[:digit:]]*)) ]] && unpushed="-${match[2]}"

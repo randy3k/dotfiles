@@ -29,3 +29,5 @@
     diff = auto
     interactive = auto
     status = auto
+[credential]
+	helper = osxkeychain

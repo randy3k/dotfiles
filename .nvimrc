@@ -29,7 +29,8 @@ call vundle#begin(path)
     Plugin 'vim-airline/vim-airline-themes'
     " Plugin 'terryma/vim-multiple-cursors'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'benmills/vimux'
+    " Plugin 'benmills/vimux'
+    Plugin 'epeli/slimux'
     " Plugin 'jalvesaq/Nvim-R'
     " Plugin 'plasticboy/vim-markdown'
     " Plugin 'scrooloose/nerdtree'
@@ -67,11 +68,6 @@ set ttimeoutlen=50
 let g:LatexBox_viewer = 'open -a skim'
 let g:LatexBox_latexmk_options = "-pdflatex='pdflatex -shell-escape -synctex=1'"
 
-"nnoremap <silent> <C-enter> Vy<C-w>ppi<CR><C-\><C-n><C-w>pj
-"inoremap <silent> <C-enter> <esc>Vy<C-w>ppi<CR><C-\><C-n><C-w>pgi
-"vnoremap <silent> <C-enter> y<C-w>ppi<CR><C-\><C-n><C-w>pgv
-"command! R execute "normal \<C-w>v\<C-w>\<C-w>:term\<CR>R\<CR>\<C-\>\<C-n>\<C-w>p"
-"command! J execute "normal \<C-w>v\<C-w>\<C-w>:term\<CR>julia\<CR>\<C-\>\<C-n>\<C-w>p"
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -82,13 +78,7 @@ tnoremap <esc> <C-\><C-n>
 " vim-tmux-navigator's fix for ctrl-h
 " nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
-function! VimuxSlime()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
-endfunction
+let g:slimux_tmux_path = "/usr/local/bin/tmux"
+nmap <Leader>s :SlimuxREPLSendLine<CR>j
+vmap <Leader>s :SlimuxREPLSendSelection<CR>gv
 
-" If text is selected, save it in the v buffer and send that buffer it to tmux
-vmap <LocalLeader>vs "vy :call VimuxSlime()<CR>
-
-" Select current paragraph and send it to tmux
-nmap <LocalLeader>vs vip<LocalLeader>vs<CR>
