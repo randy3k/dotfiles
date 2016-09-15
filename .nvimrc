@@ -3,18 +3,17 @@ let path='~/.config/nvim/bundle'
 call vundle#begin(path)
     Plugin 'gmarik/Vundle.vim'
     Plugin 'randy3k/wombat256.vim'
-    " Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'godlygeek/tabular'
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-    " Plugin 'terryma/vim-multiple-cursors'
     Plugin 'kien/ctrlp.vim'
-    " Plugin 'benmills/vimux'
     Plugin 'epeli/slimux'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'kassio/neoterm'
+    Plugin 'roxma/vim-tmux-clipboard'
+    " Plugin 'terryma/vim-multiple-cursors'
     " Plugin 'jalvesaq/Nvim-R'
-    " Plugin 'plasticboy/vim-markdown'
-    " Plugin 'scrooloose/nerdtree'
 call vundle#end()
 
 syntax enable
@@ -28,15 +27,14 @@ set shiftwidth=2
 set expandtab
 set cursorline
 set backspace=2
+set clipboard=unnamed
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-if bufwinnr(1)
-  map + <C-W>5+
-  map - <C-W>5-
-  map < <C-W>5<
-  map > <C-W>5>
-endif
+map <C-w>+ <C-W>5+
+map <C-w>- <C-W>5-
+map <C-w>< <C-W>5<
+map <C-w>> <C-W>5>
 
 let g:terminal_color_0  = '#000000'
 let g:terminal_color_1  = '#ff8787'
@@ -60,17 +58,29 @@ let g:airline_powerline_fonts=1
 set laststatus =2
 set ttimeoutlen=50
 
-let g:LatexBox_viewer = 'open -a skim'
-let g:LatexBox_latexmk_options = "-pdflatex='pdflatex -shell-escape -synctex=1'"
-
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 tnoremap <esc> <C-\><C-n>
 
-let g:slimux_tmux_path = "tmux"
-imap <C-l> <esc>:SlimuxREPLSendLine<CR>jI
-nmap <C-l> :SlimuxREPLSendLine<CR>j
-vmap <C-l> :SlimuxREPLSendSelection<CR>gv
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+cnoremap <M-BS> <C-W>
 
+inoremap <C-A> <Home>
+inoremap <C-E> <End>
+inoremap <M-b> <S-Left>
+inoremap <M-f> <S-Right>
+inoremap <M-BS> <C-W>
+
+" let g:slimux_tmux_path = "tmux"
+" imap <C-l> <esc>:SlimuxREPLSendLine<CR>jI
+" nmap <C-l> :SlimuxREPLSendLine<CR>j
+" vmap <C-l> :SlimuxREPLSendSelection<CR>gv
+
+inoremap <silent> <C-l> <esc>:TREPLSend<cr>jI
+nnoremap <silent> <C-l> :TREPLSend<cr>j
+vnoremap <silent> <C-l> :TREPLSend<cr>gv
