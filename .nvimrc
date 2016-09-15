@@ -80,6 +80,7 @@ tnoremap <esc> <C-\><C-n>
 " nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
 let g:slimux_tmux_path = "tmux"
-imap <C-j> <esc>:SlimuxREPLSendLine<CR>jI
-nmap <C-j> :SlimuxREPLSendLine<CR>j
-vmap <C-j> :SlimuxREPLSendSelection<CR>gv
+imap <C-l> <esc>:SlimuxREPLSendLine<CR>jI
+nmap <C-l> :SlimuxREPLSendLine<CR>j
+vmap <C-l> :SlimuxREPLSendSelection<CR>gv
+
