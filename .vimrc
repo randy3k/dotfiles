@@ -99,28 +99,7 @@ noremap  <silent>       <End>  g<End>
 inoremap <silent>       <End>  <C-o>g<End>
 "}}}
 
-"Trailing whitespace {{{
-function s:TWS()
-    let lnum = line('.')
-    let cnum = col('.')
-    let lastlnum = line('$')
-    normal! Hmt
-    silent! %s/\s\+$//e
-    silent! v/\_s*\S/d
-    if search('\S', 'n')
-        if lnum<=lastlnum
-            normal! `tzt
-            call cursor(lnum,cnum)
-        else
-            normal! G
-        endif
-    endif
-endfunction
-au FileType c,cpp,r,tex,vim au BufWritePre <buffer> call s:TWS()
-"}}}
-
 let g:slimux_tmux_path = "tmux"
-nmap <Leader>s :SlimuxREPLSendLine<CR>
-vmap <Leader>s :SlimuxREPLSendSelection<CR>
-
-
+imap <C-j> <esc>:SlimuxREPLSendLine<CR>jI
+nmap <C-j> :SlimuxREPLSendLine<CR>j
+vmap <C-j> :SlimuxREPLSendSelection<CR>gv
