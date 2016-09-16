@@ -81,6 +81,7 @@ inoremap <M-BS> <C-W>
 " nmap <C-l> :SlimuxREPLSendLine<CR>j
 " vmap <C-l> :SlimuxREPLSendSelection<CR>gv
 
-inoremap <silent> <C-l> <esc>:TREPLSend<cr>jI
-nnoremap <silent> <C-l> :TREPLSend<cr>j
-vnoremap <silent> <C-l> :TREPLSend<cr>gv
+inoremap <silent> <C-l> <esc>:TREPLSendLine<cr>jI
+nnoremap <silent> <C-b> :TREPLSendFile<cr>
+nnoremap <silent> <C-l> :TREPLSendLine<cr>j
+vnoremap <silent> <C-l> :TREPLSendSelection<cr>gv
