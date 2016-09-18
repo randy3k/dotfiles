@@ -11,7 +11,6 @@ call vundle#begin(path)
     Plugin 'epeli/slimux'
     Plugin 'scrooloose/nerdtree'
     Plugin 'kassio/neoterm'
-    Plugin 'roxma/vim-tmux-clipboard'
     " Plugin 'terryma/vim-multiple-cursors'
     " Plugin 'jalvesaq/Nvim-R'
 call vundle#end()

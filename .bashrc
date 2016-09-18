@@ -4,6 +4,10 @@
 # enable i-search
 stty -ixon -ixoff
 
+# keybinds
+bind '"\C-f": forward-word'
+bind '"\C-b": backward-word'
+
 # bash completion
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
