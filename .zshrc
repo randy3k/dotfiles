@@ -25,9 +25,6 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 # keybind
 # bindkey -v                # vi mode
 bindkey "^[[3~" delete-char
-bindkey "\C-f" forward-word
-bindkey "\C-b" backward-word
-
 autoload -U select-word-style
 select-word-style bash
 bindkey "^d"  bash-ctrl-d
