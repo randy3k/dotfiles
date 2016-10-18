@@ -75,12 +75,7 @@ inoremap <M-b> <S-Left>
 inoremap <M-f> <S-Right>
 inoremap <M-BS> <C-W>
 
-" let g:slimux_tmux_path = "tmux"
-" imap <C-l> <esc>:SlimuxREPLSendLine<CR>jI
-" nmap <C-l> :SlimuxREPLSendLine<CR>j
-" vmap <C-l> :SlimuxREPLSendSelection<CR>gv
-
-inoremap <silent> <C-l> <esc>:TREPLSendLine<cr>jI
+inoremap <silent> <C-j> <esc>:TREPLSendLine<cr>jI
 nnoremap <silent> <C-b> :TREPLSendFile<cr>
-nnoremap <silent> <C-l> :TREPLSendLine<cr>j
-vnoremap <silent> <C-l> :TREPLSendSelection<cr>gv
+nnoremap <silent> <C-j> :TREPLSendLine<cr>j
+vnoremap <silent> <C-j> :TREPLSendSelection<cr>gv
