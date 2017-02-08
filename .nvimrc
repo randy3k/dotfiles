@@ -27,6 +27,9 @@ set expandtab
 set cursorline
 set backspace=2
 set clipboard=unnamed
+if has("gui_vimr")
+    set termguicolors
+endif
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
