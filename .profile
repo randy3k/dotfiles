@@ -20,7 +20,7 @@ export GIT_EDITOR='nvim'
 export EDITOR='nvim'
 
 # homebrew github token
-[ -f ~/.config/homebrew ] && source ~/.config/homebrew
+[ -f ~/.config/homebrew ] && . ~/.config/homebrew
 
 # hub alias
 eval "$(hub alias -s)"
