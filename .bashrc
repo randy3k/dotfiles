@@ -7,6 +7,12 @@ stty -ixon -ixoff
 # keybinds
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
+# substring search
+bind '"\e[A": history-search-backward'
+bind '"\e[B":history-search-forward'
+
+# ignore ctrl-d
+IGNOREEOF=1
 
 # bash completion
 bind "set completion-ignore-case on"

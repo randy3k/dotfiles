@@ -1,6 +1,6 @@
 [user]
-	name = Randy Lai
-	email = randy.cs.lai@gmail.com
+    name = Randy Lai
+    email = randy.cs.lai@gmail.com
 [github]
     user = randy3k    
 [include]
@@ -29,7 +29,5 @@
     diff = auto
     interactive = auto
     status = auto
-[credential]
-	helper = osxkeychain
 [rerere]
-	enabled = true
+    enabled = true
