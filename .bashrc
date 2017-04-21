@@ -45,46 +45,48 @@ function git-branch-name {
     echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
 }
 function git-dirty {
-    st=$(git status 2>/dev/null | tail -n 1)
-    if [[ ! $st =~ "working directory clean" ]]
-    then
-        echo "*"
-    fi
+    [[ `wc -l <<< "$1" ` -eq 1  ]] || echo "*"
 }
 function git-unpushed {
-    brinfo=`git branch -v | grep "$(git-branch-name)"`
-    if [[ $brinfo =~ ("behind "([[:digit:]]*)) ]]
+    if [[ "$1" =~ ("behind "([[:digit:]]*)) ]]
     then
         echo -n "-${BASH_REMATCH[2]}"
     fi
-    if [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]]
+    if [[ "$1" =~ ("ahead "([[:digit:]]*)) ]]
     then
         echo -n "+${BASH_REMATCH[2]}"
     fi
 }
 function gitcolor {
-    st=$(git status 2>/dev/null | head -n 1)
-    if [[ ! $st == "" ]]
+    st=$(git status -b --porcelain 2>/dev/null)
+    [[ $? -eq 0 ]] || return
+
+    if [[ $(git-dirty "$st") == "*" ]];
     then
-        if [[ $(git-dirty) == "*" ]];
-        then
-            echo -e "\033[31m"
-        elif [[ $(git-unpushed) != "" ]];
-        then
-            echo -e "\033[33m"
-        else
-            echo -e "\033[32m"
-        fi
+        echo -e "\033[31m"
+    elif [[ $(git-unpushed "$st") != "" ]];
+    then
+        echo -e "\033[33m"
+    else
+        echo -e "\033[32m"
     fi
 }
 function gitify {
-    st=$(git status 2>/dev/null | head -n 1)
-    if [[ ! $st == "" ]]
-    then
-        echo -e " ($(git-branch-name)$(git-dirty)$(git-unpushed))"
-    fi
+    st=$(git status -b --porcelain 2>/dev/null)
+    [[ $? -eq 0 ]] || return
+    dirty=$(git-dirty "$st")
+    unpushed=$(git-unpushed "$st")
+    echo -e " ($(git-branch-name)$dirty$unpushed)"
 }
 
 PS1="\[\033[33m\](\h)\[\033[00m\]-\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
-# reset title
-PS1='\[\e]0;\a\]'"$PS1"
+
+if [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
+    PS1='\[\e]0;\a\]'"$PS1"
+
+elif [[ "$TERM_PROGRAM" = "iTerm.app" ]]; then
+    function iterm2_print_user_vars {
+        printf '\e]1;%s\a' `basename $PWD`
+    }
+    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+fi

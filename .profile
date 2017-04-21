@@ -17,6 +17,7 @@ fi
 export HOMEBREW_EDITOR='subl -w'
 export JULIA_EDITOR='subl -w'
 export GIT_EDITOR='nvim'
+export EDITOR='nvim'
 
 # homebrew github token
 [ -f ~/.config/homebrew ] && source ~/.config/homebrew

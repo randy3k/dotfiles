@@ -1,6 +1,8 @@
 # alias
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
+
+
 unsetopt CASE_GLOB          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
 setopt ignoreeof            # ignore EOF ('^D') (i.e. don't log out on it)
@@ -23,7 +25,7 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 
 
 # keybind
-# bindkey -v                # vi mode
+bindkey -e                # emacs mode
 bindkey "^[[3~" delete-char
 autoload -U select-word-style
 select-word-style bash
@@ -53,6 +55,12 @@ export IGNOREEOF=1
 autoload -U send-break
 autoload -U delete-char-or-list
 zle -N bash-ctrl-d
+
+# Enable Ctrl-x-e to edit command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 
 # color
 autoload -U colors
@@ -117,49 +125,53 @@ if [[ -f /usr/local/opt/rbenv/completions/rbenv.zsh ]]; then
     source /usr/local/opt/rbenv/completions/rbenv.zsh
 fi
 
+# added by travis gem
+[ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
+
 # prompt
 gitify()
 {
-    st=$(git status 2>/dev/null | head -n 1)
-    if [[ ! $st == "" ]]
-    then
-        local dirty
-        local unpushed
-        local branch
-        local brinfo
-        branch=`git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
-        [[ ! $(git status 2>/dev/null | tail -n 1) =~ "working tree clean" ]] && dirty="*"
-        brinfo=`git branch -v | grep "* $branch"`
+    st=$(git status -b --porcelain 2>/dev/null)
+    [[ $? -eq 0 ]] || return
 
-        [[ $brinfo =~ ("behind "([[:digit:]]*)) ]] && unpushed="-${match[2]}"
-        [[ $brinfo =~ ("ahead "([[:digit:]]*)) ]] && unpushed="$unpushed+${match[2]}"
+    local branch
+    local dirty
+    local unpushed
 
-        if [[ $dirty == "*" ]]; then
-            echo -en " %{$fg[red]%}"
-        elif [[ $unpushed != "" ]]; then
-            echo -en " %{$fg[yellow]%}"
-        else
-            echo -en " %{$fg[green]%}"
-        fi
-        echo -en "($branch$dirty$unpushed)%{$reset_color%}"
+    branch=`git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
+    [[ `wc -l <<< "$st"` -eq 1  ]] || dirty="*"
+    [[ "$st" =~ ("behind "([[:digit:]]*)) ]] && unpushed="-${match[2]}"
+    [[ "$st" =~ ("ahead "([[:digit:]]*)) ]] && unpushed="$unpushed+${match[2]}"
+
+    if [[ $dirty == "*" ]]; then
+        echo -en " %{$fg[red]%}"
+    elif [[ $unpushed != "" ]]; then
+        echo -en " %{$fg[yellow]%}"
+    else
+        echo -en " %{$fg[green]%}"
     fi
+    echo -en "($branch$dirty$unpushed)%{$reset_color%}"
 }
 setopt prompt_subst
 PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
-update_terminal_cwd()
-{
-    local SEARCH=' '
-    local REPLACE='%20'
-    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
-    printf '\e]0;\a'
-    printf '\e]1;%s\a' `basename $PWD`
-    printf '\e]7;%s\a' "$PWD_URL"
-}
-autoload -U add-zsh-hook
-add-zsh-hook precmd  update_terminal_cwd
+if [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
+    update_terminal_cwd()
+    {
+        local SEARCH=' '
+        local REPLACE='%20'
+        local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+        printf '\e]0;\a'
+        printf '\e]1;%s\a' `basename $PWD`
+        printf '\e]7;%s\a' "$PWD_URL"
+    }
+    autoload -U add-zsh-hook
+    add-zsh-hook precmd  update_terminal_cwd
 
-
-# added by travis gem
-[ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
+elif [[ "$TERM_PROGRAM" = "iTerm.app" ]]; then
+    function iterm2_print_user_vars {
+        printf '\e]1;%s\a' `basename $PWD`
+    }
+    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+fi

@@ -26,7 +26,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias R='R --no-save'
 alias r='R --no-save'
-alias p='ipython'
+alias p='ptipython'
 alias j='julia'
 alias jnb='jupyter notebook'
 
