@@ -1,11 +1,8 @@
 # alias
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
-
-
 unsetopt CASE_GLOB          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
-setopt ignoreeof            # ignore EOF ('^D') (i.e. don't log out on it)
 disable r                   # disable redo command r
 stty -ixon -ixoff           # enable i-search
 
@@ -23,15 +20,14 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 # setopt histverify           # confirm !: or ^ command results before execution
 # setopt share_history        # share history between sessions ???
 
-
 # keybind
-bindkey -e                # emacs mode
+bindkey -e  # emacs mode
 bindkey "^[[3~" delete-char
 autoload -U select-word-style
 select-word-style bash
-bindkey "^d"  bash-ctrl-d
-
 # bash like ctrl d
+setopt ignoreeof  
+bindkey "^d"  bash-ctrl-d
 bash-ctrl-d()
 {
     if [[ $CURSOR == 0 && -z $BUFFER ]]
@@ -67,20 +63,11 @@ autoload -U colors
 colors
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:*.rpm=90'
 
 # syntax highlight
 export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# zsh-autosuggestions
-# source /Users/Randy/.zsh-autosuggestions/autosuggestions.zsh
-# zle-line-init() {
-#     zle autosuggest-start
-# }
-# zle -N zle-line-init
-# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive)
-# bindkey '^T' autosuggest-toggle
 
 # history-substring-search
 source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -93,27 +80,22 @@ export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
 fpath=(/Users/Randy/.zsh-conda-completion  $fpath)
 zstyle ':completion::complete:*' use-cache 1
 
-# add zsh-completions of homebrew
-fpath=(/usr/local/share/zsh-completions $fpath)
-
 # compsys initialization
-# setopt noautomenu
-# setopt nomenucomplete
-setopt nolistambiguous
 autoload -U compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
+_users=($(dscl . list /Users | grep -v '^_'))
+zstyle ':completion:*' users $_users
+# retrieve exixsting hosts
 zstyle -s ':completion:*:hosts' hosts _ssh_config
 if [[ -r ~/.ssh/config ]]; then
-    _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/Host[=\t ]//p'))
-    _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/^[ ]*HostName[=\t ]//p'))
+    _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/^Host[=\t ]*//p' | grep '^[a-zA-Z]'))
+    _ssh_config+=($(cat ~/.ssh/config | sed -ne 's/^[\t ]*HostName[=\t ]*//p'))
 fi
-zstyle ':completion:*:hosts' hosts $_ssh_config
-zstyle ':completion:*:hub:*' user-commands ${${(k)commands[(I)git-*]}#git-}
-zstyle ':completion:*:git:*' user-commands ${${(k)commands[(I)git-*]}#git-}
+zstyle ':completion:*' hosts $_ssh_config
 
 # pyenv completion
 if [[ -f /usr/local/opt/pyenv/completions/pyenv.zsh ]]; then
@@ -129,8 +111,7 @@ fi
 [ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
 
 # prompt
-gitify()
-{
+gitify() {
     st=$(git status -b --porcelain 2>/dev/null)
     [[ $? -eq 0 ]] || return
 
@@ -157,8 +138,7 @@ PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
 if [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
-    update_terminal_cwd()
-    {
+    update_terminal_cwd() {
         local SEARCH=' '
         local REPLACE='%20'
         local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
