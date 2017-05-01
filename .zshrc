@@ -1,10 +1,11 @@
 # alias
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
-unsetopt CASE_GLOB          # case insensitive
+unsetopt case_glob          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
 disable r                   # disable redo command r
 stty -ixon -ixoff           # enable i-search
+setopt autopushd
 
 # history
 export HISTSIZE=20000
@@ -24,10 +25,12 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 bindkey -e  # emacs mode
 bindkey "^[[3~" delete-char
 autoload -U select-word-style
-select-word-style bash
+select-word-style bash  # word characters are alphanumerics only
+
 # bash like ctrl d
 setopt ignoreeof  
 bindkey "^d"  bash-ctrl-d
+zle -N bash-ctrl-d
 bash-ctrl-d()
 {
     if [[ $CURSOR == 0 && -z $BUFFER ]]
@@ -50,7 +53,6 @@ bash-ctrl-d()
 export IGNOREEOF=1
 autoload -U send-break
 autoload -U delete-char-or-list
-zle -N bash-ctrl-d
 
 # Enable Ctrl-x-e to edit command line
 autoload -U edit-command-line
@@ -76,6 +78,9 @@ bindkey '^[[B' history-substring-search-down
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
 
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 # conda-zsh-completion
 fpath=(/Users/Randy/.zsh-conda-completion  $fpath)
 zstyle ':completion::complete:*' use-cache 1
@@ -83,6 +88,7 @@ zstyle ':completion::complete:*' use-cache 1
 # compsys initialization
 autoload -U compinit
 compinit
+# match uppercase from lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
@@ -137,7 +143,10 @@ setopt prompt_subst
 PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
-if [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
+if [ -z "$INSIDE_EMACS" ]; then
+    true
+
+elif [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
     update_terminal_cwd() {
         local SEARCH=' '
         local REPLACE='%20'
@@ -155,3 +164,5 @@ elif [[ "$TERM_PROGRAM" = "iTerm.app" ]]; then
     }
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -14,10 +14,10 @@ if [ -d "$FSLDIR" ]; then
 fi
 
 # EDITOR
-export HOMEBREW_EDITOR='subl -w'
-export JULIA_EDITOR='subl -w'
+export HOMEBREW_EDITOR='subl'
+export JULIA_EDITOR='subl'
 export GIT_EDITOR='nvim'
-export EDITOR='nvim'
+# export EDITOR='nvim'
 
 # homebrew github token
 [ -f ~/.config/homebrew ] && . ~/.config/homebrew
