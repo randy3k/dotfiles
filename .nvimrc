@@ -8,9 +8,9 @@ call vundle#begin(path)
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'epeli/slimux'
     Plugin 'scrooloose/nerdtree'
     Plugin 'kassio/neoterm'
+    " Plugin 'epeli/slimux'
     " Plugin 'terryma/vim-multiple-cursors'
     " Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
@@ -30,13 +30,6 @@ set clipboard=unnamed
 if has("gui_vimr")
     set termguicolors
 endif
-
-set hlsearch
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-map <C-w>+ <C-W>5+
-map <C-w>- <C-W>5-
-map <C-w>< <C-W>5<
-map <C-w>> <C-W>5>
 
 let g:terminal_color_0  = '#000000'
 let g:terminal_color_1  = '#ff8787'
@@ -64,21 +57,71 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+nnoremap <C-l> :nohlsearch<CR><C-l>
+
 tnoremap <esc> <C-\><C-n>
+tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>a
+inoremap <C-w><C-w> <C-\><C-n><C-w><C-w>a
 
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-cnoremap <M-b> <S-Left>
-cnoremap <M-f> <S-Right>
-cnoremap <M-BS> <C-W>
+inoremap <silent> <C-j> <esc>:TREPLSendLine<CR>jI
+nnoremap <silent> <C-b> :TREPLSendFile<CR>
+nnoremap <silent> <C-j> :TREPLSendLine<CR>j
+vnoremap <silent> <C-j> :TREPLSendSelection<CR>gv
 
-inoremap <C-A> <Home>
-inoremap <C-E> <End>
-inoremap <M-b> <S-Left>
-inoremap <M-f> <S-Right>
-inoremap <M-BS> <C-W>
+" spacemacs like keybinds
 
-inoremap <silent> <C-j> <esc>:TREPLSendLine<cr>jI
-nnoremap <silent> <C-b> :TREPLSendFile<cr>
-nnoremap <silent> <C-j> :TREPLSendLine<cr>j
-vnoremap <silent> <C-j> :TREPLSendSelection<cr>gv
+" zoom / restore window
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        exec t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+
+function! s:WinLayoutToggle() abort
+    if exists('t:horizonal') && t:horizonal
+        let t:horizonal = 0
+        execute "windo wincmd K"
+    else
+        let t:horizonal = 1
+        execute "windo wincmd H"
+    endif
+endfunction
+command! WinLayoutToggle call s:WinLayoutToggle()
+
+nmap <space>bb :buffers<CR>
+nmap <space>bd :bdelete<CR>
+nmap <space>bn :bn<CR>
+nmap <space>bp :bp<CR>
+nmap <space>bR :e<CR>
+
+nmap <space>fed :e ~/.nvimrc<CR>
+nmap <space>feR :source ~/.nvimrc<CR>
+nmap <space>ff :CtrlPCurFile<CR>
+nmap <space>fr :CtrlPMRU<CR>
+nmap <space>fs :w<CR>
+nmap <space>fS :wa<CR>
+nmap <space>ft :NERDTreeToggle<CR>
+
+nmap <space>tn :set number!<CR>
+nmap <space>tl :set wrap!<CR>
+
+nmap <space>w- :sp<CR>
+nmap <space>w/ :vsp<CR>
+nmap <space>w= <C-w>=
+nmap <space>wc :q<CR>
+nmap <space>wh <C-w>h
+nmap <space>wj <C-w>j
+nmap <space>wk <C-w>k
+nmap <space>wl <C-w>l
+nmap <space>ws <C-w>s
+nmap <space>wv <C-w>v
+nmap <space>wm :ZoomToggle<CR>
+nmap <space>w+ :WinLayoutToggle<CR>
+nmap <space>ww <C-w><C-w>

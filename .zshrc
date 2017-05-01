@@ -24,6 +24,8 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 # keybind
 bindkey -e  # emacs mode
 bindkey "^[[3~" delete-char
+bindkey "∫" backward-word
+bindkey "ƒ" forward-word
 autoload -U select-word-style
 select-word-style bash  # word characters are alphanumerics only
 
