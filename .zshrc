@@ -145,7 +145,7 @@ setopt prompt_subst
 PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
-if [ -z "$INSIDE_EMACS" ]; then
+if [ -n "$INSIDE_EMACS" ]; then
     true
 
 elif [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
@@ -166,5 +166,3 @@ elif [[ "$TERM_PROGRAM" = "iTerm.app" ]]; then
     }
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
