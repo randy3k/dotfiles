@@ -15,18 +15,23 @@ call vundle#begin(path)
     " Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
 
+
 syntax enable
 filetype plugin on
 filetype indent on
 set mouse=a
 set wildignorecase
-set number
+if &buftype != 'terminal'
+  set number
+end
 set tabstop=4
 set shiftwidth=2
 set expandtab
 set cursorline
 set backspace=2
 set clipboard=unnamed
+" set notimeout
+" set ttimeout
 if has("gui_vimr")
     set termguicolors
 endif
@@ -57,16 +62,40 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-nnoremap <C-l> :nohlsearch<CR><C-l>
+
+noremap <C-f> <C-d>
+noremap <C-b> <C-u>
 
 tnoremap <esc> <C-\><C-n>
-tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>a
-inoremap <C-w><C-w> <C-\><C-n><C-w><C-w>a
+tnoremap jk <C-\><C-n>
+inoremap jk <esc>
+cnoremap jk <C-c>
 
-inoremap <silent> <C-j> <esc>:TREPLSendLine<CR>jI
-nnoremap <silent> <C-b> :TREPLSendFile<CR>
-nnoremap <silent> <C-j> :TREPLSendLine<CR>j
-vnoremap <silent> <C-j> :TREPLSendSelection<CR>gv
+nnoremap <tab> <C-w>w
+nnoremap <S-tab> <C-w>W
+
+g:neoterm_autoscroll = 1
+augroup neoterm_keybinds
+  autocmd!
+  " autocmd filetype r,python inoremap <buffer> <silent> <C-j> <esc>:TREPLSendLine<CR>jI
+  autocmd filetype r,python nnoremap <buffer> <silent> <C-j> :TREPLSendLine<CR>j
+  autocmd filetype r,python vnoremap <buffer> <silent> <C-j> :TREPLSendSelection<CR>gv
+augroup end
+nnoremap <C-k> <Up>
+nnoremap <C-l> <Right>
+
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
+
+" disable ctrlp default keybind
+let g:ctrlp_map = ''
 
 " spacemacs like keybinds
 
@@ -112,14 +141,18 @@ nmap <space>ft :NERDTreeToggle<CR>
 nmap <space>tn :set number!<CR>
 nmap <space>tl :set wrap!<CR>
 
+nnoremap <silent> <space>l :nohlsearch<CR><C-l>
+
 nmap <space>w- :sp<CR>
 nmap <space>w/ :vsp<CR>
 nmap <space>w= <C-w>=
 nmap <space>wc :q<CR>
 nmap <space>wh <C-w>h
+nmap <space>wH <C-w>H
 nmap <space>wj <C-w>j
 nmap <space>wk <C-w>k
 nmap <space>wl <C-w>l
+nmap <space>wL <C-w>L
 nmap <space>ws <C-w>s
 nmap <space>wv <C-w>v
 nmap <space>wm :ZoomToggle<CR>
