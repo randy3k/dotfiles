@@ -74,7 +74,7 @@ cnoremap jk <C-c>
 nnoremap <tab> <C-w>w
 nnoremap <S-tab> <C-w>W
 
-g:neoterm_autoscroll = 1
+let g:neoterm_autoscroll = 1
 augroup neoterm_keybinds
   autocmd!
   " autocmd filetype r,python inoremap <buffer> <silent> <C-j> <esc>:TREPLSendLine<CR>jI
