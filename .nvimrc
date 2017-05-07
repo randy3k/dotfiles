@@ -10,6 +10,7 @@ call vundle#begin(path)
     Plugin 'kien/ctrlp.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'kassio/neoterm'
+    Plugin 'scrooloose/nerdcommenter'
     " Plugin 'epeli/slimux'
     " Plugin 'terryma/vim-multiple-cursors'
     " Plugin 'jalvesaq/Nvim-R'
@@ -22,10 +23,10 @@ filetype indent on
 set mouse=a
 set wildignorecase
 if &buftype != 'terminal'
-  set number
+    set number
 end
 set tabstop=4
-set shiftwidth=2
+set shiftwidth=4
 set expandtab
 set cursorline
 set backspace=2
@@ -52,6 +53,7 @@ let g:terminal_color_12 = '#87afff'
 let g:terminal_color_13 = '#af87ff'
 let g:terminal_color_14 = '#d7ff87'
 let g:terminal_color_15 = '#bfbfbf'
+
 color wombat256mod
 let g:airline_theme='wombat'
 let g:airline_powerline_fonts=1
@@ -62,6 +64,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+let mapleader = " "
+let g:NERDSpaceDelims = 1
 
 noremap <C-f> <C-d>
 noremap <C-b> <C-u>
@@ -76,10 +80,10 @@ nnoremap <S-tab> <C-w>W
 
 let g:neoterm_autoscroll = 1
 augroup neoterm_keybinds
-  autocmd!
-  " autocmd filetype r,python inoremap <buffer> <silent> <C-j> <esc>:TREPLSendLine<CR>jI
-  autocmd filetype r,python nnoremap <buffer> <silent> <C-j> :TREPLSendLine<CR>j
-  autocmd filetype r,python vnoremap <buffer> <silent> <C-j> :TREPLSendSelection<CR>gv
+    autocmd!
+    " autocmd filetype r,python inoremap <buffer> <silent> <C-j> <esc>:TREPLSendLine<CR>jI
+    autocmd filetype r,python nnoremap <buffer> <silent> <C-j> :TREPLSendLine<CR>j
+    autocmd filetype r,python vnoremap <buffer> <silent> <C-j> :TREPLSendSelection<CR>gv
 augroup end
 nnoremap <C-k> <Up>
 nnoremap <C-l> <Right>
@@ -96,6 +100,12 @@ cnoremap <C-l> <Right>
 
 " disable ctrlp default keybind
 let g:ctrlp_map = ''
+
+autocmd! VimEnter * call s:fcy_nerdcommenter_map()
+function! s:fcy_nerdcommenter_map()
+    nmap <leader>cc <plug>NERDCommenterToggle
+    vmap <leader>cc <plug>NERDCommenterToggle gv
+endfunction
 
 " spacemacs like keybinds
 
@@ -124,37 +134,37 @@ function! s:WinLayoutToggle() abort
 endfunction
 command! WinLayoutToggle call s:WinLayoutToggle()
 
-nmap <space>bb :buffers<CR>
-nmap <space>bd :bdelete<CR>
-nmap <space>bn :bn<CR>
-nmap <space>bp :bp<CR>
-nmap <space>bR :e<CR>
+nmap <Leader>bb :buffers<CR>
+nmap <Leader>bd :bdelete<CR>
+nmap <Leader>bn :bn<CR>
+nmap <Leader>bp :bp<CR>
+nmap <Leader>bR :e<CR>
 
-nmap <space>fed :e ~/.nvimrc<CR>
-nmap <space>feR :source ~/.nvimrc<CR>
-nmap <space>ff :CtrlPCurFile<CR>
-nmap <space>fr :CtrlPMRU<CR>
-nmap <space>fs :w<CR>
-nmap <space>fS :wa<CR>
-nmap <space>ft :NERDTreeToggle<CR>
+nmap <Leader>rc :e ~/.nvimrc<CR>
+nmap <Leader>rr :source ~/.nvimrc<CR>
+nmap <Leader>ff :CtrlPCurFile<CR>
+nmap <Leader>fr :CtrlPMRU<CR>
+nmap <Leader>fs :w<CR>
+nmap <Leader>fS :wa<CR>
+nmap <Leader>ft :NERDTreeToggle<CR>
 
-nmap <space>tn :set number!<CR>
-nmap <space>tl :set wrap!<CR>
+nmap <Leader>tn :set number!<CR>
+nmap <Leader>tl :set wrap!<CR>
 
-nnoremap <silent> <space>l :nohlsearch<CR><C-l>
+nnoremap <silent> <Leader>l :nohlsearch<CR><C-l>
 
-nmap <space>w- :sp<CR>
-nmap <space>w/ :vsp<CR>
-nmap <space>w= <C-w>=
-nmap <space>wc :q<CR>
-nmap <space>wh <C-w>h
-nmap <space>wH <C-w>H
-nmap <space>wj <C-w>j
-nmap <space>wk <C-w>k
-nmap <space>wl <C-w>l
-nmap <space>wL <C-w>L
-nmap <space>ws <C-w>s
-nmap <space>wv <C-w>v
-nmap <space>wm :ZoomToggle<CR>
-nmap <space>w+ :WinLayoutToggle<CR>
-nmap <space>ww <C-w><C-w>
+nmap <Leader>w- :sp<CR>
+nmap <Leader>w/ :vsp<CR>
+nmap <Leader>w= <C-w>=
+nmap <Leader>wc :q<CR>
+nmap <Leader>wh <C-w>h
+nmap <Leader>wH <C-w>H
+nmap <Leader>wj <C-w>j
+nmap <Leader>wk <C-w>k
+nmap <Leader>wl <C-w>l
+nmap <Leader>wL <C-w>L
+nmap <Leader>ws <C-w>s
+nmap <Leader>wv <C-w>v
+nmap <Leader>wm :ZoomToggle<CR>
+nmap <Leader>w+ :WinLayoutToggle<CR>
+nmap <Leader>ww <C-w><C-w>

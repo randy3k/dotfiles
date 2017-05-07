@@ -77,6 +77,8 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^K' history-substring-search-up
+bindkey '^J' history-substring-search-down
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
 
