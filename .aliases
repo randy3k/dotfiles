@@ -4,14 +4,12 @@ alias rmtex='rm -f *.aux *.dvi *.lis *.log *.blg *.bbl *.toc *.idx *.ind *.ilg *
 # alias hannan-fs='mkdir -pv /Volumes/Hannan/ ; sshfs -o volname=Hannan,no_readahead,noappledouble,nolocalcaches cslai@hannan.ucdavis.edu: /Volumes/Hannan/'
 
 # ssh tunneling
-# alias laihk='ssh -v -N -D 8080 root@laihkhome.no-ip.info'
-# alias umaine='ssh -v -N -D 8080 germain'
-# alias ucdavis='ssh -v -N -D 8080 hannan'
-alias proxy_home='ssh -v -N -D 8080 randyimac'
+# alias ssh_tunnel='ssh -v -N -D 8080 germain'
+# alias ssh_tunnel='ssh -v -N -D 8080 hannan'
+alias ssh_tunnel='ssh -v -N -D 8080 randyimac'
 
 # vpn
 alias tvb='sudo route add -net 202.126 -interface ppp0'
-# alias appledaily='sudo route add -net 202.85.162 -interface ppp0
 # sudo route add -net 202.82.200 -interface ppp0'
 
 # misc - shared with linux
