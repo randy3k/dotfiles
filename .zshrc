@@ -147,10 +147,7 @@ setopt prompt_subst
 PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
-if [ -n "$INSIDE_EMACS" ]; then
-    true
-
-elif [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
+if ([ "$TERM_PROGRAM" = "iTerm.app" ] || [ "$TERM_PROGRAM" = "Apple_Terminal" ]) && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
         local SEARCH=' '
         local REPLACE='%20'
@@ -161,10 +158,4 @@ elif [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
     }
     autoload -U add-zsh-hook
     add-zsh-hook precmd  update_terminal_cwd
-
-elif [[ "$TERM_PROGRAM" = "iTerm.app" ]]; then
-    function iterm2_print_user_vars {
-        printf '\e]1;%s\a' `basename $PWD`
-    }
-    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi

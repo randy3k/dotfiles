@@ -11,6 +11,7 @@ call vundle#begin(path)
     Plugin 'scrooloose/nerdtree'
     Plugin 'kassio/neoterm'
     Plugin 'scrooloose/nerdcommenter'
+    Plugin 'JuliaEditorSupport/julia-vim'
     " Plugin 'epeli/slimux'
     " Plugin 'terryma/vim-multiple-cursors'
     " Plugin 'jalvesaq/Nvim-R'
@@ -82,8 +83,8 @@ let g:neoterm_autoscroll = 1
 augroup neoterm_keybinds
     autocmd!
     " autocmd filetype r,python inoremap <buffer> <silent> <C-j> <esc>:TREPLSendLine<CR>jI
-    autocmd filetype r,python nnoremap <buffer> <silent> <C-j> :TREPLSendLine<CR>j
-    autocmd filetype r,python vnoremap <buffer> <silent> <C-j> :TREPLSendSelection<CR>gv
+    autocmd filetype r,python,julia nnoremap <buffer> <silent> <C-j> :TREPLSendLine<CR>j
+    autocmd filetype r,python,julia vnoremap <buffer> <silent> <C-j> :TREPLSendSelection<CR>gv
 augroup end
 nnoremap <C-k> <Up>
 nnoremap <C-l> <Right>
@@ -138,7 +139,7 @@ nmap <Leader>bb :buffers<CR>
 nmap <Leader>bd :bdelete<CR>
 nmap <Leader>bn :bn<CR>
 nmap <Leader>bp :bp<CR>
-nmap <Leader>bR :e<CR>
+nmap <Leader>br :e<CR>
 
 nmap <Leader>rc :e ~/.nvimrc<CR>
 nmap <Leader>rr :source ~/.nvimrc<CR>
@@ -154,8 +155,11 @@ nmap <Leader>tl :set wrap!<CR>
 nnoremap <silent> <Leader>l :nohlsearch<CR><C-l>
 
 nmap <Leader>w- :sp<CR>
-nmap <Leader>w/ :vsp<CR>
+nmap <Leader>w\ :vsp<CR>
+nmap <Leader>w<Bar> :vsp<CR>
 nmap <Leader>w= <C-w>=
+nmap <Leader>w+ :ZoomToggle<CR>
+nmap <Leader>wt :WinLayoutToggle<CR>
 nmap <Leader>wc :q<CR>
 nmap <Leader>wh <C-w>h
 nmap <Leader>wH <C-w>H
@@ -163,8 +167,8 @@ nmap <Leader>wj <C-w>j
 nmap <Leader>wk <C-w>k
 nmap <Leader>wl <C-w>l
 nmap <Leader>wL <C-w>L
+nmap <Leader>w<left> <C-w><
+nmap <Leader>w<right> <C-w>>
 nmap <Leader>ws <C-w>s
 nmap <Leader>wv <C-w>v
-nmap <Leader>wm :ZoomToggle<CR>
-nmap <Leader>w+ :WinLayoutToggle<CR>
 nmap <Leader>ww <C-w><C-w>

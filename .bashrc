@@ -6,8 +6,6 @@
 stty -ixon -ixoff
 
 # keybinds
-# bind '"\C-f": forward-word'
-# bind '"\C-b": backward-word'
 # substring search
 bind '"\e[A": history-search-backward'
 bind '"\e[B":history-search-forward'
@@ -88,12 +86,35 @@ function gitify {
 
 PS1="\[\033[33m\](\h)\[\033[00m\]-\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
 
-if [[ $TERM_PROGRAM = "Apple_Terminal" ]]; then
-    PS1='\[\e]0;\a\]'"$PS1"
+update_terminal_cwd() {
+    local SEARCH=' '
+    local REPLACE='%20'
+    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+    printf '\e]0;\a'
+    printf '\e]1;%s\a' `basename $PWD`
+    printf '\e]7;%s\a' "$PWD_URL"
+}
 
-elif [[ "$TERM_PROGRAM" = "iTerm.app" ]]; then
-    function iterm2_print_user_vars {
+if [ "$TERM_PROGRAM" = "iTerm.app" ] && [ -z "$INSIDE_EMACS" ]; then
+    update_terminal_cwd() {
+        local url_path=''
+        {
+            local i ch hexch LC_CTYPE=C LC_ALL=
+            for ((i = 0; i < ${#PWD}; ++i)); do
+            ch="${PWD:i:1}"
+            if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]; then
+                url_path+="$ch"
+            else
+                printf -v hexch "%02X" "'$ch"
+                # printf treats values greater than 127 as
+                # negative and pads with "FF", so truncate.
+                url_path+="%${hexch: -2:2}"
+            fi
+            done
+        }
+        printf '\e]0;\a'
         printf '\e]1;%s\a' `basename $PWD`
+        printf '\e]7;%s\a' "file://$HOSTNAME$url_path"
     }
-    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+    PROMPT_COMMAND="update_terminal_cwd${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 fi
