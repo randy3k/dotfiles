@@ -147,7 +147,7 @@ setopt prompt_subst
 PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT='$(gitify)'
 
-if ([ "$TERM_PROGRAM" = "iTerm.app" ] || [ "$TERM_PROGRAM" = "Apple_Terminal" ]) && [ -z "$INSIDE_EMACS" ]; then
+if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
         local SEARCH=' '
         local REPLACE='%20'

@@ -86,16 +86,7 @@ function gitify {
 
 PS1="\[\033[33m\](\h)\[\033[00m\]-\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
 
-update_terminal_cwd() {
-    local SEARCH=' '
-    local REPLACE='%20'
-    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
-    printf '\e]0;\a'
-    printf '\e]1;%s\a' `basename $PWD`
-    printf '\e]7;%s\a' "$PWD_URL"
-}
-
-if [ "$TERM_PROGRAM" = "iTerm.app" ] && [ -z "$INSIDE_EMACS" ]; then
+if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
         local url_path=''
         {
