@@ -2,7 +2,7 @@ files = .aliases .bashrc .bash_profile .profile .zshrc \
 		.zprofile .Rprofile .nvimrc .gitconfig .gitlocal .tmux.conf .screenrc
 
 all: backup
-	&& git add -A \
+	git add -A \
 	&& git commit -m "Update dotfiles at $$(date)" \
 	&& git push
 
