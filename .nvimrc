@@ -14,9 +14,11 @@ call vundle#begin(path)
     Plugin 'JuliaEditorSupport/julia-vim'
     " Plugin 'epeli/slimux'
     " Plugin 'terryma/vim-multiple-cursors'
-    " Plugin 'jalvesaq/Nvim-R'
+    Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
 
+let R_app= 'rice'
+let R_esc_term = 0
 
 syntax enable
 filetype plugin on
@@ -71,7 +73,7 @@ let g:NERDSpaceDelims = 1
 noremap <C-f> <C-d>
 noremap <C-b> <C-u>
 
-tnoremap <esc> <C-\><C-n>
+" tnoremap <esc> <C-\><C-n>
 tnoremap jk <C-\><C-n>
 inoremap jk <esc>
 cnoremap jk <C-c>
