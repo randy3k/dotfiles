@@ -27,3 +27,8 @@ eval "$(hub alias -s)"
 
 # miniconda
 export PATH="/Users/Randy/miniconda3/bin:$PATH"
+
+# alias subl for ssh client
+if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]]; then
+    alias subl=$(command -v rmate)
+fi
