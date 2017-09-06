@@ -17,8 +17,10 @@ call vundle#begin(path)
     Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
 
-let R_app= 'rice'
-let R_esc_term = 0
+let R_source_args = "bracketed paste"
+let R_app = "rice"
+let R_cmd = "R"
+let R_hl_term = 0
 
 syntax enable
 filetype plugin on
