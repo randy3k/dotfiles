@@ -12,3 +12,5 @@ echo "~/README.md" >> ~/.dotfiles/info/exclude
 rm ~/README.md
 dotfiles update-index --assume-unchanged README.md 
 ```
+
+Credit: inspired by https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
