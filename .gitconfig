@@ -18,6 +18,7 @@
     st = status -s
     br = branch
     co = checkout
+    cb = checkout -b
     cob = checkout -b
     coo = checkout --orphan
     del = delete
