@@ -8,7 +8,7 @@ dotfiles config --local status.showUntrackedFiles no
 dotfiles config --local alias.github '!git add -u && git commit -m "Update dotfiles at $(date)" && git push'
 dotfiles reset --hard
 
-echo "README.md" >> ~/.dotfiles/info/exclude
+echo "~/README.md" >> ~/.dotfiles/info/exclude
 rm ~/README.md
 dotfiles update-index --assume-unchanged README.md 
 ```
