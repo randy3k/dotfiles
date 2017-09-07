@@ -1,7 +1,6 @@
 # interactive shell only
 [[ ! $- == *i* ]] && return
 
-
 # enable i-search
 stty -ixon -ixoff
 
