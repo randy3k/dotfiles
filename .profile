@@ -25,6 +25,9 @@ export GIT_EDITOR='nvim'
 # hub alias
 eval "$(hub alias -s)"
 
+# homebrew python
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
 # miniconda
 export PATH="/Users/Randy/miniconda3/bin:$PATH"
 
