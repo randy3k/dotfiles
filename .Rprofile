@@ -2,7 +2,10 @@ options(
     repos = c(CRAN = "https://cran.rstudio.com"),
     browserNLdisabled = TRUE,
     deparse.max.lines = 2,
-    max.print = 200
+    max.print = 200,
+    rice.color_scheme = "native",
+    rice.auto_indentation = FALSE
+    # rice.complete_while_typing = FALSE
 )
 
 # mac only
