@@ -11,6 +11,7 @@ options(
 # mac only
 if (Sys.info()["sysname"] == "Darwin"){
     if (interactive()) {
+        try(suppressPackageStartupMessages(library(prettycode)), silent = TRUE)
         options(
             device = "quartz",
             help_type = "html"
