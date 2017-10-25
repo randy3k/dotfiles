@@ -8,6 +8,8 @@ options(
     # rice.complete_while_typing = FALSE
 )
 
+Sys.setenv(TZ = "America/New_York")
+
 # mac only
 if (Sys.info()["sysname"] == "Darwin"){
     if (interactive()) {
