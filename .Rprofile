@@ -1,7 +1,7 @@
 options(
     repos = c(CRAN = "https://cran.rstudio.com"),
     browserNLdisabled = TRUE,
-    deparse.max.lines = 2,
+    # deparse.max.lines = 2,
     max.print = 200,
     rice.color_scheme = "native",
     rice.history_search_no_duplicates = TRUE
