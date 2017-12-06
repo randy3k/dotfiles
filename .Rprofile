@@ -1,10 +1,11 @@
 options(
     repos = c(CRAN = "https://cran.rstudio.com"),
-    browserNLdisabled = TRUE,
+    # browserNLdisabled = TRUE,
     # deparse.max.lines = 2,
     max.print = 200,
     rice.color_scheme = "native",
     rice.history_search_no_duplicates = TRUE
+    # rice.insert_new_line = FALSE
     # rice.auto_indentation = FALSE
     # rice.complete_while_typing = FALSE
 )
