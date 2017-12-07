@@ -32,5 +32,3 @@
     status = auto
 [rerere]
     enabled = true
-[credential]
-	helper = osxkeychain
