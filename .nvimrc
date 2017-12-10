@@ -2,6 +2,13 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim
 let path='~/.config/nvim/bundle'
 call vundle#begin(path)
     Plugin 'gmarik/Vundle.vim'
+    Plugin 'autozimu/LanguageClient-neovim'
+    Plugin 'junegunn/fzf' " (Optional) Multi-entry selection UI.
+    Plugin 'Shougo/denite.nvim' " (Optional) Multi-entry selection UI.
+    Plugin 'Shougo/deoplete.nvim' " (Optional) Completion integration with deoplete.
+    " Plugin 'roxma/nvim-completion-manager' " (Optional) Completion integration with nvim-completion-manager.
+    Plugin 'Shougo/echodoc.vim' " (Optional) Showing function signature and inline doc.
+    
     Plugin 'randy3k/wombat256.vim'
     Plugin 'godlygeek/tabular'
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -16,6 +23,15 @@ call vundle#begin(path)
     " Plugin 'terryma/vim-multiple-cursors'
     Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
+
+set omnifunc=LanguageClient#complete
+
+let g:LanguageClient_serverCommands = {
+    \ 'r': ['R', '--quiet', '--slave', '-e', 'languageserver::run()'],
+    \ }
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
 
 let R_source_args = "bracketed paste"
 let R_app = "rice"
