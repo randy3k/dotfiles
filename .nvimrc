@@ -33,10 +33,12 @@ let g:LanguageClient_serverCommands = {
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
 
-let R_source_args = "bracketed paste"
-let R_app = "rice"
-let R_cmd = "R"
-let R_hl_term = 0
+" let R_source_args = "bracketed paste"
+let g:R_app = "rice"
+let g:R_cmd = "R"
+let g:R_hl_term = 0
+let g:R_bracketed_paste = 1
+let g:R_args = []  " if you had set any
 
 syntax enable
 filetype plugin on
