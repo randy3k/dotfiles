@@ -18,7 +18,7 @@ utils::rc.settings(ipck=TRUE)
 if (Sys.info()["sysname"] == "Darwin"){
     if (interactive()) {
         Sys.setenv(TZ = "America/New_York")
-        try(suppressPackageStartupMessages(library(prettycode)), silent = TRUE)
+        try(suppressMessages(library(prettycode)), silent = TRUE)
         options(
             device = "quartz",
             help_type = "html"
