@@ -11,7 +11,7 @@ options(
     # rice.complete_while_typing = FALSE
 )
 
-utils::rc.settings(ipck=TRUE)
+utils::rc.settings(ipck = TRUE)
 
 
 # mac only
