@@ -6,3 +6,5 @@
     signingkey = C624A96B760AC797
 [commit]
     gpgsign = true
+[gpg]
+    program = /usr/local/MacGPG2/bin/gpg2
