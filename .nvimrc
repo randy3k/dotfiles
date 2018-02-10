@@ -21,7 +21,7 @@ call vundle#begin(path)
     Plugin 'JuliaEditorSupport/julia-vim'
     " Plugin 'epeli/slimux'
     " Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'jalvesaq/Nvim-R'
+    " Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
 
 set omnifunc=LanguageClient#complete

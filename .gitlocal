@@ -2,3 +2,7 @@
     excludesfile = /Users/Randy/.gitignore
 [credential]
     helper = osxkeychain
+[user]
+    signingkey = C624A96B760AC797
+[commit]
+    gpgsign = true

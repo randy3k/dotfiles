@@ -31,6 +31,9 @@ eval "$(hub alias -s)"
 # homebrew python
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
+# GPG
+export GPG_TTY=$(tty)
+
 # miniconda
 export PATH="/Users/Randy/miniconda3/bin:$PATH"
 
