@@ -1,0 +1,2 @@
+LDFLAGS=-L/opt/X11/lib -L/usr/local/opt/gettext/lib
+CPPFLAGS=-I/opt/X11/include -I/usr/local/opt/gettext/include
