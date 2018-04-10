@@ -3,9 +3,9 @@ options(
     # browserNLdisabled = TRUE,
     # deparse.max.lines = 2,
     max.print = 200,
-    rice.color_scheme = "native",
-    rice.history_search_no_duplicates = TRUE,
-    rice.auto_match = TRUE
+    rtichoke.color_scheme = "native",
+    rtichoke.history_search_no_duplicates = TRUE,
+    rtichoke.auto_match = TRUE
     # rice.insert_new_line = FALSE
     # rice.auto_indentation = FALSE
     # rice.complete_while_typing = FALSE
