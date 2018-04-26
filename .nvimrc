@@ -1,37 +1,47 @@
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-let path='~/.config/nvim/bundle'
-call vundle#begin(path)
-    Plugin 'gmarik/Vundle.vim'
-    Plugin 'autozimu/LanguageClient-neovim'
-    Plugin 'junegunn/fzf' " (Optional) Multi-entry selection UI.
-    Plugin 'Shougo/denite.nvim' " (Optional) Multi-entry selection UI.
-    Plugin 'Shougo/deoplete.nvim' " (Optional) Completion integration with deoplete.
-    " Plugin 'roxma/nvim-completion-manager' " (Optional) Completion integration with nvim-completion-manager.
-    Plugin 'Shougo/echodoc.vim' " (Optional) Showing function signature and inline doc.
-    
-    Plugin 'randy3k/wombat256.vim'
-    Plugin 'godlygeek/tabular'
-    Plugin 'LaTeX-Box-Team/LaTeX-Box'
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'kassio/neoterm'
-    Plugin 'scrooloose/nerdcommenter'
-    Plugin 'JuliaEditorSupport/julia-vim'
-    " Plugin 'epeli/slimux'
-    " Plugin 'terryma/vim-multiple-cursors'
-    " Plugin 'jalvesaq/Nvim-R'
-call vundle#end()
+call plug#begin('~/.local/share/nvim/plugged')
 
-set omnifunc=LanguageClient#complete
-
-let g:LanguageClient_serverCommands = {
-    \ 'r': ['R', '--quiet', '--slave', '-e', 'languageserver::run()'],
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
     \ }
 
-" Automatically start language servers.
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'randy3k/wombat256.vim'
+Plug 'godlygeek/tabular'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'kassio/neoterm'
+Plug 'scrooloose/nerdcommenter'
+Plug 'JuliaEditorSupport/julia-vim'
+
+" Plug 'epeli/slimux'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'jalvesaq/Nvim-R'
+
+call plug#end()
+
+set completefunc=LanguageClient#complete
+set formatexpr=LanguageClient#textDocument_rangeFormatting()
+
+" let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsEnable = 1
+let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run(debug = TRUE)']
+let g:LanguageClient_serverCommands.python = ['/Users/Randy/miniconda3/bin/pyls']
+
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+
 
 " let R_source_args = "bracketed paste"
 let g:R_app = "rice"
