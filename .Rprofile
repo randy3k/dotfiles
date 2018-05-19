@@ -6,7 +6,7 @@ options(
     rtichoke.color_scheme = "native",
     rtichoke.history_search_no_duplicates = TRUE,
     rtichoke.auto_match = TRUE
-    # rtichoke.auto_match.insert_new_line = FALSE
+    # rtichoke.insert_new_line = FALSE
     # rtichoke.auto_match.auto_indentation = FALSE
     # rtichoke.complete_while_typing = TRUE
 )
@@ -28,10 +28,10 @@ try({
 if (Sys.info()["sysname"] == "Darwin"){
     if (interactive()) {
         Sys.setenv(TZ = "America/New_York")
-        try(suppressMessages(library(prettycode)), silent = TRUE)
         options(
             device = "quartz",
-            help_type = "html"
+            help_type = "html",
+            editor = "'subl -w'"
         )
         setHook(packageEvent("grDevices", "onLoad"),
                 function(...) grDevices::quartz.options(
