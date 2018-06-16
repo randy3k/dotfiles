@@ -8,20 +8,24 @@ options(
     rtichoke.auto_match = TRUE
     # rtichoke.insert_new_line = FALSE
     # rtichoke.auto_match.auto_indentation = FALSE
-    # rtichoke.complete_while_typing = TRUE
+    # rtichoke.complete_while_typing = FALSE
 )
 
 options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
 
-try({
-    options(languageserver.default_linters = lintr::with_defaults(
-        line_length_linter = lintr::line_length_linter(100),
-        object_usage_linter = NULL,
-        object_length_linter = NULL,
-        object_name_linter = NULL,
-        commented_code_linter = NULL
-    ))
-}, silent = TRUE)
+
+setHook(
+    packageEvent("languageserver", "onLoad"),
+    function(...) {
+        options(languageserver.default_linters = lintr::with_defaults(
+            line_length_linter = lintr::line_length_linter(100),
+            object_usage_linter = NULL,
+            object_length_linter = NULL,
+            object_name_linter = NULL,
+            commented_code_linter = NULL
+        ))
+    }
+)
 
 
 # mac only
