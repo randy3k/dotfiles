@@ -7,7 +7,9 @@ stty -ixon -ixoff
 # keybinds
 # substring search
 bind '"\e[A": history-search-backward'
-bind '"\e[B":history-search-forward'
+bind '"\e[B": history-search-forward'
+bind '"\e[1;9D": backward-word'
+bind '"\e[1;9C": forward-word'
 
 # ignore ctrl-d
 IGNOREEOF=1
