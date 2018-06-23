@@ -23,11 +23,11 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 
 # keybind
 bindkey -e  # emacs mode
-bindkey "^[[1;9C" forward-word
-bindkey "^[[1;9D" backward-word
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
-bindkey "^[[3~" delete-char
+bindkey "\e[1;9C" forward-word
+bindkey "\e[1;9D" backward-word
+bindkey "\e[1;3C" forward-word
+bindkey "\e[1;3D" backward-word
+bindkey "\e[3~" delete-char
 bindkey "∫" backward-word
 bindkey "ƒ" forward-word
 autoload -U select-word-style
