@@ -30,6 +30,7 @@ alias r='rtichoke'
 alias p='ipython'
 alias j='julia'
 alias jnb='jupyter notebook'
+alias jlab='jupyter lab'
 
 # local mac only
 # alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"

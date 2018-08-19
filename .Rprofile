@@ -5,7 +5,8 @@ options(
     max.print = 200,
     rtichoke.color_scheme = "native",
     rtichoke.history_search_no_duplicates = TRUE,
-    rtichoke.auto_match = TRUE
+    rtichoke.auto_match = TRUE,
+    rtichoke.indent_lines = FALSE
     # rtichoke.insert_new_line = FALSE
     # rtichoke.auto_match.auto_indentation = FALSE
     # rtichoke.complete_while_typing = FALSE
