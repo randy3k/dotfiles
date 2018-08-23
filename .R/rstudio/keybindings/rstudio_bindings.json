@@ -1,16 +1,15 @@
 {
-    "commentUncomment" : "Cmd+/",
-    "compilePDF" : "",
-    "consoleClear" : "",
+    "commentUncomment" : "Meta+/",
+    "compilePDF" : "Ctrl+Shift+K",
     "expandToMatching" : "Ctrl+Shift+M",
-    "goToFileFunction" : "Cmd+P|Cmd+Shift+R",
+    "goToFileFunction" : "Meta+P|Meta+Shift+R",
     "goToLine" : "Ctrl+G",
     "jumpTo" : "A",
     "jumpToMatching" : "Ctrl+M",
-    "knitDocument" : "",
-    "nextTab" : "Shift+Cmd+]",
-    "previewHTML" : "",
-    "previousTab" : "Shift+Cmd+[",
-    "quickAddNext" : "Cmd+D",
-    "splitIntoLines" : "Shift+Cmd+L"
+    "knitDocument" : "Ctrl+Shift+K",
+    "nextTab" : "Shift+Meta+]",
+    "previewHTML" : "Ctrl+Shift+K",
+    "previousTab" : "Shift+Meta+[",
+    "quickAddNext" : "Meta+D",
+    "splitIntoLines" : "Shift+Meta+L"
 }
