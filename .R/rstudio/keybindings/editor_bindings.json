@@ -1,7 +1,6 @@
 {
     "blockindent" : "Meta+]",
     "blockoutdent" : "Meta+[",
-    "duplicateSelection" : "",
     "expandToMatching" : "|Ctrl+Shift+M",
     "expandtoline" : "Meta+L",
     "joinlines" : "Meta+j",

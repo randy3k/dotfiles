@@ -4,7 +4,6 @@
     "expandToMatching" : "Ctrl+Shift+M",
     "goToFileFunction" : "Meta+P|Meta+Shift+R",
     "goToLine" : "Ctrl+G",
-    "jumpTo" : "A",
     "jumpToMatching" : "Ctrl+M",
     "knitDocument" : "Ctrl+Alt+K",
     "nextTab" : "Shift+Meta+]",
