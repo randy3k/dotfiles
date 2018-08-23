@@ -1,0 +1,16 @@
+{
+    "commentUncomment" : "Cmd+/",
+    "compilePDF" : "",
+    "consoleClear" : "",
+    "expandToMatching" : "Ctrl+Shift+M",
+    "goToFileFunction" : "Cmd+P|Cmd+Shift+R",
+    "goToLine" : "Ctrl+G",
+    "jumpTo" : "A",
+    "jumpToMatching" : "Ctrl+M",
+    "knitDocument" : "",
+    "nextTab" : "Shift+Cmd+]",
+    "previewHTML" : "",
+    "previousTab" : "Shift+Cmd+[",
+    "quickAddNext" : "Cmd+D",
+    "splitIntoLines" : "Shift+Cmd+L"
+}

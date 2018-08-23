@@ -1,0 +1,12 @@
+{
+    "blockindent" : "Cmd+]",
+    "blockoutdent" : "Cmd+[",
+    "duplicateSelection" : "",
+    "expandToMatching" : "|Ctrl+Shift+M",
+    "expandtoline" : "Meta+L",
+    "joinlines" : "Meta+j",
+    "movelinesdown" : "Ctrl+Cmd+Down",
+    "movelinesup" : "Ctrl+Cmd+Up",
+    "removeline" : "Ctrl+Shift+K",
+    "splitline" : "Ctrl+O"
+}
