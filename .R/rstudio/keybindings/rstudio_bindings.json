@@ -10,5 +10,6 @@
     "previewHTML" : "Ctrl+Alt+K",
     "previousTab" : "Shift+Meta+[",
     "quickAddNext" : "Meta+D",
+    "roxygenizePackage" : "",
     "splitIntoLines" : "Shift+Meta+L"
 }

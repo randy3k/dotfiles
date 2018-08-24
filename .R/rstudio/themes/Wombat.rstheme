@@ -1763,44 +1763,42 @@
      border: none 
 }
 
-/* hack rstudio css*/
- .rstudio-themes-flat .rstudio-themes-dark-grey {
+/* background */
+ .rstudio-themes-flat .rstudio-themes-dark-grey, .rstudio-themes-flat .rstudio-themes-dark-grey .rstudio-themes-background {
     background: #333333 !important;
 }
 
- .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanel {
-    background: #ffffff !important;
-}
-
- .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs table.GOLWFGSBOT, .rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBAS table.GOLWFGSBOT {
+/* inactive tabs */
+ table.GOLWFGSBOT, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs, .GOLWFGSBCS{
     background: #282828 !important;
  }
 
-.rstudio-themes-flat .rstudio-themes-dark-grey .rstudio-themes-background, .rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBEV, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs .gwt-TabLayoutPanelTab-selected table.GOLWFGSBOT, .rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBDT, .rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBIV.GOLWFGSBAP div.GOLWFGSBNO .GOLWFGSBJS, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelContent, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanel {
+/* toolbar and selected tab */
+.GOLWFGSBEV, .gwt-TabLayoutPanelTab-selected table.GOLWFGSBOT, .GOLWFGSBDT, .GOLWFGSBIV.GOLWFGSBAP div.GOLWFGSBNO .GOLWFGSBJS {
     background: #404040 !important;
 }
 
-.rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs, .rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBAS .GOLWFGSBJO, .rstudio-themes-flat .rstudio-themes-dark.rstudio-themes-scrollbars ::-webkit-scrollbar-track, .rstudio-themes-flat .rstudio-themes-dark.rstudio-themes-scrollbars ::-webkit-scrollbar-corner, .rstudio-themes-flat .rstudio-themes-dark.rstudio-themes-scrollbars::-webkit-scrollbar-track, .rstudio-themes-flat .rstudio-themes-dark.rstudio-themes-scrollbars::-webkit-scrollbar-corner, .rstudio-themes-flat.rstudio-themes-dark-menus .rstudio-themes-scrollbars ::-webkit-scrollbar-track, 
-.rstudio-themes-flat.rstudio-themes-dark-menus .rstudio-themes-scrollbars ::-webkit-scrollbar-corner, .rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBCS {
-    background: #282828 !important;
-}
-
+/* spliters */
 .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-SplitLayoutPanel-HDragger, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-SplitLayoutPanel-VDragger {
     background: transparent !important;
 }
 
-.rstudio-themes-flat .rstudio-themes-dark .search {
+/* search */
+.rstudio-themes-flat .rstudio-themes-dark .search, .rstudio-themes-flat.rstudio-themes-dark-menus .search {
      background: #444444 !important;
 }
 
-.rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBG-B {
-     background: #404040 !important;
-}
-
-.rstudio-themes-flat.rstudio-themes-dark-menus .menuPopupMiddleCenter, .rstudio-themes-flat.rstudio-themes-dark-menus .GOLWFGSBI1 .popupMiddleCenter, .rstudio-themes-flat.rstudio-themes-dark-menus .gwt-SuggestBoxPopup .suggestPopupMiddleCenter {
-     background: #404040 !important;
-}
-
+/* addins search */
 .rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBNOB {
+     background: #444444 !important;
+}
+
+/* pane toolbar */
+.GOLWFGSBG-B, .GOLWFGSBJAC, .GOLWFGSBEV {
+     background: #404040 !important;
+}
+
+/* menu background */
+.rstudio-themes-flat.rstudio-themes-dark-menus .GOLWFGSBI1 .popupMiddleCenter {
      background: #404040 !important;
 }
