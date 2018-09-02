@@ -1769,11 +1769,17 @@
 }
 
 /* inactive tabs */
- table.GOLWFGSBOT, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs, .GOLWFGSBCS{
+table.org-rstudio-core-client-theme-res-ThemeStyles-tabLayoutCenter, table.GOLWFGSBOT, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs {
     background: #282828 !important;
  }
+ .GOLWFGSBCS {
+   background: #282828 !important;
+}
 
 /* toolbar and selected tab */
+.org-rstudio-core-client-theme-res-ThemeStyles-toolbarWrapper, .gwt-TabLayoutPanelTab-selected table.org-rstudio-core-client-theme-res-ThemeStyles-tabLayoutCenter, .org-rstudio-core-client-theme-res-ThemeStyles-multiPodUtilityTabArea {
+    background: #404040 !important;
+}
 .GOLWFGSBEV, .gwt-TabLayoutPanelTab-selected table.GOLWFGSBOT, .GOLWFGSBDT, .GOLWFGSBIV.GOLWFGSBAP div.GOLWFGSBNO .GOLWFGSBJS {
     background: #404040 !important;
 }
@@ -1793,12 +1799,18 @@
      background: #444444 !important;
 }
 
-/* pane toolbar */
+/* pane toolbars */
+.org-rstudio-core-client-theme-res-ThemeStyles-secondaryToolbar, .org-rstudio-studio-client-workbench-views-packages-ui-PackagesDataGridStyle-dataGridHeader, .org-rstudio-studio-client-workbench-views-connections-ui-ConnectionsPane-Styles-dataGridHeader, .org-rstudio-studio-client-workbench-views-files-ui-FilesListDataGridResources-FilesListDataGridStyle-dataGridHeader {
+     background: #404040 !important;
+}
 .GOLWFGSBG-B, .GOLWFGSBJAC, .GOLWFGSBEV {
      background: #404040 !important;
 }
 
 /* menu background */
+.org-rstudio-core-client-widget-ThemedPopupPanel-Styles-themedPopupPanel .popupMiddleCenter {
+     background: #404040 !important;
+}
 .rstudio-themes-flat.rstudio-themes-dark-menus .GOLWFGSBI1 .popupMiddleCenter {
      background: #404040 !important;
 }

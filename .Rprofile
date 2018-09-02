@@ -36,7 +36,7 @@ if (Sys.info()["sysname"] == "Darwin"){
         options(
             device = "quartz",
             help_type = "html",
-            editor = "'subl -w'"
+            editor = "sublimetext"
         )
         setHook(packageEvent("grDevices", "onLoad"),
                 function(...) grDevices::quartz.options(

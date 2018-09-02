@@ -17,8 +17,8 @@ if [ -d "$FSLDIR" ]; then
 fi
 
 # EDITOR
-export HOMEBREW_EDITOR='subl'
-export JULIA_EDITOR='subl'
+export HOMEBREW_EDITOR='subl -n'
+export JULIA_EDITOR='subl -n'
 export GIT_EDITOR='nvim'
 # export EDITOR='nvim'
 
