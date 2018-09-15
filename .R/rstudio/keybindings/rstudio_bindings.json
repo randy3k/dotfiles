@@ -1,9 +1,13 @@
 {
+    "browseAddins" : "Shift+Cmd+P",
     "commentUncomment" : "Meta+/",
     "compilePDF" : "Ctrl+Alt+K",
     "expandToMatching" : "Ctrl+Shift+M",
     "goToFileFunction" : "Meta+P|Meta+Shift+R",
     "goToLine" : "Ctrl+G",
+    "goToNextSection" : "Alt+Down",
+    "goToPrevSection" : "Alt+Up",
+    "insertPipeOperator" : "Ctrl+Shift+M",
     "jumpToMatching" : "Ctrl+M",
     "knitDocument" : "Ctrl+Alt+K",
     "nextTab" : "Shift+Meta+]",

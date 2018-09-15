@@ -2,7 +2,7 @@
     "blockindent" : "Meta+]",
     "blockoutdent" : "Meta+[",
     "expandToMatching" : "|Ctrl+Shift+M",
-    "expandtoline" : "Meta+L",
+    "expandtoline" : "Ctrl+L",
     "joinlines" : "Meta+j",
     "movelinesdown" : "Ctrl+Meta+Down",
     "movelinesup" : "Ctrl+Meta+Up",

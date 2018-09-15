@@ -1769,18 +1769,17 @@
 }
 
 /* inactive tabs */
-table.org-rstudio-core-client-theme-res-ThemeStyles-tabLayoutCenter, table.GOLWFGSBOT, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs {
+table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs, .rstheme_multiPodUtilityTabArea {
     background: #282828 !important;
  }
- .GOLWFGSBCS {
-   background: #282828 !important;
+
+.rstudio-themes-flat .rstudio-themes-dark-grey .rstheme_center {
+    background: #404040 !important;
 }
 
 /* toolbar and selected tab */
-.org-rstudio-core-client-theme-res-ThemeStyles-toolbarWrapper, .gwt-TabLayoutPanelTab-selected table.org-rstudio-core-client-theme-res-ThemeStyles-tabLayoutCenter, .org-rstudio-core-client-theme-res-ThemeStyles-multiPodUtilityTabArea {
-    background: #404040 !important;
-}
-.GOLWFGSBEV, .gwt-TabLayoutPanelTab-selected table.GOLWFGSBOT, .GOLWFGSBDT, .GOLWFGSBIV.GOLWFGSBAP div.GOLWFGSBNO .GOLWFGSBJS {
+
+.rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs .gwt-TabLayoutPanelTab-selected table.rstheme_tabLayoutCenter, .rstheme_toolbarWrapper {
     background: #404040 !important;
 }
 
@@ -1791,26 +1790,16 @@ table.org-rstudio-core-client-theme-res-ThemeStyles-tabLayoutCenter, table.GOLWF
 
 /* search */
 .rstudio-themes-flat .rstudio-themes-dark .search, .rstudio-themes-flat.rstudio-themes-dark-menus .search {
-     background: #444444 !important;
-}
-
-/* addins search */
-.rstudio-themes-flat .rstudio-themes-dark-grey .GOLWFGSBNOB {
-     background: #444444 !important;
+     background: #333333 !important;
 }
 
 /* pane toolbars */
-.org-rstudio-core-client-theme-res-ThemeStyles-secondaryToolbar, .org-rstudio-studio-client-workbench-views-packages-ui-PackagesDataGridStyle-dataGridHeader, .org-rstudio-studio-client-workbench-views-connections-ui-ConnectionsPane-Styles-dataGridHeader, .org-rstudio-studio-client-workbench-views-files-ui-FilesListDataGridResources-FilesListDataGridStyle-dataGridHeader {
-     background: #404040 !important;
-}
-.GOLWFGSBG-B, .GOLWFGSBJAC, .GOLWFGSBEV {
+
+.rstheme_secondaryToolbar, .rstudio-themes-flat .rstudio-themes-dark-grey .dataGridHeader {
      background: #404040 !important;
 }
 
 /* menu background */
-.org-rstudio-core-client-widget-ThemedPopupPanel-Styles-themedPopupPanel .popupMiddleCenter {
-     background: #404040 !important;
-}
-.rstudio-themes-flat.rstudio-themes-dark-menus .GOLWFGSBI1 .popupMiddleCenter {
+.popupMiddleCenter {
      background: #404040 !important;
 }
