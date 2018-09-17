@@ -1800,6 +1800,6 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 }
 
 /* menu background */
-.popupMiddleCenter {
+.popupMiddleCenter, .menuPopupMiddleCenter {
      background: #404040 !important;
 }
