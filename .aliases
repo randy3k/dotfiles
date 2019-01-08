@@ -5,9 +5,9 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias rmtex='rm -f *.aux *.dvi *.lis *.log *.blg *.bbl *.toc *.idx *.ind *.ilg *.thm *.out *.fdb_latexmk *.fls *.synctex.gz *.nav *.snm'
 
 # ssh tunneling
-# alias ssh_tunnel='ssh -v -N -D 8080 germain'
-# alias ssh_tunnel='ssh -v -N -D 8080 hannan'
-alias ssh_tunnel='ssh -v -N -D 8080 randyimac'
+# alias ssh-tunnel='ssh -v -N -D 8080 germain'
+# alias ssh-tunnel='ssh -v -N -D 8080 hannan'
+alias ssh-tunnel='ssh -v -N -D 8080 randyimac'
 
 # vpn
 # alias tvb='sudo route add -net 202.126 -interface ppp0'
@@ -17,6 +17,7 @@ alias ssh_tunnel='ssh -v -N -D 8080 randyimac'
 PS_COMMAND="ps ax -o user,pid,pcpu,pmem,nice,stat,cputime,etime,command"
 alias nps="$PS_COMMAND"'|awk '"'"'NR==1||$3>0.5'"'"'|if [[ -t 1 ]];then (cat | cut -c 1-$COLUMNS);else cat;fi'
 alias cleanscreen='screen -ls | sed '"'"'1d;$d'"'"' | awk '"'"'{print $1}'"'"' |  xargs -I{} screen -S {} -X quit'
+alias pip-upgrade='pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 alias rsync="rsync -av --exclude \".*\""
 alias ll='ls -alF'
 alias la='ls -A'

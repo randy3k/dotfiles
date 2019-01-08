@@ -15,6 +15,7 @@ options(
 options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
 
 
+
 # setHook(
 #     packageEvent("languageserver", "onLoad"),
 #     function(...) {
