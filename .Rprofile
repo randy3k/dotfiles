@@ -5,8 +5,8 @@ options(
     max.print = 200,
     radian.color_scheme = "native",
     radian.history_search_no_duplicates = TRUE,
-    radian.auto_match = TRUE,
-    radian.indent_lines = FALSE
+    radian.auto_match = TRUE
+    # radian.indent_lines = FALSE
     # radian.insert_new_line = FALSE
     # radian.auto_match.auto_indentation = FALSE
     # radian.complete_while_typing = FALSE
