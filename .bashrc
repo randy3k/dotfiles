@@ -23,7 +23,7 @@ bind "set colored-stats on"
 bind "set colored-completion-prefix on"
 bind TAB:menu-complete
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [ $(command -v brew) ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
@@ -45,8 +45,13 @@ fi
 [ -f ~/.aliases ] && source ~/.aliases
 
 # color
-export CLICOLOR=1
-export LSCOLORS=exfxcxdxbxegedabagacad
+if [ "$(uname)" == "Darwin" ]; then
+    export CLICOLOR=1
+    export LSCOLORS=exfxcxdxbxegedabagacad
+else
+    export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:*.rpm=90'
+fi
+
 
 # prompt
 function git-branch-name {
@@ -87,9 +92,10 @@ function gitify {
     echo -e " ($(git-branch-name)$dirty$unpushed)"
 }
 
+
 PS1="\[\033[33m\](\h)\[\033[00m\]-\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
 
-if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
+if [ "$(uname)" == "Darwin" ] && [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
         local url_path=''
         {
@@ -111,4 +117,17 @@ if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
         printf '\e]7;%s\a' "file://$HOSTNAME$url_path"
     }
     PROMPT_COMMAND="update_terminal_cwd${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] && [ "$TERM" == "xterm-256color" ]; then
+    PROMPT_COMMAND='reset_terminal_title'
+
+    function reset_terminal_title {
+        printf "\033]0;%s\007" "${HOSTNAME%%.*}"
+        printf '\033]7;\007'
+    }
 fi
+
+if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]]; then
+    alias subl=$(command -v rmate)
+fi
+
