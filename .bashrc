@@ -41,9 +41,6 @@ fi
 # added by travis gem
 [ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
 
-# aliases
-[ -f ~/.aliases ] && source ~/.aliases
-
 # color
 if [ "$(uname)" == "Darwin" ]; then
     export CLICOLOR=1
@@ -126,8 +123,3 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] && [ "$TERM" == "xterm-256c
         printf '\033]7;\007'
     }
 fi
-
-if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]]; then
-    alias subl=$(command -v rmate)
-fi
-
