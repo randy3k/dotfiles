@@ -5,6 +5,9 @@ else
     alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME/.dotfiles/'
 fi
 
+# sudo
+alias sudo='sudo '
+
 # latex
 alias rmtex='rm -f *.aux *.dvi *.lis *.log *.blg *.bbl *.toc *.idx *.ind *.ilg *.thm *.out *.fdb_latexmk *.fls *.synctex.gz *.nav *.snm'
 
