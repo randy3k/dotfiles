@@ -1,6 +1,9 @@
 # interactive shell only
 [[ ! $- == *i* ]] && return
 
+# aliases
+[[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
+
 # enable i-search
 stty -ixon -ixoff
 

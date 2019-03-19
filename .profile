@@ -42,5 +42,3 @@ if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]
     alias subl=$(command -v rmate)
     export RMATE_PORT=52658
 fi
-
-[ -f ~/.aliases ] && source ~/.aliases

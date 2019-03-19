@@ -1,3 +1,5 @@
+# aliases
+[[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
 unsetopt case_glob          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
@@ -26,8 +28,6 @@ bindkey "\e[1;9D" backward-word
 bindkey "\e[1;3C" forward-word
 bindkey "\e[1;3D" backward-word
 bindkey "\e[3~" delete-char
-bindkey "∫" backward-word
-bindkey "ƒ" forward-word
 autoload -U select-word-style
 select-word-style bash  # word characters are alphanumerics only
 
@@ -72,21 +72,29 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:*.rpm=90'
 
 # syntax highlight
-export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -d /usr/local/share/zsh-syntax-highlighting ]]; then
+    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # history-substring-search
-source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
+if [[ -d /usr/local/opt/zsh-history-substring-search ]]; then
+    source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+    export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
+    export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
+fi
 
 # zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+if [[ -d  /usr/local/share/zsh-completions ]]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+fi
 
 # conda-zsh-completion
-fpath=(/Users/Randy/.zsh-conda-completion  $fpath)
+if [[ -d  $HOME/.zsh-conda-completion ]]; then
+    fpath=($HOME/.zsh-conda-completion  $fpath)
+fi
 zstyle ':completion::complete:*' use-cache 1
 
 # compsys initialization
@@ -97,7 +105,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
-_users=($(dscl . list /Users | grep -v '^_'))
+if [[ "$(uname)" == "Darwin" ]]; then
+    _users=($(dscl . list /Users | grep -v '^_'))
+else
+    _users=($(cut -d: -f1 /etc/passwd))
+fi
 zstyle ':completion:*' users $_users
 # retrieve exixsting hosts
 zstyle -s ':completion:*:hosts' hosts _ssh_config
@@ -118,7 +130,7 @@ if [[ -f /usr/local/opt/rbenv/completions/rbenv.zsh ]]; then
 fi
 
 # added by travis gem
-[ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 # prompt
 gitify() {
