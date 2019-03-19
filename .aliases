@@ -2,7 +2,7 @@
 if [[ "$(uname)" == "Darwin" ]]; then
     alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 else
-    alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME/.dotfiles/'
+    alias dotfiles='git --git-dir=$HOME/.dotfiles/.git/ --work-tree=$HOME/.dotfiles/'
 fi
 
 # sudo
