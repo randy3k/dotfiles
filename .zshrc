@@ -1,6 +1,8 @@
 # aliases
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
+export GPG_TTY=$(tty)
+
 unsetopt case_glob          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
 disable r                   # disable redo command r
