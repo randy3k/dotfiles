@@ -80,15 +80,15 @@ if [[ -d /usr/local/share/zsh-syntax-highlighting ]]; then
 fi
 
 # history-substring-search
-if [[ -d /usr/local/opt/zsh-history-substring-search ]]; then
-    source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
+if [[ -d /usr/local/share/zsh-history-substring-search ]]; then
+    source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
     export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
     export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
 fi
 
-# zsh-completions
+# # zsh-completions
 if [[ -d  /usr/local/share/zsh-completions ]]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
