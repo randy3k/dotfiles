@@ -22,6 +22,7 @@ setHook(
         options(languageserver.default_linters = lintr::with_defaults(
             line_length_linter = lintr::line_length_linter(100),
             object_usage_linter = NULL,
+            camel_case_linter = NULL,
             object_length_linter = NULL,
             object_name_linter = NULL,
             commented_code_linter = NULL
