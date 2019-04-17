@@ -2,7 +2,7 @@
 [[ ! $- == *i* ]] && return
 
 # aliases
-[[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
+[[ -e ~/.aliases ]] && . ~/.aliases
 
 # enable i-search
 stty -ixon -ixoff
