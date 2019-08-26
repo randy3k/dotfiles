@@ -33,6 +33,9 @@ eval "$(hub alias -s)"
 
 # GPG
 export GPG_TTY=$(tty)
+if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ;then
+    export PINENTRY_USER_DATA="USE_CURSES=1"
+fi
 
 # miniconda
 export PATH="/Users/Randy/miniconda3/bin:$PATH"

@@ -7,4 +7,4 @@
 [commit]
     gpgsign = true
 [gpg]
-    program = /opt/local/bin/gpg
+    program = /usr/local/bin/gpg
