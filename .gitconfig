@@ -25,6 +25,8 @@
     cl = clean -fd
     pr = !sh -c 'git fetch origin pull/$1/head:pr/$1' -
     upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+    skip = update-index --skip-worktree
+    unskip = update-index --no-skip-worktree
 [color]
     branch = auto
     diff = auto
