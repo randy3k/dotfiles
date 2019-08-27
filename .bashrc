@@ -26,7 +26,7 @@ bind "set colored-stats on"
 bind "set colored-completion-prefix on"
 bind TAB:menu-complete
 
-if [ $(command -v brew) ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [ -x $(command -v brew) ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
@@ -36,13 +36,10 @@ fi
 if [[ -f /opt/local/etc/bash_completion.d/git-completion.bash ]]; then
     source /opt/local/etc/bash_completion.d/git-completion.bash
 fi
-if [[ $BASH_VERSION >4.2 ]]; then
+if [[ $BASH_VERSION > 4.2 ]]; then
     [[ -f /usr/local/etc/bash_completion.d/R ]] && source /usr/local/etc/bash_completion.d/R
 fi
 [[ -f /usr/local/etc/bash_completion.d/tmux ]] && source /usr/local/etc/bash_completion.d/tmux
-
-# added by travis gem
-[ -f /Users/Randy/.travis/travis.sh ] && source /Users/Randy/.travis/travis.sh
 
 # color
 if [ "$(uname)" == "Darwin" ]; then

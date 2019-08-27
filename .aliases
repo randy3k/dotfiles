@@ -1,5 +1,9 @@
 # config
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+if [[ "$(uname)" == "Darwin" ]]; then
+    alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+else
+    alias dotfiles='git --git-dir=$HOME/.dotfiles/.git/ --work-tree=$HOME/.local/etc/'
+fi
 
 # sudo
 alias sudo='sudo '
