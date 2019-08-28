@@ -26,10 +26,7 @@ bind "set colored-stats on"
 bind "set colored-completion-prefix on"
 bind TAB:menu-complete
 
-if [ -x $(command -v brew) ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 if [[ -f /usr/local/opt/git/share/git-core/contrib/completion/git-completion.bash ]]; then
     source /usr/local/opt/git/share/git-core/contrib/completion/git-completion.bash
 fi
