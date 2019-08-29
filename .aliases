@@ -1,8 +1,8 @@
 # config
 if [[ "$(uname)" == "Darwin" ]]; then
-    alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+    alias dgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 else
-    alias dotfiles='git --git-dir=$HOME/.local/dotfiles/.git/ --work-tree=$HOME/.local/dotfiles/'
+    alias dgit='git --git-dir=$HOME/.local/dotfiles/.git/ --work-tree=$HOME/.local/dotfiles/'
 fi
 
 # sudo
