@@ -27,7 +27,7 @@
     upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
     skip = update-index --skip-worktree
     unskip = update-index --no-skip-worktree
-	shove = !REPO=$(git remote get-url origin | sed \"s|.*randy3k/\\(.*\\).git|\\1|\") && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
+	shove = !REPO=$(git remote get-url origin | sed \"s|.*/\\(.*\\).git|\\1|\") && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
 [color]
     branch = auto
     diff = auto
