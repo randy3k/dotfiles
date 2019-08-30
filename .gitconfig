@@ -8,26 +8,24 @@
 [alias]
     al = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
     amend = commit --amend --reset-author
-    undo = reset --hard
-    fixup = !sh -c 'git commit --fixup=$(git rev-parse ${1:-HEAD})' -
-    squash = !sh -c 'git commit --squash=$(git rev-parse ${1:-HEAD})' -
-    qc = !git add -A && git commit -m
-    qf = !git add -A && git fixup && git ri HEAD^^
-    ri = rebase --interactive --autosquash
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    st = status -s
     br = branch
+    cl = clean -fd
     co = checkout
-    cb = checkout -b
     cob = checkout -b
     coo = checkout --orphan
-    del = delete
-    cl = clean -fd
-    pr = !sh -c 'git fetch origin pull/$1/head:pr/$1' -
-    upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+    fixup = !sh -c 'git commit --fixup=$(git rev-parse ${1:-HEAD})' -
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    qc = !git add -A && git commit -m
+    qf = !git add -A && git fixup && git ri HEAD^^
+    review = !sh -c 'git fetch origin pull/$1/head:pr/$1' -
+    ri = rebase --interactive --autosquash
+    shove = !REPO=$(git remote get-url origin | sed \"s|.*/\\(.*\\).git|\\1|\") && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
     skip = update-index --skip-worktree
+    squash = !sh -c 'git commit --squash=$(git rev-parse ${1:-HEAD})' -
+    st = status -s
+    undo = reset --hard
     unskip = update-index --no-skip-worktree
-	shove = !REPO=$(git remote get-url origin | sed \"s|.*/\\(.*\\).git|\\1|\") && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
+    upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
 [color]
     branch = auto
     diff = auto
