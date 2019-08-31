@@ -19,13 +19,14 @@
     qf = !git add -A && git fixup && git ri HEAD^^
     review = !sh -c 'git fetch origin pull/$1/head:pr/$1' -
     ri = rebase --interactive --autosquash
-    shove = !REPO=$(git remote get-url origin | sed \"s|.*/\\(.*\\).git|\\1|\") && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
+
     skip = update-index --skip-worktree
     squash = !sh -c 'git commit --squash=$(git rev-parse ${1:-HEAD})' -
     st = status -s
     undo = reset --hard
     unskip = update-index --no-skip-worktree
     upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+	shove = !REPO=$(git remote get-url origin | sed -n \"s|.*/\\(.*\\).git|\\1|p\") && bash -c \"test '$REPO'\" && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
 [color]
     branch = auto
     diff = auto
