@@ -12,8 +12,12 @@ options(
     # radian.complete_while_typing = FALSE
 )
 
-options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
+options(radian.escape_key_map = list(
+    list(key = "-", value = " <- "),
+    list(key = "m", value = " %>% ")
+))
 
+options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
 
 
 setHook(
