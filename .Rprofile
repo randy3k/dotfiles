@@ -1,5 +1,6 @@
 options(
     repos = c(CRAN = "https://cran.rstudio.com"),
+    useFancyQuotes = FALSE,
     # browserNLdisabled = TRUE,
     # deparse.max.lines = 2,
     max.print = 200,
@@ -18,7 +19,6 @@ options(radian.escape_key_map = list(
 ))
 
 options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
-
 
 setHook(
     packageEvent("languageserver", "onLoad"),
