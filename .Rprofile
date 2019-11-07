@@ -3,26 +3,14 @@ options(
     useFancyQuotes = FALSE,
     # browserNLdisabled = TRUE,
     # deparse.max.lines = 2,
-    max.print = 200,
-    radian.color_scheme = "native",
-    radian.history_search_no_duplicates = TRUE,
-    radian.auto_match = TRUE
-    # radian.indent_lines = FALSE
-    # radian.insert_new_line = FALSE
-    # radian.auto_match.auto_indentation = FALSE
-    # radian.complete_while_typing = FALSE
+    max.print = 200
 )
-
-options(radian.escape_key_map = list(
-    list(key = "-", value = " <- "),
-    list(key = "m", value = " %>% ")
-))
 
 options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
 
 
 # mac only
-if (Sys.info()["sysname"] == "Darwin"){
+if (Sys.info()["sysname"] == "Darwin") {
     if (interactive()) {
         Sys.setenv(TZ = "America/New_York")
         options(
@@ -44,4 +32,27 @@ if (Sys.info()["sysname"] == "Darwin"){
             jupyter.plot_mimetypes = "image/png"
         )
     }
+}
+
+tag_release <- function(pkg = ".") {
+    pkg <- devtools:::as.package(pkg)
+    release_file <- file.path(pkg$path, "CRAN-RELEASE")
+    if (!file.exists(release_file)) {
+        cat("CRAN-RELEASE file not found\n")
+        return(invisible())
+    }
+    line <- readLines(release_file)[2]
+    match <- regexec("commit ([a-z0-9]+)", line)
+    sha <- regmatches(line, match)[[1]][2]
+    if (is.na(sha)) {
+        cat("Cannot parse CRAN-RELEASE\n")
+        return(invisible())
+    }
+    semver <- paste0("v", pkg$version)
+    if (devtools:::yesno(glue::glue("tag {sha} as {semver}"))) {
+        return(invisible())
+    }
+    tag_sha <- gert::git_tag_create(semver, message = semver, ref = sha, repo = pkg$path)
+    file.remove(release_file)
+    invisible(tag_sha)
 }
