@@ -24,7 +24,6 @@ export GIT_EDITOR='nvim'
 
 # homebrew github token
 [ -f ~/.config/homebrew ] && . ~/.config/homebrew
-[ -f ~/.config/ucdsecret ] && . ~/.config/ucdsecret
 
 # hub alias
 eval "$(hub alias -s)"
