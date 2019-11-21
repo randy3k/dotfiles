@@ -8,9 +8,8 @@ alias sudo='sudo '
 alias rmtex='rm -f *.aux *.dvi *.lis *.log *.blg *.bbl *.toc *.idx *.ind *.ilg *.thm *.out *.fdb_latexmk *.fls *.synctex.gz *.nav *.snm'
 
 # ssh tunneling
-# alias ssh-tunnel='ssh -v -N -D 8080 germain'
-# alias ssh-tunnel='ssh -v -N -D 8080 hannan'
-alias ssh-tunnel='ssh -v -N -D 8080 randyimac'
+alias ssh-tunnel='ssh -v -N -D 8080'
+alias ssh-vpn="ssh -o ProxyCommand='nc -X 5 -x 127.0.0.1:5000 %h %p'"
 
 # vpn
 # alias tvb='sudo route add -net 202.126 -interface ppp0'
