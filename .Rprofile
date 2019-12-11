@@ -48,7 +48,7 @@ tag_release <- function(pkg = ".") {
         cat("Cannot parse CRAN-RELEASE\n")
         return(invisible())
     }
-    semver <- paste0("v", pkg$version)
+    semver <- stringr::str_extract(paste0("v", pkg$version), "v[0-9]+\\.[0-9]+\\.[0-9]+")[[1]]
     if (devtools:::yesno(glue::glue("tag {sha} as {semver}"))) {
         return(invisible())
     }
