@@ -45,3 +45,9 @@ if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]
     alias subl=$(command -v rmate)
     export RMATE_PORT=52658
 fi
+
+
+# ## Xcode
+# # help python to find the C headers
+export MACOSX_DEPLOYMENT_TARGET=10.9
+export CPATH=`xcrun --show-sdk-path`/usr/include

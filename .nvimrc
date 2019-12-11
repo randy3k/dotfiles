@@ -29,6 +29,7 @@ call plug#end()
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient#textDocument_rangeFormatting()
 
+" let g:LanguageClient_loggingFile = expand('/tmp/LanguageClient.log')
 " let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 1
