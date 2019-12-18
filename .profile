@@ -23,7 +23,7 @@ export GIT_EDITOR='nvim'
 # export EDITOR='nvim'
 
 # homebrew github token
-[ -f ~/.config/secret ] && . ~/.config/secret
+[ -f ~/.config/secrets ] && . ~/.config/secrets
 
 # hub alias
 eval "$(hub alias -s)"
@@ -48,6 +48,6 @@ fi
 
 
 # ## Xcode
-# # help python to find the C headers
-export MACOSX_DEPLOYMENT_TARGET=10.9
-export CPATH=`xcrun --show-sdk-path`/usr/include
+# help python to find the C headers
+# export MACOSX_DEPLOYMENT_TARGET=10.9
+# export CPATH=`xcrun --show-sdk-path`/usr/include
