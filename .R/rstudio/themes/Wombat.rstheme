@@ -1779,9 +1779,15 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 
 /* toolbar and selected tab */
 
-.rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs .gwt-TabLayoutPanelTab-selected table.rstheme_tabLayoutCenter, .rstheme_toolbarWrapper {
+.rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelTabs .gwt-TabLayoutPanelTab-selected table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .rstheme_toolbarWrapper {
     background: #404040 !important;
 }
+
+/* git status toolbar */
+.rstudio-themes-flat .rstudio-themes-dark-grey .GD15MCFCBMC {
+    background: #404040 !important;
+}
+
 
 /* spliters */
 .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-SplitLayoutPanel-HDragger, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-SplitLayoutPanel-VDragger {
@@ -1790,7 +1796,8 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 
 /* search */
 .rstudio-themes-flat .rstudio-themes-dark .search, .rstudio-themes-flat.rstudio-themes-dark-menus .search {
-     background: #333333 !important;
+     background: #404040 !important;
+     border-color: #555555 !important;
 }
 
 /* pane toolbars */

@@ -1,11 +1,2 @@
 {
-    "blockindent" : "Meta+]",
-    "blockoutdent" : "Meta+[",
-    "expandToMatching" : "|Ctrl+Shift+M",
-    "expandtoline" : "Ctrl+L",
-    "joinlines" : "Meta+j",
-    "movelinesdown" : "Ctrl+Meta+Down",
-    "movelinesup" : "Ctrl+Meta+Up",
-    "removeline" : "Ctrl+Shift+K",
-    "splitline" : "Ctrl+O"
 }
