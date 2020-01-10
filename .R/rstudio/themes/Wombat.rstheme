@@ -1783,6 +1783,11 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
     background: #404040 !important;
 }
 
+/* tab text */
+.rstudio-themes-flat .rstudio-themes-dark .gwt-TabLayoutPanelTabs table.rstheme_tabLayoutCenter {
+    color: #dddddd !important;
+}
+
 /* git status toolbar */
 .rstudio-themes-flat .rstudio-themes-dark-grey .GD15MCFCBMC {
     background: #404040 !important;
@@ -1795,7 +1800,7 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 }
 
 /* search */
-.rstudio-themes-flat .rstudio-themes-dark .search, .rstudio-themes-flat.rstudio-themes-dark-menus .search {
+.rstudio-themes-flat .search, .rstudio-themes-flat.rstudio-themes-dark-menus .search {
      background: #404040 !important;
      border-color: #555555 !important;
 }
@@ -1807,8 +1812,20 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 }
 
 /* menu background */
-.rstudio-themes-flat.rstudio-themes-dark-menus .themedPopupPanel .popupMiddleCenter {
+.themedPopupPanel .popupMiddleCenter {
+     color: #ffffff !important;
      background: #404040 !important;
+     border-color: #555555 !important;
+}
+
+/* menu seperator */
+.gwt-MenuItemSeparator .menuSeparatorInner {
+     border-color: #555555 !important;
+}
+
+/* menu selected item */
+.gwt-MenuItem-selected {
+    background: rgba(255, 255, 255, 0.15) !important;
 }
 
 /* file pane */
