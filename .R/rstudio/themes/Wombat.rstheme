@@ -1764,7 +1764,7 @@
 }
 
 /* background */
- .rstudio-themes-flat .rstudio-themes-dark-grey, .rstudio-themes-flat .rstudio-themes-dark-grey .rstudio-themes-background {
+ .rstudio-themes-flat .rstudio-themes-dark-grey, .rstudio-themes-flat .rstudio-themes-dark-grey .rstudio-themes-background, .rstudio-themes-flat .rstudio-themes-dark-grey .gwt-TabLayoutPanelContent{
     background: #333333 !important;
 }
 
@@ -1813,5 +1813,11 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 
 /* file pane */
 .rstudio-themes-flat .rstudio-themes-dark .breadcrumb a {
+    color: #ffffff !important;
+}
+.rstudio-themes-flat .rstudio-themes-dark-grey .breadcrumb div {
+    background: : #333333 !important;
+}
+.rstudio-themes-flat.editor_dark .ace_editor_theme div {
     color: #ffffff !important;
 }
