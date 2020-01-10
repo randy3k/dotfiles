@@ -1810,3 +1810,8 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 .rstudio-themes-flat.rstudio-themes-dark-menus .themedPopupPanel .popupMiddleCenter {
      background: #404040 !important;
 }
+
+/* file pane */
+.rstudio-themes-flat .rstudio-themes-dark .breadcrumb a {
+    color: #ffffff !important;
+}
