@@ -1760,7 +1760,7 @@
 }
  .rstudio-themes-flat.rstudio-themes-dark-menus .ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line, .rstudio-themes-flat.rstudio-themes-dark-menus .ace_editor.ace_autocomplete .ace_marker-layer .ace_line-hover {
      background: rgba(255, 255, 255, 0.15);
-     border: none 
+     border: none
 }
 
 /* background */
@@ -1800,7 +1800,7 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 }
 
 /* search */
-.rstudio-themes-flat .search, .rstudio-themes-flat.rstudio-themes-dark-menus .search {
+.rstudio-themes-flat .rstudio-themes-dark .search, .rstudio-themes-flat .rstudio-themes-dark-menus .search {
      background: #404040 !important;
      border-color: #555555 !important;
 }
