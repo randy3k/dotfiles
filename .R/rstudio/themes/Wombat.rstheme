@@ -1838,3 +1838,8 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 .rstudio-themes-flat.editor_dark .ace_editor_theme div {
     color: #ffffff !important;
 }
+
+/* data view */
+.rstudio-themes-flat.rstudio-themes-dark-grey #rsGridData_info, .rstudio-themes-flat.rstudio-themes-dark-grey td.first-child, .rstudio-themes-flat.rstudio-themes-dark-grey table.dataTable th {
+    background: #333333 !important;
+}
