@@ -12,7 +12,7 @@ options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summa
 # mac only
 if (Sys.info()["sysname"] == "Darwin") {
     if (interactive()) {
-        Sys.setenv(TZ = "America/New_York")
+        Sys.setenv(TZ = "US/Pacific")
         options(
             device = "quartz",
             help_type = "html",
