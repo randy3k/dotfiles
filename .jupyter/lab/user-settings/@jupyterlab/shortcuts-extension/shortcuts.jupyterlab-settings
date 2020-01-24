@@ -1,0 +1,18 @@
+{
+    "shortcuts": [
+        {
+            "command": "notebook:run-in-console",
+            "keys": [
+                "Accel Enter"
+            ],
+            "selector": ".jp-Notebook.jp-mod-editMode"
+        },
+        {
+            "command": "notebook:run-cell",
+            "keys": [
+                "Accel Shift Enter"
+            ],
+            "selector": ".jp-Notebook.jp-mod-editMode"
+        }
+    ]
+}

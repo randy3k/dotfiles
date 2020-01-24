@@ -1,3 +1,7 @@
 {
-    "browseAddins" : "Shift+Cmd+P"
+    "browseAddins" : "Shift+Cmd+P",
+    "fold" : "||",
+    "foldAll" : "",
+    "unfold" : "||",
+    "unfoldAll" : ""
 }

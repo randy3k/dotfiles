@@ -1,2 +1,8 @@
 {
+    "fold" : "||",
+    "foldOther" : "",
+    "foldall" : "",
+    "toggleParentFoldWidget" : "Alt+F2",
+    "unfold" : "||",
+    "unfoldall" : ""
 }

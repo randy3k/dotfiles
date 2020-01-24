@@ -6,7 +6,7 @@ options(
     max.print = 200
 )
 
-options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
+# options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
 
 
 # mac only
