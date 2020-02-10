@@ -1,9 +1,11 @@
 options(
     repos = c(CRAN = "https://cran.rstudio.com"),
     useFancyQuotes = FALSE,
-    # browserNLdisabled = TRUE,
-    # deparse.max.lines = 2,
-    max.print = 200
+    browserNLdisabled = TRUE,
+    max.print = 100,
+    languageserver.server_capabilities = list(
+        documentHighlightProvider = FALSE
+    )
 )
 
 # options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
@@ -26,10 +28,26 @@ if (Sys.info()["sysname"] == "Darwin") {
                 ))
     } else {
         options(
-            repr.plot.width = 5,
-            repr.plot.height = 5,
-            repr.plot.res = 100,
+            # repr.plot.width = 5,
+            # repr.plot.height = 5,
+            # repr.plot.res = 100,
+            repr.matrix.max.rows = 20,
             jupyter.plot_mimetypes = "image/png"
+            # jupyter.rich_display = FALSE
+        )
+        setHook(
+            packageEvent("IRkernel", "onLoad"),
+            function(...) {
+                repr_text <- function(obj, ...)
+                    paste0("<pre>", paste0(utils::capture.output(obj), collapse = "\n"), "</pre>")
+                evalq(local({
+                        registerS3method("repr_html", "integer", repr_text)
+                        registerS3method("repr_html", "double", repr_text)
+                        registerS3method("repr_html", "character", repr_text)
+                    }),
+                    envir = getNamespace("repr")
+                )
+            }
         )
     }
 }

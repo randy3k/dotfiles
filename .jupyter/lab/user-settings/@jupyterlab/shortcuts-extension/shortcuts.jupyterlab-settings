@@ -1,4 +1,86 @@
 {
+    // Keyboard Shortcuts
+    // @jupyterlab/shortcuts-extension:shortcuts
+    // Keyboard shortcut settings.
+    // *****************************************
+
+    // List of Commands (followed by shortcuts)
+    // __internal:context-menu-info
+    // apputils:activate-command-palette
+    // apputils:print
+    // completer:invoke
+    // completer:select
+    // tooltip:dismiss
+    // launcher:create
+    // editmenu:undo
+    // editmenu:redo
+    // editmenu:clear-current
+    // editmenu:clear-all
+    // editmenu:go-to-line
+    // filemenu:close-and-cleanup
+    // filemenu:create-console
+    // filemenu:shutdown
+    // filemenu:logout
+    // kernelmenu:interrupt
+    // kernelmenu:restart
+    // kernelmenu:restart-and-clear
+    // kernelmenu:change
+    // kernelmenu:shutdown
+    // kernelmenu:shutdownAll
+    // runmenu:run
+    // runmenu:run-all
+    // runmenu:restart-and-run-all
+    // viewmenu:line-numbering
+    // viewmenu:match-brackets
+    // viewmenu:word-wrap
+    // tabsmenu:activate-by-id
+    // tabsmenu:activate-previously-used-tab
+    // editmenu:open
+    // filemenu:open
+    // kernelmenu:open
+    // runmenu:open
+    // viewmenu:open
+    // settingsmenu:open
+    // tabsmenu:open
+    // helpmenu:open
+    // mainmenu:open-first
+    // documentsearch:start
+    // documentsearch:highlightNext
+    // documentsearch:highlightPrevious
+    // docmanager:clone
+    // docmanager:rename
+    // docmanager:show-in-file-browser
+    // docmanager:delete-file
+    // docmanager:new-untitled
+    // docmanager:open
+    // docmanager:open-browser-tab
+    // docmanager:reload
+    // docmanager:restore-checkpoint
+    // docmanager:save
+    // docmanager:save-all
+    // docmanager:save-as
+    // docmanager:toggle-autosave
+    // sidebar:switch
+    // apputils:change-theme
+    // apputils:theme-scrollbars
+    // apputils:incr-font-size
+    // apputils:decr-font-size
+    // statusbar:toggle
+    // rendermime:handle-local-link
+    // 
+    // Note: To disable a system default shortcut,
+    // copy it to User Preferences and add the
+    // "disabled" key, for example:
+    // {
+    //     "command": "application:activate-next-tab",
+    //     "keys": [
+    //         "Ctrl Shift ]"
+    //     ],
+    //     "selector": "body",
+    //     "disabled": true
+    // }
+    // 
+    // List of Keyboard Shortcuts
     "shortcuts": [
         {
             "command": "notebook:run-in-console",
@@ -13,6 +95,35 @@
                 "Accel Shift Enter"
             ],
             "selector": ".jp-Notebook.jp-mod-editMode"
+        },
+        {
+            "command": "text-shortcuts:insert-text",
+            "args": {
+                "text": "%>%",
+                "autoPad": true
+            },
+            "keys": [
+                "Accel Shift M"
+            ],
+            "selector": "body"
+        },
+        {
+            "command": "text-shortcuts:insert-text",
+            "args": {
+                "text": "<-",
+                "autoPad": true
+            },
+            "keys": [
+                "Alt -"
+            ],
+            "selector": "body"
+        },
+        {
+            "command": "apputils:activate-command-palette",
+            "selector": "body",
+            "keys": [
+                "Accel Shift P"
+            ]
         }
     ]
 }
