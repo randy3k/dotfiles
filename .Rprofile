@@ -9,6 +9,7 @@ options(
 )
 
 # options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
+Sys.setenv(DEBUGLSP = TRUE)
 
 
 # mac only
