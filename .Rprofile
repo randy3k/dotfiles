@@ -9,6 +9,7 @@ options(
 )
 
 # options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
+Sys.setenv(R_LANGSVR_LOG = "/tmp/languageserver.log")
 
 
 # mac only
