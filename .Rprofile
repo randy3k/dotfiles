@@ -7,17 +7,15 @@ options(
         documentHighlightProvider = FALSE
     )
 )
-
-# options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
+Sys.setenv(TZ = "US/Pacific")
 Sys.setenv(R_LANGSVR_LOG = "/tmp/languageserver.log")
+# options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
 
 
 # mac only
 if (Sys.info()["sysname"] == "Darwin") {
     if (interactive()) {
-        Sys.setenv(TZ = "US/Pacific")
         options(
-            device = "quartz",
             help_type = "html",
             editor = "sublimetext"
         )
@@ -25,7 +23,8 @@ if (Sys.info()["sysname"] == "Darwin") {
                 function(...) grDevices::quartz.options(
                     width = 5,
                     height = 5,
-                    pointsize = 8
+                    pointsize = 8,
+                    dpi = NA_real_
                 ))
     } else {
         options(
@@ -36,20 +35,20 @@ if (Sys.info()["sysname"] == "Darwin") {
             jupyter.plot_mimetypes = "image/png"
             # jupyter.rich_display = FALSE
         )
-        setHook(
-            packageEvent("IRkernel", "onLoad"),
-            function(...) {
-                repr_text <- function(obj, ...)
-                    paste0("<pre>", paste0(utils::capture.output(obj), collapse = "\n"), "</pre>")
-                evalq(local({
-                        registerS3method("repr_html", "integer", repr_text)
-                        registerS3method("repr_html", "double", repr_text)
-                        registerS3method("repr_html", "character", repr_text)
-                    }),
-                    envir = getNamespace("repr")
-                )
-            }
-        )
+        # setHook(
+        #     packageEvent("IRkernel", "onLoad"),
+        #     function(...) {
+        #         repr_text <- function(obj, ...)
+        #             paste0("<pre>", paste0(utils::capture.output(obj), collapse = "\n"), "</pre>")
+        #         evalq(local({
+        #                 registerS3method("repr_html", "integer", repr_text)
+        #                 registerS3method("repr_html", "double", repr_text)
+        #                 registerS3method("repr_html", "character", repr_text)
+        #             }),
+        #             envir = getNamespace("repr")
+        #         )
+        #     }
+        # )
     }
 }
 
