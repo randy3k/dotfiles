@@ -19,13 +19,13 @@ if (Sys.info()["sysname"] == "Darwin") {
             help_type = "html",
             editor = "sublimetext"
         )
-        setHook(packageEvent("grDevices", "onLoad"),
-                function(...) grDevices::quartz.options(
-                    width = 5,
-                    height = 5,
-                    pointsize = 8,
-                    dpi = NA_real_
-                ))
+        # setHook(packageEvent("grDevices", "onLoad"),
+        #         function(...) grDevices::quartz.options(
+        #             width = 5,
+        #             height = 5,
+        #             pointsize = 8,
+        #             dpi = NA_real_
+        #         ))
     } else {
         options(
             # repr.plot.width = 5,

@@ -38,8 +38,9 @@ if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ;then
 fi
 
 # miniconda
-export PATH="/Users/Randy/miniconda3/bin:$PATH"
+# export PATH="/Users/Randy/miniconda3/bin:$PATH"
 # export PATH="/Users/Randy/opt/anaconda3/bin:$PATH"
+export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
 
 # alias subl for ssh client
 if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]]; then
