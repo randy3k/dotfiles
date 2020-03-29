@@ -33,3 +33,5 @@
     status = auto
 [rerere]
     enabled = true
+[core]
+	ignorecase = false
