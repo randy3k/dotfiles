@@ -2,6 +2,7 @@ options(
     radian.color_scheme = "native",
     radian.history_search_no_duplicates = TRUE,
     radian.auto_match = TRUE,
+    radian.completion_timeout = 0,
     # radian.indent_lines = FALSE
     # radian.insert_new_line = FALSE,
     # radian.auto_match.auto_indentation = FALSE
