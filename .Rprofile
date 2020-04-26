@@ -25,9 +25,32 @@ if (Sys.info()["sysname"] == "Darwin") {
                     width = 5,
                     height = 5,
                     pointsize = 8
-                ))
-        try(Sys.setenv(GITHUB_PAT=system2(
-                "bash", c("-lc", "'echo $GITHUB_PAT'"), stdout = TRUE)), silent = TRUE)
+                )
+            )
+        if (Sys.getenv("RSTUDIO") == "1") {
+            local({
+                tf <- tempfile("env")
+                writeLines(system2(c("bash", "-lc", "printenv"), stdout = TRUE), tf)
+                on.exit(unlink(tf))
+                readRenviron(tf)
+
+                unlockBinding("options", asNamespace("base"))
+                old_options <- options
+                new_options <- function(...) {
+                    args <- list(...)
+                    nms <- names(args)
+                    if ("browser" %in% nms) {
+                        unlockBinding("options", asNamespace("base"))
+                        assign("options", old_options, inherits = TRUE)
+                        unlockBinding("options", asNamespace("base"))
+                    } else {
+                        do.call(old_options, args)
+                    }
+                }
+                assign("options", new_options, inherits = TRUE)
+                unlockBinding("options", asNamespace("base"))
+            })
+        }
     } else {
         options(
             # repr.plot.width = 5,

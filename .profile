@@ -32,9 +32,11 @@ eval "$(hub alias -s)"
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # GPG
-export GPG_TTY=$(tty)
-if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ;then
-    export PINENTRY_USER_DATA="USE_CURSES=1"
+if [ -t 1 ] ; then
+    export GPG_TTY=$(tty)
+    if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ;then
+        export PINENTRY_USER_DATA="USE_CURSES=1"
+    fi
 fi
 
 # miniconda
