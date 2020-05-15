@@ -8,6 +8,8 @@ options(
         documentHighlightProvider = FALSE
     )
 )
+options(usethis.protocol = "ssh")
+
 Sys.setenv(TZ = "US/Pacific")
 Sys.setenv(R_LANGSVR_LOG = "/tmp/languageserver.log")
 # options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")

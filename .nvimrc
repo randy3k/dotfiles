@@ -35,6 +35,7 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 1
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run(debug = TRUE)']
+let g:LanguageClient_serverCommands.rmd = ['R', '--quiet', '--slave', '-e', 'languageserver::run(debug = TRUE)']
 let g:LanguageClient_serverCommands.python = ['/Users/Randy/miniconda3/bin/pyls']
 
 
