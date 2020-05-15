@@ -1768,7 +1768,8 @@
     background: #333333 !important;
 }
 
-.rstudio-themes-flat .rstudio-themes-dark-grey .rstudio-themes-border {
+/* tab border */
+.rstudio-themes-flat .rstudio-themes-dark-grey .windowframe>div:last-child {
     border-color: #282828 !important;
 }
 
@@ -1794,7 +1795,7 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 
 
 /* git status toolbar */
-.rstudio-themes-flat .rstudio-themes-dark-grey .GD15MCFCBMC {
+.rstudio-themes-flat .rstudio-themes-dark-grey tr[__gwt_header_row="0"] th {
     background: #404040 !important;
 }
 
@@ -1864,9 +1865,11 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 .rstudio-themes-flat .rstudio-themes-dark .breadcrumb a {
     color: #ffffff !important;
 }
-.rstudio-themes-flat .rstudio-themes-dark-grey .breadcrumb div {
-    background: : #333333 !important;
+
+.rstudio-themes-flat .rstudio-themes-dark-grey .breadcrumb>div {
+    background: linear-gradient(to right, #404040, #40404000) !important;
 }
+
 .rstudio-themes-flat.editor_dark .ace_editor_theme div {
     color: #ffffff !important;
 }
