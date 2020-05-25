@@ -1845,7 +1845,7 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 }
 
 /* menu background */
-.themedPopupPanel .popupMiddleCenter {
+.themedPopupPanel .popupMiddleCenter, .rstudio-themes-flat.rstudio-themes-dark-menus .menuPopupMiddleCenter {
      color: #ffffff !important;
      background: #404040 !important;
      border-color: #555555 !important;

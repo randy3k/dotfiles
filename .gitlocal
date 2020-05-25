@@ -6,5 +6,7 @@
     signingkey = C624A96B760AC797
 [commit]
     gpgsign = true
+[tag]
+    gpgsign = true    
 [gpg]
     program = /usr/local/bin/gpg

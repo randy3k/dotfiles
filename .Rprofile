@@ -36,21 +36,23 @@ if (Sys.info()["sysname"] == "Darwin") {
                 on.exit(unlink(tf))
                 readRenviron(tf)
 
-                unlockBinding("options", asNamespace("base"))
-                old_options <- options
-                new_options <- function(...) {
-                    args <- list(...)
-                    nms <- names(args)
-                    if ("browser" %in% nms) {
-                        unlockBinding("options", asNamespace("base"))
-                        assign("options", old_options, inherits = TRUE)
-                        unlockBinding("options", asNamespace("base"))
-                    } else {
-                        do.call(old_options, args)
+                if (Sys.getenv("RSTUDIO_PROGRAM_MODE", "desktop") == "desktop") {
+                    unlockBinding("options", asNamespace("base"))
+                    old_options <- options
+                    new_options <- function(...) {
+                        args <- list(...)
+                        nms <- names(args)
+                        if ("browser" %in% nms) {
+                            unlockBinding("options", asNamespace("base"))
+                            assign("options", old_options, inherits = TRUE)
+                            unlockBinding("options", asNamespace("base"))
+                        } else {
+                            do.call(old_options, args)
+                        }
                     }
+                    assign("options", new_options, inherits = TRUE)
+                    unlockBinding("options", asNamespace("base"))
                 }
-                assign("options", new_options, inherits = TRUE)
-                unlockBinding("options", asNamespace("base"))
             })
         }
     } else {
