@@ -1,0 +1,52 @@
+{
+    "highlight_selected_line": true,
+    "panes": {
+        "quadrants": [
+            "Source",
+            "TabSet1",
+            "Console",
+            "TabSet2"
+        ],
+        "tabSet1": [
+            "Environment",
+            "History",
+            "Connections",
+            "Build",
+            "VCS",
+            "Tutorial",
+            "Presentation"
+        ],
+        "tabSet2": [
+            "Files",
+            "Plots",
+            "Packages",
+            "Help",
+            "Viewer"
+        ],
+        "console_left_on_top": false,
+        "console_right_on_top": true
+    },
+    "show_margin": false,
+    "blinking_cursor": false,
+    "editor_keybindings": "sublime",
+    "auto_append_newline": true,
+    "strip_trailing_whitespace": true,
+    "reindent_on_paste": false,
+    "syntax_color_console": true,
+    "scroll_past_end_of_document": true,
+    "font_size_points": 12,
+    "editor_theme": "Wombat",
+    "default_project_location": "~/Desktop",
+    "source_with_echo": true,
+    "default_latex_program": "XeLaTeX",
+    "restore_source_documents": false,
+    "console_double_click_select": true,
+    "always_save_history": false,
+    "reuse_sessions_for_project_links": true,
+    "posix_terminal_shell": "bash",
+    "clang_verbose": 2,
+    "restore_last_project": false,
+    "pdf_previewer": "none",
+    "load_workspace": false,
+    "save_workspace": "never"
+}
