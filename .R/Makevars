@@ -2,3 +2,4 @@
 # CXX=/usr/local/opt/llvm/bin/clang++
 # LDFLAGS=-L/opt/X11/lib -L/usr/local/opt/gettext/lib
 # CPPFLAGS=-I/opt/X11/include -I/usr/local/opt/gettext/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk

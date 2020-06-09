@@ -11,13 +11,23 @@ options(
 options(usethis.protocol = "ssh")
 
 Sys.setenv(TZ = "US/Pacific")
-Sys.setenv(R_LANGSVR_LOG = "/tmp/languageserver.log")
 # options(testthat.default_reporter = if (isatty(stdout())) "progress" else "summary")
 
 
 # mac only
 if (Sys.info()["sysname"] == "Darwin") {
+
+    Sys.setenv(R_LANGSVR_LOG = "/tmp/languageserver.log")
+
     if (interactive()) {
+
+        if (system2("R", "RHOME", env = "R_HOME=", stdout = TRUE) != R.home()) {
+            local({
+                paths <- .libPaths()
+                .libPaths(paths[!startsWith(paths, normalizePath("~"))])
+            })
+        }
+
         options(
             help_type = "html",
             editor = "sublimetext"

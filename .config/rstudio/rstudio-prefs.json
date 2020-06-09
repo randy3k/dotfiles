@@ -44,9 +44,12 @@
     "always_save_history": false,
     "reuse_sessions_for_project_links": true,
     "posix_terminal_shell": "bash",
-    "clang_verbose": 2,
     "restore_last_project": false,
     "pdf_previewer": "none",
     "load_workspace": false,
-    "save_workspace": "never"
+    "save_workspace": "never",
+    "line_ending_conversion": "posix",
+    "default_encoding": "UTF-8",
+    "jobs_tab_visibility": "shown",
+    "show_terminal_tab": false
 }
