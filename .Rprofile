@@ -21,7 +21,7 @@ if (Sys.info()["sysname"] == "Darwin") {
 
     if (interactive()) {
 
-        if (system2("R", "RHOME", env = "R_HOME=", stdout = TRUE) != R.home()) {
+        if (!startsWith(R.home(""), "/Library/Frameworks/R.framework")) {
             local({
                 paths <- .libPaths()
                 .libPaths(paths[!startsWith(paths, normalizePath("~"))])
