@@ -158,7 +158,11 @@ gitify() {
     echo -en "($branch$dirty$unpushed)%{$reset_color%}"
 }
 setopt prompt_subst
-PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
+if [ $(hostname) =~ "randylai-macbookpro.*" ]; then
+    PROMPT='%{$fg[yellow]%}(rlaimbp)%{$reset_color%}-%c%{$reset_color%}$ '
+else
+    PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
+fi
 RPROMPT='$(gitify)'
 
 if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
