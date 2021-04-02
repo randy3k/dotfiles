@@ -1,6 +1,8 @@
-if [ -d "$HOME/.local/bin" ] ; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
+# miniconda
+[ -d /usr/local/Caskroom/miniconda ] && export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+
+
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH
 [ -d "$HOME/Library/Haskell/bin" ] && export PATH="$HOME/Library/Haskell/bin:$PATH"
@@ -9,13 +11,6 @@ export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH
 [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
 # [ -d /usr/local/opt/llvm/bin ] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# FSL Setup
-FSLDIR=/opt/local/fsl
-if [ -d "$FSLDIR" ]; then
-    PATH=${FSLDIR}/bin:${PATH}
-    export FSLDIR PATH
-    . ${FSLDIR}/etc/fslconf/fsl.sh
-fi
 
 # EDITOR
 export HOMEBREW_EDITOR='subl -n'
@@ -29,9 +24,6 @@ export GIT_EDITOR='nvim'
 # hub alias
 eval "$(hub alias -s)"
 
-# homebrew python
-# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-
 # GPG
 if [ -t 1 ] ; then
     export GPG_TTY=$(tty)
@@ -39,11 +31,6 @@ if [ -t 1 ] ; then
         export PINENTRY_USER_DATA="USE_CURSES=1"
     fi
 fi
-
-# miniconda
-# export PATH="/Users/Randy/miniconda3/bin:$PATH"
-# export PATH="/Users/Randy/opt/anaconda3/bin:$PATH"
-export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
 
 # alias subl for ssh client
 if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]]; then
