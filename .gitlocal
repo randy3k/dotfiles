@@ -1,5 +1,5 @@
 [core]
-    excludesfile = /Users/Randy/.gitignore
+    excludesfile = ~/.gitignore
 [credential]
     helper = osxkeychain
 [user]
