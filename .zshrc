@@ -157,13 +157,62 @@ gitify() {
     fi
     echo -en "($branch$dirty$unpushed)%{$reset_color%}"
 }
+figify() {
+    [[ $(PWD) =~ "(/Volumn)?/google/src/cloud/.*"  ]] || return
+    st=$(hg st 2>/dev/null)
+
+    local cl
+    local client
+    local dirty
+    local unpushed
+
+    client=`PWD | sed "s|.*$USER/\([^/]*\).*|\1|"`
+    cl=`hg exportedcl`
+    [[ "$cl" != "" ]] && [[ $(hg ll -r .) =~ "will update" ]] && unpushed="true"
+    [[ "$st" = "" ]] || dirty="*"
+    [[ "$cl" = "" ]] || cl="%{$fg[yellow]%}@cl/$cl"
+
+
+    if [[ $dirty == "*" ]]; then
+        echo -en " %{$fg[red]%}"
+    elif [[ $unpushed = "true" ]]; then
+        echo -en " %{$fg[yellow]%}"
+    else
+        echo -en " %{$fg[green]%}"
+    fi
+    echo -en "($client$dirty)$cl%{$reset_color%}"
+}
+
 setopt prompt_subst
-if [ $(hostname) =~ "randylai-macbookpro.*" ]; then
-    PROMPT='%{$fg[yellow]%}(rlaimbp)%{$reset_color%}-%c%{$reset_color%}$ '
-else
-    PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
-fi
-RPROMPT='$(gitify)'
+PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
+RPROMPT=''
+
+# https://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
+function precmd() {
+    function async() {
+        # save to temp file
+        printf "%s" "$(gitify)$(figify)" > "/tmp/zsh_prompt_$$"
+        # signal parent
+        kill -s USR1 $$
+    }
+    # do not clear RPROMPT, let it persist
+    # kill child if necessary
+    if [[ "${ASYNC_PROC}" != 0 ]]; then
+        kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+    fi
+    # start background computation
+    async &!
+    ASYNC_PROC=$!
+}
+
+function TRAPUSR1() {
+    # read from temp file
+    RPROMPT="$(cat /tmp/zsh_prompt_$$)"
+    # reset proc number
+    ASYNC_PROC=0
+    # redisplay
+    zle && zle reset-prompt
+}
 
 if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
@@ -176,4 +225,9 @@ if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
     }
     autoload -U add-zsh-hook
     add-zsh-hook precmd  update_terminal_cwd
+fi
+
+# g specific
+if [ $(hostname) =~ "randylai-macbookpro.*" ]; then
+    PROMPT='%{$fg[yellow]%}(=)%{$reset_color%}-%c%{$reset_color%}$ '
 fi
