@@ -136,14 +136,15 @@ fi
 
 # prompt
 gitify() {
-    st=$(git status -b --porcelain 2>/dev/null)
-    [[ $? -eq 0 ]] || return
-
+    local st
     local branch
     local dirty
     local unpushed
 
-    branch=`git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
+    st=$(git status -b --porcelain 2>/dev/null)
+    [[ $? -eq 0 ]] || return
+
+    branch=$(git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p'))
     [[ `wc -l <<< "$st"` -eq 1  ]] || dirty="*"
     [[ "$st" =~ ("behind "([[:digit:]]*)) ]] && unpushed="-${match[2]}"
     [[ "$st" =~ ("ahead "([[:digit:]]*)) ]] && unpushed="$unpushed+${match[2]}"
@@ -159,19 +160,22 @@ gitify() {
 }
 figify() {
     [[ $(PWD) =~ "(/Volumn)?/google/src/cloud/.*"  ]] || return
-    st=$(hg st 2>/dev/null)
 
+    local st
     local cl
     local client
     local dirty
-    local unpushed
+    local unpushedt
 
+    st=$(hg st 2>/dev/null)
     client=`PWD | sed "s|.*$USER/\([^/]*\).*|\1|"`
-    cl=`hg exportedcl`
-    [[ "$cl" != "" ]] && [[ $(hg ll -r .) =~ "will update" ]] && unpushed="true"
-    [[ "$st" = "" ]] || dirty="*"
-    [[ "$cl" = "" ]] || cl="%{$fg[yellow]%}@cl/$cl"
-
+    cl=$(hg exportedcl)
+    if [[ "$st" != "" ]]; then
+        dirty="*"
+    elif [[ "$cl" != "" ]] && [[ $(hg ll -r .) =~ "will update" ]]; then
+        unpushed="true"
+    fi
+    [[ "$cl" = "" ]] || cl="%{$fg[yellow]%}[http://cl/$cl]"
 
     if [[ $dirty == "*" ]]; then
         echo -en " %{$fg[red]%}"
