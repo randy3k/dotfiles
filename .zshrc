@@ -192,12 +192,14 @@ PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
 RPROMPT=''
 
 # https://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
-function precmd() {
+ASYNC_PROC=0
+function update_rprompt() {
     function async() {
         # save to temp file
         printf "%s" "$(gitify)$(figify)" > "/tmp/zsh_prompt_$$"
         # signal parent
         kill -s USR1 $$
+
     }
     # do not clear RPROMPT, let it persist
     # kill child if necessary
@@ -208,8 +210,11 @@ function precmd() {
     async &!
     ASYNC_PROC=$!
 }
+autoload -U add-zsh-hook
+add-zsh-hook precmd update_rprompt
 
 function TRAPUSR1() {
+    [[ $LASTWIDGET == "bash-ctrl-d" ]] && return
     # read from temp file
     RPROMPT="$(cat /tmp/zsh_prompt_$$)"
     # reset proc number
