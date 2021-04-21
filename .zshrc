@@ -193,20 +193,19 @@ RPROMPT=''
 
 # https://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
 ASYNC_PROC=0
+RPROMPT_OLDPWD=''
 function update_rprompt() {
     function async() {
-        # save to temp file
         printf "%s" "$(gitify)$(figify)" > "/tmp/zsh_prompt_$$"
-        # signal parent
         kill -s USR1 $$
-
     }
-    # do not clear RPROMPT, let it persist
-    # kill child if necessary
     if [[ "${ASYNC_PROC}" != 0 ]]; then
         kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
     fi
-    # start background computation
+    if [[ $RPROMPT_OLDPWD != $(PWD) ]]; then
+        RPROMPT=''
+    fi
+    RPROMPT_OLDPWD=$(PWD)
     async &!
     ASYNC_PROC=$!
 }
@@ -214,13 +213,11 @@ autoload -U add-zsh-hook
 add-zsh-hook precmd update_rprompt
 
 function TRAPUSR1() {
-    [[ $LASTWIDGET == "bash-ctrl-d" ]] && return
-    # read from temp file
-    RPROMPT="$(cat /tmp/zsh_prompt_$$)"
-    # reset proc number
-    ASYNC_PROC=0
-    # redisplay
-    zle && zle reset-prompt
+    if [[ $LASTWIDGET != "bash-ctrl-d" ]]; then
+        RPROMPT="$(cat /tmp/zsh_prompt_$$)"
+        ASYNC_PROC=0
+        zle && zle reset-prompt
+    fi
 }
 
 if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
