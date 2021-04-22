@@ -159,7 +159,7 @@ gitify() {
     echo -en "($branch$dirty$unpushed)%{$reset_color%}"
 }
 figify() {
-    [[ $(PWD) =~ "(/Volumn)?/google/src/cloud/.*"  ]] || return
+    [[ "$PWD" =~ "(/Volumn)?/google/src/cloud/.*"  ]] || return
 
     local st
     local cl
@@ -168,7 +168,7 @@ figify() {
     local unpushedt
 
     st=$(hg st 2>/dev/null)
-    client=`PWD | sed "s|.*$USER/\([^/]*\).*|\1|"`
+    client=`echo $PWD | sed "s|.*$USER/\([^/]*\).*|\1|"`
     cl=$(hg exportedcl)
     if [[ "$st" != "" ]]; then
         dirty="*"
@@ -202,10 +202,10 @@ function update_rprompt() {
     if [[ "${ASYNC_PROC}" != 0 ]]; then
         kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
     fi
-    if [[ $RPROMPT_OLDPWD != $(PWD) ]]; then
+    if [[ $RPROMPT_OLDPWD != $PWD ]]; then
         RPROMPT=''
     fi
-    RPROMPT_OLDPWD=$(PWD)
+    RPROMPT_OLDPWD=$PWD
     async &!
     ASYNC_PROC=$!
 }
