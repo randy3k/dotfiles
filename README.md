@@ -12,4 +12,4 @@ rm ~/README.md
 dot update-index --skip-worktree README.md
 ```
 
-Credit: inspired by https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+Credit: inspired by https://www.atlassian.com/git/tutorials/dotfiles
