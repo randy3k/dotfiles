@@ -71,6 +71,10 @@ export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:*.rpm=90'
 
+# hgd
+[ -f /etc/bash_completion.d/hgd ] && source /etc/bash_completion.d/hgd
+
+
 # syntax highlight
 if [[ -d /usr/local/share/zsh-syntax-highlighting ]]; then
     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters

@@ -1,5 +1,3 @@
-[ -f /etc/bash_completion.d/hgd ] && source /etc/bash_completion.d/hgd
-
 # miniconda
 [ -d /usr/local/Caskroom/miniconda ] && export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
 
