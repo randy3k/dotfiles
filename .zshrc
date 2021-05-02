@@ -160,7 +160,7 @@ gitify() {
     echo -en "($branch$dirty$unpushed)%{$reset_color%}"
 }
 figify() {
-    [[ "$PWD" =~ "(/Volumn)?/google/src/cloud/.*"  ]] || return
+    [[ "$PWD" =~ "(/Volumn)?/google/src/cloud/$USER/.*"  ]] || return
 
     local st
     local cl
