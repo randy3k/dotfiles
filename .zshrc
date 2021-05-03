@@ -72,13 +72,20 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:*.rpm=90'
 
 # syntax highlight
-if [[ -d /usr/local/share/zsh-syntax-highlighting ]]; then
-    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # history-substring-search
-if [[ -d /usr/local/share/zsh-history-substring-search ]]; then
+if [[ -f ~/.zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source ~/.zsh-history-substring-search/zsh-history-substring-search.zsh
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+    export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
+    export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
+elif [[ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
