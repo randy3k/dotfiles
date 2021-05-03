@@ -176,6 +176,8 @@ figify() {
     local unpushedt
 
     st=$(hg st 2>/dev/null)
+    [[ $? -eq 0 ]] || return
+
     client=`echo $PWD | sed "s|.*$USER/\([^/]*\).*|\1|"`
     cl=$(hg exportedcl)
     if [[ "$st" != "" ]]; then
