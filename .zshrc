@@ -245,3 +245,8 @@ fi
 if [ $(hostname) =~ "randylai-macbookpro.*" ]; then
     PROMPT='%{$fg[yellow]%}(=)%{$reset_color%}-%c%{$reset_color%}$ '
 fi
+
+# verify gcert status
+if [[ -o interactive ]] && [[ -n `command -v gcertstatus` ]]; then
+    gcertstatus --quiet -check_remaining=$((2 * 60 * 60))s || gcert
+fi
