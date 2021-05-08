@@ -178,7 +178,7 @@ figify() {
     st=$(hg st 2>/dev/null)
     [[ $? -eq 0 ]] || return
 
-    client=`echo $PWD | sed "s|.*$USER/\([^/]*\).*|\1|"`
+    client=`echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|"`
     cl=$(hg exportedcl)
     if [[ "$st" != "" ]]; then
         dirty="*"
