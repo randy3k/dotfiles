@@ -179,13 +179,12 @@ figify() {
     [[ $? -eq 0 ]] || return
 
     client=`echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|"`
-    cl=$(hg exportedcl)
+
     if [[ "$st" != "" ]]; then
         dirty="*"
-    elif [[ "$cl" != "" ]] && [[ $(hg ll -r .) =~ "will update" ]]; then
+    elif [[ $(hg ll -r .) =~ "will update" ]]; then
         unpushed="true"
     fi
-    [[ "$cl" = "" ]] || cl="%{$fg[yellow]%}[http://cl/$cl]"
 
     if [[ $dirty == "*" ]]; then
         echo -en " %{$fg[red]%}"
