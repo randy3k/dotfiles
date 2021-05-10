@@ -170,7 +170,6 @@ figify() {
     [[ "$PWD" =~ "(/Volumes)?/google/src/cloud/$USER/.*"  ]] || return
 
     local st
-    local cl
     local client
     local dirty
     local unpushedt
@@ -182,7 +181,7 @@ figify() {
 
     if [[ "$st" != "" ]]; then
         dirty="*"
-    elif [[ $(hg ll -r .) =~ "will update" ]]; then
+    elif [[ $(hg ll -r . 2>/dev/null) =~ "will update" ]]; then
         unpushed="true"
     fi
 
