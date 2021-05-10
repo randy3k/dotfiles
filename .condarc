@@ -1,0 +1,2 @@
+allow_conda_downgrades: true
+auto_activate_base: false
