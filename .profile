@@ -2,7 +2,6 @@
 
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
-[ -d /usr/local/Caskroom/miniconda ] && export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
 [ -d "$HOME/Library/Haskell/bin" ] && export PATH="$HOME/Library/Haskell/bin:$PATH"
 [ -d /usr/local/cuda/bin ] && export PATH="/usr/local/cuda/bin:$PATH"
 [ -d /usr/local/opt/go/libexec/bin ] && export PATH="/usr/local/opt/go/libexec/bin:$PATH"
