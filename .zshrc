@@ -172,7 +172,7 @@ figify() {
     local st
     local client
     local dirty
-    local unpushedt
+    local unpushed
 
     client=$(echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|")
 
