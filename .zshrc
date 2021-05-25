@@ -174,14 +174,14 @@ figify() {
     local dirty
     local unpushedt
 
-    st=$(hg st 2>/dev/null)
-    [[ $? -eq 0 ]] || return
+    client=$(echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|")
 
-    client=`echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|"`
+    st=$(hg --cwd /google/src/cloud/$USER/$client st 2>/dev/null)
+    [[ $? -eq 0 ]] || return
 
     if [[ "$st" != "" ]]; then
         dirty="*"
-    elif [[ $(hg ll -r . 2>/dev/null) =~ "will update" ]]; then
+    elif [[ $(hg --cwd /google/src/cloud/$USER/$client ll -r . 2>/dev/null) =~ "will update" ]]; then
         unpushed="true"
     fi
 
