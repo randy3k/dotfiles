@@ -22,9 +22,9 @@ alias cleanscreen='screen -ls | sed '"'"'1d;$d'"'"' | awk '"'"'{print $1}'"'"' |
 alias pip-upgrade='pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 alias rsync="rsync -av --exclude \".*\""
 [[ "$(uname)" != "Darwin" ]] && alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -alhF'
+alias la='ls -AF'
+alias l='ls -F'
 alias h=history
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'

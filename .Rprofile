@@ -6,7 +6,8 @@ options(
     languageserver.snippet_support = FALSE,
     languageserver.server_capabilities = list(
         documentHighlightProvider = FALSE
-    )
+    ),
+    languageserver.rich_documentation = FALSE
 )
 options(usethis.protocol = "ssh")
 
