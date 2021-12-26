@@ -3,7 +3,7 @@
 [credential]
     helper = osxkeychain
 [user]
-    signingkey = C624A96B760AC797
+    signingkey = 01849F5C55ED2D4F!
 [commit]
     gpgsign = true
 [tag]

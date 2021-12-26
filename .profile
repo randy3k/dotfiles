@@ -25,6 +25,9 @@ eval "$(hub alias -s)"
 
 # GPG
 if [ -t 1 ] ; then
+    if [[ -z "$SSH_AUTH_SOCK" ]] && [[ -n `command -v gpgconf` ]]; then
+        export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    fi
     export GPG_TTY=$(tty)
     if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ;then
         export PINENTRY_USER_DATA="USE_CURSES=1"
@@ -36,7 +39,6 @@ if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]
     alias subl=$(command -v rmate)
     export RMATE_PORT=52658
 fi
-
 
 # ## Xcode
 # help python to find the C headers

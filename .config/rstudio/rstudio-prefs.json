@@ -51,5 +51,6 @@
     "line_ending_conversion": "posix",
     "default_encoding": "UTF-8",
     "jobs_tab_visibility": "shown",
-    "show_terminal_tab": false
+    "show_terminal_tab": false,
+    "new_proj_git_init": true
 }
