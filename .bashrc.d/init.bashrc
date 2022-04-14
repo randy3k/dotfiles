@@ -1,5 +1,6 @@
 # aliases
 [[ -e ~/.aliases ]] && . ~/.aliases
+[[ -e ~/.aliases_local ]] && . ~/.aliases_local
 
 # enable i-search
 stty -ixon -ixoff

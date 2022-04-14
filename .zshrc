@@ -1,5 +1,6 @@
 # aliases
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
+[[ -e ~/.aliases_local ]] && emulate sh -c 'source ~/.aliases_local'
 
 unsetopt case_glob          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
@@ -241,12 +242,5 @@ if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
     add-zsh-hook precmd  update_terminal_cwd
 fi
 
-# g specific
-if [ $(hostname) =~ "randylai-macbookpro.*" ]; then
-    PROMPT='%{$fg[yellow]%}(=)%{$reset_color%}-%c%{$reset_color%}$ '
-fi
-
-# verify gcert status
-if [[ -o interactive ]] && [[ -n `command -v gcertstatus` ]]; then
-    gcertstatus --quiet -check_remaining=$((2 * 60 * 60))s || gcert
-fi
+# local zshrc
+[[ -e ~/.zshrc_local ]] && emulate sh -c 'source ~/.zshrc_local'
