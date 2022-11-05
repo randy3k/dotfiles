@@ -21,7 +21,8 @@
             "Plots",
             "Packages",
             "Help",
-            "Viewer"
+            "Viewer",
+            "Presentations"
         ],
         "console_left_on_top": false,
         "console_right_on_top": true
@@ -50,7 +51,6 @@
     "save_workspace": "never",
     "line_ending_conversion": "posix",
     "default_encoding": "UTF-8",
-    "jobs_tab_visibility": "shown",
-    "show_terminal_tab": false,
-    "new_proj_git_init": true
+    "jobs_tab_visibility": "closed",
+    "show_terminal_tab": false
 }
