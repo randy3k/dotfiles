@@ -1,9 +1,8 @@
-# # miniconda
-
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH
 # [ -d /usr/local/Caskroom/miniconda ] && export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-[ -d "$HOME/Library/Haskell/bin" ] && export PATH="$HOME/Library/Haskell/bin:$PATH"
-[ -d /usr/local/cuda/bin ] && export PATH="/usr/local/cuda/bin:$PATH"
+# [ -d "$HOME/Library/Haskell/bin" ] && export PATH="$HOME/Library/Haskell/bin:$PATH"
+# [ -d /usr/local/cuda/bin ] && export PATH="/usr/local/cuda/bin:$PATH"
 [ -d /usr/local/opt/go/libexec/bin ] && export PATH="/usr/local/opt/go/libexec/bin:$PATH"
 [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
 # [ -d /usr/local/opt/llvm/bin ] && export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -21,7 +20,7 @@ export GIT_EDITOR='nvim'
 [ -f ~/.config/secrets ] && . ~/.config/secrets
 
 # hub alias
-eval "$(hub alias -s)"
+# eval "$(hub alias -s)"
 
 # GPG
 if [ -t 1 ] ; then

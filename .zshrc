@@ -75,8 +75,8 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30
 # syntax highlight
 if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -f $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # history-substring-search
@@ -86,8 +86,8 @@ if [[ -f ~/.zsh-history-substring-search/zsh-history-substring-search.zsh ]]; th
     bindkey '^[[B' history-substring-search-down
     export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
     export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
-elif [[ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
-    source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+elif [[ -f $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
     export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=
@@ -95,8 +95,8 @@ elif [[ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-s
 fi
 
 # # zsh-completions
-if [[ -d  /usr/local/share/zsh-completions ]]; then
-    fpath=(/usr/local/share/zsh-completions $fpath)
+if [[ -d  $HOMEBREW_PREFIX/share/zsh-completions ]]; then
+    fpath=($HOMEBREW_PREFIX/share/zsh-completions $fpath)
 fi
 
 # conda-zsh-completion
