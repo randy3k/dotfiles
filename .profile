@@ -11,9 +11,15 @@ export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH
 
 
 # EDITOR
-export HOMEBREW_EDITOR='subl -n'
-export JULIA_EDITOR='subl -n'
-export GIT_EDITOR='nvim'
+if [  -n `command -v subl` ]; then
+    export HOMEBREW_EDITOR='subl -n'
+    export JULIA_EDITOR='subl -n'
+fi
+if [  -n `command -v nvim` ]; then
+    export GIT_EDITOR='nvim'
+elif [  -n `command -v vim` ]; then
+    export GIT_EDITOR='vim'
+fi
 # export EDITOR='nvim'
 
 # homebrew github token
