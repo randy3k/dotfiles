@@ -133,6 +133,9 @@ cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
 
+" sudo write
+cnoremap sudow w !sudo tee % >/dev/null
+
 " disable ctrlp default keybind
 let g:ctrlp_map = ''
 
