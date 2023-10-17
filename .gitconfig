@@ -22,7 +22,7 @@
     shove = !REPO=$(git remote get-url origin | sed -n \"s|.*/\\(.*\\).git|\\1|p\") && bash -c \"test '$REPO'\" && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
     squash = !sh -c 'git commit --squash=$(git rev-parse ${1:-HEAD})' -
     st = status -s
-    undo = !read -r -p 'Are you sure? [y/N] ' response && [[ $response == 'y' ]] && git reset --hard
+    undo = !read -r -p 'Are you sure? [y/N] ' response && [ $response == 'y' ] && git reset --hard
     skip = update-index --skip-worktree
     unskip = update-index --no-skip-worktree
     upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
