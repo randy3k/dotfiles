@@ -20,10 +20,11 @@
     review = !sh -c 'git fetch origin pull/$1/head:pr/$1' -
     ri = rebase --interactive --autosquash
     shove = !REPO=$(git remote get-url origin | sed -n \"s|.*/\\(.*\\).git|\\1|p\") && bash -c \"test '$REPO'\" && git add -u && git commit -m \"Update $REPO at $(date -u)\" && git push
+    skip = update-index --skip-worktree
     squash = !sh -c 'git commit --squash=$(git rev-parse ${1:-HEAD})' -
     st = status -s
+    unadd = restore --staged
     undo = !read -r -p 'Are you sure? [y/N] ' response && bash -c \"test $response = 'y'\" && git reset --hard
-    skip = update-index --skip-worktree
     unskip = update-index --no-skip-worktree
     upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
 [color]
