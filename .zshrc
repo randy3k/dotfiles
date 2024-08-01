@@ -127,6 +127,12 @@ if [[ -r ~/.ssh/config ]]; then
 fi
 zstyle ':completion:*' hosts $_ssh_config
 
+# piper
+if [[ -f /etc/bash_completion.d/g4d ]]; then
+  . /etc/bash_completion.d/p4
+  . /etc/bash_completion.d/g4d
+fi
+
 # hgd completion
 [ -f /etc/bash_completion.d/hgd ] && source /etc/bash_completion.d/hgd
 
