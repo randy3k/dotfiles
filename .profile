@@ -1,4 +1,3 @@
-export PATH=/opt/local/bin:$PATH
 [ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 # [ -d /usr/local/Caskroom/miniconda ] && export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
 # [ -d "$HOME/Library/Haskell/bin" ] && export PATH="$HOME/Library/Haskell/bin:$PATH"
@@ -7,6 +6,7 @@ export PATH=/opt/local/bin:$PATH
 [ -d "$HOME/Library/Python/3.9/bin" ] && export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 # [ -d /usr/local/opt/go/libexec/bin ] && export PATH="/usr/local/opt/go/libexec/bin:$PATH"
 # [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
+export PATH=/opt/local/bin:$PATH
 # note: .local/bin should be added at last
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
