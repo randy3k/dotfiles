@@ -1,3 +1,7 @@
+.Last <- function() {
+    if(interactive()) try(savehistory("~/.Rhistory"))
+}
+
 options(
     repos = c(CRAN = "https://cran.rstudio.com"),
     useFancyQuotes = FALSE,
