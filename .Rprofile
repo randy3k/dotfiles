@@ -1,9 +1,9 @@
 .First <- function() {
-    if(interactive()) try(utils::loadhistory("~/.Rhistory"))
+    if(interactive()) tryCatch(utils::loadhistory("~/.Rhistory"), error=\(e) NULL)
 }
 
 .Last <- function() {
-    if(interactive()) try(utils::savehistory("~/.Rhistory"))
+    if(interactive()) tryCatch(utils::savehistory("~/.Rhistory"), error=\(e) NULL)
 }
 
 options(
