@@ -1,6 +1,6 @@
 # [ -d "$HOME/Library/Python/3.9/bin" ] && export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 [ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
-[ -d /opt/homebrew/opt/python@3.12/libexec/bin ] && export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
+[ -d $(brew --prefix python)/libexec/bin ] && export PATH="$(brew --prefix python)/libexec/bin:$PATH"
 # [ -d /usr/local/Caskroom/miniconda ] && export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
 # [ -d "$HOME/Library/Haskell/bin" ] && export PATH="$HOME/Library/Haskell/bin:$PATH"
 # [ -d /usr/local/cuda/bin ] && export PATH="/usr/local/cuda/bin:$PATH"
