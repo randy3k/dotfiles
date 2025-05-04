@@ -26,6 +26,7 @@ alias rsync="rsync -av --exclude \".*\""
 alias ll='ls -alhFv'
 alias la='ls -AFv'
 alias l='ls -Fv'
+alias d='dirs -v'
 alias h=history
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
