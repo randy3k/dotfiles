@@ -136,19 +136,6 @@ fi
 # hgd completion
 [ -f /etc/bash_completion.d/hgd ] && source /etc/bash_completion.d/hgd
 
-# pyenv completion
-if [[ -f /usr/local/opt/pyenv/completions/pyenv.zsh ]]; then
-    source /usr/local/opt/pyenv/completions/pyenv.zsh
-fi
-
-# rbenv completion
-if [[ -f /usr/local/opt/rbenv/completions/rbenv.zsh ]]; then
-    source /usr/local/opt/rbenv/completions/rbenv.zsh
-fi
-
-# added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
 # prompt
 gitify() {
     local st
