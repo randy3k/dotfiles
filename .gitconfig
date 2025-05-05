@@ -14,6 +14,7 @@
     cob = checkout -b
     coo = checkout --orphan
     fixup = !sh -c 'git commit --fixup=$(git rev-parse ${1:-HEAD})' -
+    latest = !sh -c 'git tag --sort=-version:refname | head -n ${1:-1}' -
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     qc = !git add -A && git commit -m
     qf = !git add -A && git fixup && git ri HEAD^^
