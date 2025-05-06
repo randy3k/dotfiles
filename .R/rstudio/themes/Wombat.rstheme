@@ -8,6 +8,9 @@
      background: #272822;
      color: rgb(144,144,138);
 }
+ .ace_gutter-cell {
+     color: rgb(144,144,138) !important;
+ }
  .ace_print-margin {
      width: 1px;
      background: #e8e8e8;
@@ -1871,7 +1874,7 @@ table.rstheme_tabLayoutCenter, .rstudio-themes-flat .rstudio-themes-dark-grey .g
 }
 
 .rstudio-themes-flat.editor_dark .ace_editor_theme div {
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 /* data view */
