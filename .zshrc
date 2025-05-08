@@ -136,6 +136,9 @@ fi
 # hgd completion
 [ -f /etc/bash_completion.d/hgd ] && source /etc/bash_completion.d/hgd
 
+# jjd completion
+[ -f /etc/bash_completion.d/jjd ] && source /etc/bash_completion.d/jjd
+
 # prompt
 gitify() {
     local st
@@ -160,23 +163,37 @@ gitify() {
     fi
     echo -en "($branch$dirty$unpushed)%{$reset_color%}"
 }
-figify() {
+citcify() {
     [[ "$PWD" =~ "(/Volumes)?/google/src/cloud/$USER/.*"  ]] || return
 
-    local st
+    local jj_st
+    local jj_st_code
+    local fig_st
+    local fig_st_code
     local client
     local dirty
     local unpushed
 
     client=$(echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|")
 
-    st=$(hg --cwd /google/src/cloud/$USER/$client st 2>/dev/null)
-    [[ $? -eq 0 ]] || return
+    jj_st=$(jj st -R /google/src/cloud/$USER/$client --quiet 2>/dev/null)
+    jj_st_code=$?
+    fig_st=$(hg --cwd /google/src/cloud/$USER/$client st 2>/dev/null)
+    fig_st_code=$?
+    [[ $jj_st_code -eq 0 || $fig_st_code -eq 0 ]] || return
 
-    if [[ "$st" != "" ]]; then
-        dirty="*"
-    elif [[ $(hg --cwd /google/src/cloud/$USER/$client ll -r . 2>/dev/null) =~ "will update" ]]; then
-        unpushed="true"
+    if [[ $jj_st_code -eq 0 ]]; then
+        if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
+            dirty="*"
+        elif [[ $(echo "$jj_st" | sed -n "s,^Parent.*cl/[0-9]*\(\*\).*,\1,p") == "*" ]]; then
+            unpushed="true"
+        fi
+    else
+        if [[ "$fig_st" != "" ]]; then
+            dirty="*"
+        elif [[ $(hg --cwd /google/src/cloud/$USER/$client ll -r . 2>/dev/null) =~ "will update" ]]; then
+            unpushed="true"
+        fi
     fi
 
     if [[ $dirty == "*" ]]; then
@@ -198,7 +215,7 @@ ASYNC_PROC=0
 RPROMPT_OLDPWD=''
 function update_rprompt() {
     function async() {
-        printf "%s" "$(gitify)$(figify)" > "/tmp/zsh_prompt_$$"
+        printf "%s" "$(gitify)$(citcify)" > "/tmp/zsh_prompt_$$"
         kill -s USR1 $$
     }
     if [[ "${ASYNC_PROC}" != 0 ]]; then
