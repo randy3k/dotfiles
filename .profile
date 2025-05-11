@@ -7,6 +7,7 @@
 # [ -d /usr/local/opt/llvm/bin ] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 # [ -d /usr/local/opt/go/libexec/bin ] && export PATH="/usr/local/opt/go/libexec/bin:$PATH"
 # [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
+[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:/opt/local/bin:$PATH"
 
 
