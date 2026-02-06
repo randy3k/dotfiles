@@ -176,17 +176,24 @@ citcify() {
 
     client=$(echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|")
 
-    jj_st=$(jj st -R /google/src/cloud/$USER/$client --quiet 2>/dev/null)
+    # remove ANSI and OSC
+    jj_st=$(jj st --no-pager -R /google/src/cloud/$USER/$client --quiet 2>/dev/null |
+            sed 's/\x1b\[[0-9;]*m//g; s/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g')
     jj_st_code=$?
     fig_st=$(hg --cwd /google/src/cloud/$USER/$client st 2>/dev/null)
     fig_st_code=$?
     [[ $jj_st_code -eq 0 || $fig_st_code -eq 0 ]] || return
 
     if [[ $jj_st_code -eq 0 ]]; then
-        if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
-            dirty="*"
-        elif [[ $(echo "$jj_st" | sed -n "s,^Parent.*cl/[0-9]*\(\*\).*,\1,p") == "*" ]]; then
-            unpushed="true"
+        cl=$(echo "$jj_st" | sed -n 's/^Working copy.*\(cl\/[^ ]*\).*/\1/p')
+        if [[ -z "$cl" ]]; then
+            if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
+                dirty="*"
+            fi
+        else
+            if [[ "$cl" == *"*" ]]; then
+                unpushed="true"
+            fi
         fi
     else
         if [[ "$fig_st" != "" ]]; then
@@ -203,7 +210,7 @@ citcify() {
     else
         echo -en " %{$fg[green]%}"
     fi
-    echo -en "($client$dirty)$cl%{$reset_color%}"
+    echo -en "($client$dirty)%{$reset_color%}"
 }
 
 setopt prompt_subst
