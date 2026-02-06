@@ -176,13 +176,13 @@ citcify() {
 
     client=$(echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|")
 
-    # remove ANSI and OSC
-    jj_st=$(jj st --no-pager -R /google/src/cloud/$USER/$client --quiet 2>/dev/null |
-            sed 's/\x1b\[[0-9;]*m//g; s/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g')
+    jj_st=$(jj st --no-pager -R /google/src/cloud/$USER/$client --quiet 2>/dev/null)
     jj_st_code=$?
+    # remove ANSI and OSC
+    jj_st=$(echo "$jj_st" | sed 's/\x1b\[[0-9;]*m//g; s/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g')
     fig_st=$(hg --cwd /google/src/cloud/$USER/$client st 2>/dev/null)
     fig_st_code=$?
-    [[ $jj_st_code -eq 0 || $fig_st_code -eq 0 ]] || return
+    [[ $jj_st_code -eq 0 || $fig_st_code -eq 0 || -n "$client" ]] || return
 
     if [[ $jj_st_code -eq 0 ]]; then
         cl=$(echo "$jj_st" | sed -n 's/^Working copy.*\(cl\/[^ ]*\).*/\1/p')
@@ -195,7 +195,7 @@ citcify() {
                 unpushed="true"
             fi
         fi
-    else
+    elif [[ $fig_st_code -eq 0 ]]; then
         if [[ "$fig_st" != "" ]]; then
             dirty="*"
         elif [[ $(hg --cwd /google/src/cloud/$USER/$client ll -r . 2>/dev/null) =~ "will update" ]]; then
@@ -203,7 +203,7 @@ citcify() {
         fi
     fi
 
-    if [[ $dirty == "*" ]]; then
+    if [[ "$dirty" == "*" ]]; then
         echo -en " %{$fg[red]%}"
     elif [[ $unpushed = "true" ]]; then
         echo -en " %{$fg[yellow]%}"
