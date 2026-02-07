@@ -173,13 +173,18 @@ citcify() {
     local client
     local dirty
     local unpushed
+    local cl
+    local parent_cl
 
     client=$(echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|")
 
-    jj_st=$(jj st --no-pager -R /google/src/cloud/$USER/$client --quiet 2>/dev/null)
-    jj_st_code=$?
+    # need to remove ANSI and OSC chars.
+    jj_st=$(jj st --no-pager -R /google/src/cloud/$USER/$client --quiet 2>/dev/null | perl -pe 's/\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))//g')
+    if [[ -z "$jj_st" ]]; then
+        jj st --quiet 2>/dev/null
+        jj_st_code=$?
+    fi
     # remove ANSI and OSC
-    jj_st=$(echo "$jj_st" | sed 's/\x1b\[[0-9;]*m//g; s/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g')
     fig_st=$(hg --cwd /google/src/cloud/$USER/$client st 2>/dev/null)
     fig_st_code=$?
     [[ $jj_st_code -eq 0 || $fig_st_code -eq 0 || -n "$client" ]] || return
@@ -189,6 +194,11 @@ citcify() {
         if [[ -z "$cl" ]]; then
             if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
                 dirty="*"
+            else
+                parent_cl=$(echo "$jj_st" | sed -n 's/^Parent.*\(cl\/[^ ]*\).*/\1/p')
+                if [[ "$parent_cl" == *"*" ]]; then
+                    unpushed="true"
+                fi
             fi
         else
             if [[ "$cl" == *"*" ]]; then
