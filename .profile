@@ -8,6 +8,8 @@
 # [ -d /usr/local/opt/go/libexec/bin ] && export PATH="/usr/local/opt/go/libexec/bin:$PATH"
 # [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+[ -d "$HOME/.jetski/jetski/bin" ] && export PATH="$HOME/.jetski/jetski/bin:$PATH"
+
 export PATH="$HOME/.local/bin:/opt/local/bin:$PATH"
 
 
@@ -38,12 +40,6 @@ if [ -t 1 ] ; then
     if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ;then
         export PINENTRY_USER_DATA="USE_CURSES=1"
     fi
-fi
-
-# alias subl for ssh client
-if ([[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]) && [[ -n `command -v rmate` ]]; then
-    alias subl=$(command -v rmate)
-    export RMATE_PORT=52658
 fi
 
 # ## Xcode

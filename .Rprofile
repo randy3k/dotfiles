@@ -1,9 +1,9 @@
 .First <- function() {
-    if(interactive()) tryCatch(utils::loadhistory("~/.Rhistory"), error=\(e) NULL)
+    if (interactive()) tryCatch(utils::loadhistory("~/.Rhistory"), error = \(e) NULL)
 }
 
 .Last <- function() {
-    if(interactive()) tryCatch(utils::savehistory("~/.Rhistory"), error=\(e) NULL)
+    if (interactive()) tryCatch(utils::savehistory("~/.Rhistory"), error = \(e) NULL)
 }
 
 options(
@@ -16,6 +16,7 @@ options(
         documentHighlightProvider = FALSE
     ),
     languageserver.rich_documentation = FALSE
+    # languageserver.debug = TRUE
 )
 options(usethis.protocol = "ssh")
 
@@ -25,10 +26,9 @@ Sys.setenv(TZ = "US/Pacific")
 
 # mac only
 if (Sys.info()["sysname"] == "Darwin") {
-    Sys.setenv(R_LANGSVR_LOG = "/tmp/languageserver.log")
+    # Sys.setenv(R_LANGSVR_LOG = "/tmp/languageserver.log")
 
     if (interactive()) {
-
         # if (!startsWith(R.home(""), "/Library/Frameworks/R.framework")) {
         #     local({
         #         paths <- .libPaths()
