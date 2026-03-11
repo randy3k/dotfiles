@@ -164,58 +164,61 @@ gitify() {
     echo -en "($branch$dirty$unpushed)%{$reset_color%}"
 }
 citcify() {
-    [[ "$PWD" =~ "(/Volumes)?/google/src/cloud/$USER/.*"  ]] || return
+    # Check if we are in the cloud source tree
+    if [[ "$PWD" != *"/google/src/cloud/$USER/"* ]]; then
+        return
+    fi
 
-    local jj_st
-    local jj_st_code
-    local fig_st
-    local fig_st_code
-    local client
+    # Native path parsing to extract client name (faster than sed)
+    local rel_path="${PWD##*/google/src/cloud/$USER/}"
+    local client="${rel_path%%/*}"
+    local client_root="/google/src/cloud/$USER/$client"
+
     local dirty
     local unpushed
+    local jj_success=0
     local cl
     local parent_cl
 
-    client=$(echo $PWD | sed "s|\(/Volumes\)*/google/src/cloud/$USER/\([^/]*\).*|\2|")
-
-    # need to remove ANSI and OSC chars.
-    jj_st=$(jj st --no-pager -R /google/src/cloud/$USER/$client --quiet 2>/dev/null | perl -pe 's/\x1b(\[.*?[@-~]|\].*?(\x07|\x1b\\))//g')
-    if [[ -z "$jj_st" ]]; then
-        jj st --quiet 2>/dev/null
-        jj_st_code=$?
-    fi
-    # remove ANSI and OSC
-    fig_st=$(hg --cwd /google/src/cloud/$USER/$client st 2>/dev/null)
-    fig_st_code=$?
-    [[ $jj_st_code -eq 0 || $fig_st_code -eq 0 || -n "$client" ]] || return
-
-    if [[ $jj_st_code -eq 0 ]]; then
-        cl=$(echo "$jj_st" | sed -n 's/^Working copy.*\(cl\/[^ ]*\).*/\1/p')
-        if [[ -z "$cl" ]]; then
-            if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
-                dirty="*"
+    # Try jj first if .jj directory exists
+    if [[ -d "$client_root/.jj" ]]; then
+        local jj_st
+        # Use --color=never but keep sed to remove OSC sequences as requested
+        jj_st=$(jj st --no-pager --color=never -R "$client_root" --quiet 2>/dev/null | \
+                sed 's/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g')
+        
+        if [[ $? -eq 0 ]]; then
+            jj_success=1
+            cl=$(echo "$jj_st" | sed -n 's/^Working copy.*\(cl\/[^ ]*\).*/\1/p')
+            if [[ -z "$cl" ]]; then
+                if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
+                    dirty="*"
+                else
+                    parent_cl=$(echo "$jj_st" | sed -n 's/^Parent.*\(cl\/[^ ]*\).*/\1/p')
+                    if [[ "$parent_cl" == *"*" ]]; then
+                        unpushed="true"
+                    fi
+                fi
             else
-                parent_cl=$(echo "$jj_st" | sed -n 's/^Parent.*\(cl\/[^ ]*\).*/\1/p')
-                if [[ "$parent_cl" == *"*" ]]; then
+                if [[ "$cl" == *"*" ]]; then
                     unpushed="true"
                 fi
             fi
-        else
-            if [[ "$cl" == *"*" ]]; then
-                unpushed="true"
-            fi
         fi
-    elif [[ $fig_st_code -eq 0 ]]; then
-        if [[ "$fig_st" != "" ]]; then
+    fi
+
+    # Fallback to hg if jj didn't run or failed
+    if [[ $jj_success -ne 1 && -d "$client_root/.hg" ]]; then
+        if [[ -n $(hg --cwd "$client_root" st 2>/dev/null) ]]; then
             dirty="*"
-        elif [[ $(hg --cwd /google/src/cloud/$USER/$client ll -r . 2>/dev/null) =~ "will update" ]]; then
+        elif [[ $(hg --cwd "$client_root" ll -r . 2>/dev/null) =~ "will update" ]]; then
             unpushed="true"
         fi
     fi
 
-    if [[ "$dirty" == "*" ]]; then
+    if [[ $dirty == "*" ]]; then
         echo -en " %{$fg[red]%}"
-    elif [[ $unpushed = "true" ]]; then
+    elif [[ "$unpushed" == "true" ]]; then
         echo -en " %{$fg[yellow]%}"
     else
         echo -en " %{$fg[green]%}"
