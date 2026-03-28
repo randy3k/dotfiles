@@ -83,7 +83,16 @@ function gitify {
     echo -e " ($(git-branch-name)$dirty$unpushed)"
 }
 
-PS1="\[\033[33m\](\h)\[\033[00m\]-\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
+function set_ps1 {
+    local cols=$(tput cols)
+    if [ "$cols" -lt 30 ]; then
+        PS1="\$ "
+    elif [ "$cols" -lt 70 ]; then
+        PS1="\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
+    else
+        PS1="\[\033[33m\](\h)\[\033[00m\]-\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
+    fi
+}
 
 if [ "$(uname)" == "Darwin" ] && [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
@@ -106,13 +115,15 @@ if [ "$(uname)" == "Darwin" ] && [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE
         printf '\e]1;%s\a' `basename $PWD`
         printf '\e]7;%s\a' "file://$HOSTNAME$url_path"
     }
-    PROMPT_COMMAND="update_terminal_cwd${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+    PROMPT_COMMAND="set_ps1; update_terminal_cwd${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] && [ "$TERM" == "xterm-256color" ]; then
-    PROMPT_COMMAND='reset_terminal_title'
+    PROMPT_COMMAND='set_ps1; reset_terminal_title'
 
     function reset_terminal_title {
         printf "\033]0;%s\007" "${HOSTNAME%%.*}"
         printf '\033]7;\007'
     }
+else
+    PROMPT_COMMAND='set_ps1'
 fi
