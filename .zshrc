@@ -227,13 +227,21 @@ citcify() {
 }
 
 setopt prompt_subst
-PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
-RPROMPT=''
 
 # https://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
 ASYNC_PROC=0
 RPROMPT_OLDPWD=''
-function update_rprompt() {
+function update_prompt() {
+    if [ "$COLUMNS" -lt 30 ]; then
+        PROMPT='$ '
+        RPROMPT=''
+        return
+    elif [ "$COLUMNS" -lt 70 ]; then
+        PROMPT='%c%{$reset_color%}$ '
+    else
+        PROMPT='%{$fg[yellow]%}(%m)%{$reset_color%}-%c%{$reset_color%}$ '
+    fi
+
     function async() {
         printf "%s" "$(gitify)$(citcify)" > "/tmp/zsh_prompt_$$"
         kill -s USR1 $$
@@ -249,7 +257,7 @@ function update_rprompt() {
     ASYNC_PROC=$!
 }
 autoload -U add-zsh-hook
-add-zsh-hook precmd update_rprompt
+add-zsh-hook precmd update_prompt
 
 function TRAPUSR1() {
     if [[ $LASTWIDGET != "bash-ctrl-d" ]]; then
