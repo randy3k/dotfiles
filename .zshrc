@@ -140,121 +140,21 @@ fi
 [ -f /etc/bash_completion.d/jjd ] && source /etc/bash_completion.d/jjd
 
 # prompt
-strip_osc() {
-    sed 's/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g'
-}
+[[ -f ~/.vcs_prompt.sh ]] && source ~/.vcs_prompt.sh
 
 gitify() {
-    local st
-    local branch
-    local dirty
-    local unpushed
-
-    if jj root >/dev/null 2>&1; then
-        local jj_st
-        jj_st=$(jj st --no-pager --color=never --quiet 2>/dev/null | strip_osc)
-        
-        if [[ $? -eq 0 ]]; then
-            # Find the closest ancestor bookmark (or the current commit's bookmark if it has one)
-            branch=$(jj log --no-pager --color=never --no-graph -r 'latest(heads(::@ & bookmarks()))' -T 'bookmarks.join(", ")' 2>/dev/null | strip_osc)
-            if [[ -z "$branch" ]]; then
-                # Fallback to the short Change ID of the current commit if no ancestor bookmarks exist
-                branch=$(jj log --no-pager --color=never --no-graph -r @ -T 'change_id.short()' 2>/dev/null | strip_osc)
-            fi
-
-            if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
-                dirty="*"
-            fi
-
-            if [[ $dirty == "*" ]]; then
-                echo -en " %{$fg[red]%}"
-            else
-                echo -en " %{$fg[green]%}"
-            fi
-            echo -en "($branch$dirty)%{$reset_color%}"
-            return
-        fi
-    fi
-
-    st=$(git status -b --porcelain 2>/dev/null)
-    [[ $? -eq 0 ]] || return
-
-    branch=$(git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p'))
-    [[ `wc -l <<< "$st"` -eq 1  ]] || dirty="*"
-    [[ "$st" =~ ("behind "([[:digit:]]*)) ]] && unpushed="-${match[2]}"
-    [[ "$st" =~ ("ahead "([[:digit:]]*)) ]] && unpushed="$unpushed+${match[2]}"
-
-    if [[ $dirty == "*" ]]; then
-        echo -en " %{$fg[red]%}"
-    elif [[ $unpushed != "" ]]; then
-        echo -en " %{$fg[yellow]%}"
-    else
-        echo -en " %{$fg[green]%}"
-    fi
-    echo -en "($branch$dirty$unpushed)%{$reset_color%}"
+    vcs_prompt_info "%{$fg[red]%}" "%{$fg[green]%}" "%{$fg[yellow]%}" "%{$reset_color%}"
 }
+
 citcify() {
-    # Check if we are in the cloud source tree
-    if [[ "$PWD" != *"/google/src/cloud/$USER/"* ]]; then
-        return
-    fi
-
-    # Native path parsing to extract client name (faster than sed)
-    local rel_path="${PWD##*/google/src/cloud/$USER/}"
-    local client="${rel_path%%/*}"
-    local client_root="/google/src/cloud/$USER/$client"
-
-    local dirty
-    local unpushed
-    local jj_success=0
-    local cl
-    local parent_cl
-
-    # Try jj first if .jj directory exists
-    if [[ -d "$client_root/.jj" ]]; then
-        local jj_st
-        # Use --color=never but keep sed to remove OSC sequences as requested
-        jj_st=$(jj st --no-pager --color=never -R "$client_root" --quiet 2>/dev/null | strip_osc)
-
-        
-        if [[ $? -eq 0 ]]; then
-            jj_success=1
-            cl=$(echo "$jj_st" | sed -n 's/^Working copy.*\(cl\/[^ ]*\).*/\1/p')
-            if [[ -z "$cl" ]]; then
-                if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
-                    dirty="*"
-                else
-                    parent_cl=$(echo "$jj_st" | sed -n 's/^Parent.*\(cl\/[^ ]*\).*/\1/p')
-                    if [[ "$parent_cl" == *"*" ]]; then
-                        unpushed="true"
-                    fi
-                fi
-            else
-                if [[ "$cl" == *"*" ]]; then
-                    unpushed="true"
-                fi
-            fi
-        fi
-    fi
-
-    # Fallback to hg if jj didn't run or failed
-    if [[ $jj_success -ne 1 && -d "$client_root/.hg" ]]; then
-        if [[ -n $(hg --cwd "$client_root" st 2>/dev/null) ]]; then
-            dirty="*"
-        elif [[ $(hg --cwd "$client_root" ll -r . 2>/dev/null) =~ "will update" ]]; then
-            unpushed="true"
-        fi
-    fi
-
-    if [[ $dirty == "*" ]]; then
-        echo -en " %{$fg[red]%}"
-    elif [[ "$unpushed" == "true" ]]; then
-        echo -en " %{$fg[yellow]%}"
-    else
-        echo -en " %{$fg[green]%}"
-    fi
-    echo -en "($client$dirty)%{$reset_color%}"
+    citc_prompt_info "%{$fg[red]%}" "%{$fg[green]%}" "%{$fg[yellow]%}" "%{$reset_color%}"
 }
+
+gitify_citcify() {
+    gitify
+    citcify
+}
+
 
 setopt prompt_subst
 

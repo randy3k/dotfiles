@@ -45,52 +45,21 @@ else
 fi
 
 # prompt
-function git-branch-name {
-    echo `git symbolic-ref HEAD --short 2> /dev/null || (git branch | sed -n 's/\* (*\([^)]*\))*/\1/p')`
-}
-function git-dirty {
-    [[ `wc -l <<< "$1" ` -eq 1  ]] || echo "*"
-}
-function git-unpushed {
-    if [[ "$1" =~ ("behind "([[:digit:]]*)) ]]
-    then
-        echo -n "-${BASH_REMATCH[2]}"
-    fi
-    if [[ "$1" =~ ("ahead "([[:digit:]]*)) ]]
-    then
-        echo -n "+${BASH_REMATCH[2]}"
-    fi
-}
-function gitcolor {
-    st=$(git status -b --porcelain 2>/dev/null)
-    [[ $? -eq 0 ]] || return
-
-    if [[ $(git-dirty "$st") == "*" ]];
-    then
-        echo -e "\033[31m"
-    elif [[ $(git-unpushed "$st") != "" ]];
-    then
-        echo -e "\033[33m"
-    else
-        echo -e "\033[32m"
-    fi
-}
-function gitify {
-    st=$(git status -b --porcelain 2>/dev/null)
-    [[ $? -eq 0 ]] || return
-    dirty=$(git-dirty "$st")
-    unpushed=$(git-unpushed "$st")
-    echo -e " ($(git-branch-name)$dirty$unpushed)"
-}
+[[ -f ~/.vcs_prompt.sh ]] && source ~/.vcs_prompt.sh
 
 function set_ps1 {
+    local red="\001\e[31m\002"
+    local green="\001\e[32m\002"
+    local yellow="\001\e[33m\002"
+    local reset="\001\e[00m\002"
+    local vcs_info=$(vcs_prompt_info "$red" "$green" "$yellow" "$reset")$(citc_prompt_info "$red" "$green" "$yellow" "$reset")
     local cols=$(tput cols)
     if [ "$cols" -lt 30 ]; then
         PS1="\$ "
     elif [ "$cols" -lt 70 ]; then
-        PS1="\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
+        PS1="\W${vcs_info}\$ "
     else
-        PS1="\[\033[33m\](\h)\[\033[00m\]-\W\[\$(gitcolor)\]\$(gitify)\[\033[00m\]\$ "
+        PS1="\[\033[33m\](\h)\[\033[00m\]-\W${vcs_info}\$ "
     fi
 }
 
