@@ -140,11 +140,41 @@ fi
 [ -f /etc/bash_completion.d/jjd ] && source /etc/bash_completion.d/jjd
 
 # prompt
+strip_osc() {
+    sed 's/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g'
+}
+
 gitify() {
     local st
     local branch
     local dirty
     local unpushed
+
+    if jj root >/dev/null 2>&1; then
+        local jj_st
+        jj_st=$(jj st --no-pager --color=never --quiet 2>/dev/null | strip_osc)
+        
+        if [[ $? -eq 0 ]]; then
+            # Find the closest ancestor bookmark (or the current commit's bookmark if it has one)
+            branch=$(jj log --no-pager --color=never --no-graph -r 'latest(heads(::@ & bookmarks()))' -T 'bookmarks.join(", ")' 2>/dev/null | strip_osc)
+            if [[ -z "$branch" ]]; then
+                # Fallback to the short Change ID of the current commit if no ancestor bookmarks exist
+                branch=$(jj log --no-pager --color=never --no-graph -r @ -T 'change_id.short()' 2>/dev/null | strip_osc)
+            fi
+
+            if [[ ! $(echo "$jj_st" | head -n 1) =~ "The working copy has no changes." ]]; then
+                dirty="*"
+            fi
+
+            if [[ $dirty == "*" ]]; then
+                echo -en " %{$fg[red]%}"
+            else
+                echo -en " %{$fg[green]%}"
+            fi
+            echo -en "($branch$dirty)%{$reset_color%}"
+            return
+        fi
+    fi
 
     st=$(git status -b --porcelain 2>/dev/null)
     [[ $? -eq 0 ]] || return
@@ -184,8 +214,8 @@ citcify() {
     if [[ -d "$client_root/.jj" ]]; then
         local jj_st
         # Use --color=never but keep sed to remove OSC sequences as requested
-        jj_st=$(jj st --no-pager --color=never -R "$client_root" --quiet 2>/dev/null | \
-                sed 's/\x1b][0-9]*;[^\a\x1b]*\(\a\|\x1b\\\)//g')
+        jj_st=$(jj st --no-pager --color=never -R "$client_root" --quiet 2>/dev/null | strip_osc)
+
         
         if [[ $? -eq 0 ]]; then
             jj_success=1
