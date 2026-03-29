@@ -232,7 +232,9 @@ setopt prompt_subst
 ASYNC_PROC=0
 RPROMPT_OLDPWD=''
 function update_prompt() {
-    if [ "$COLUMNS" -lt 30 ]; then
+    if [[ -n "$ZSH_LOCAL_PROMPT" ]]; then
+        PROMPT="$ZSH_LOCAL_PROMPT"
+    elif [ "$COLUMNS" -lt 30 ]; then
         PROMPT='$ '
         RPROMPT=''
         return

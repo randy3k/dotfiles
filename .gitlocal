@@ -1,5 +1,6 @@
 [core]
     excludesfile = ~/.gitignore
+	sshCommand = ssh -i ~/.ssh/id_ed25519_github
 [credential]
     helper = osxkeychain
 [user]
@@ -7,6 +8,6 @@
 [commit]
     gpgsign = true
 [tag]
-    gpgsign = true    
+    gpgsign = true
 [gpg]
     program = /opt/local/bin/gpg
