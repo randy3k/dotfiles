@@ -1,5 +1,47 @@
-if [[ -d "$HOME/.local/bin" ]] && [[ ! "$PATH" =~ "$HOME/.local/bin" ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
+# [ -d "$HOME/Library/Python/3.9/bin" ] && export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -d $(brew --prefix python)/libexec/bin ] && export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+# [ -d /usr/local/Caskroom/miniconda ] && export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+# [ -d "$HOME/Library/Haskell/bin" ] && export PATH="$HOME/Library/Haskell/bin:$PATH"
+# [ -d /usr/local/cuda/bin ] && export PATH="/usr/local/cuda/bin:$PATH"
+# [ -d /usr/local/opt/llvm/bin ] && export PATH="/usr/local/opt/llvm/bin:$PATH"
+# [ -d /usr/local/opt/go/libexec/bin ] && export PATH="/usr/local/opt/go/libexec/bin:$PATH"
+# [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
+[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+[ -d "$HOME/.jetski/jetski/bin" ] && export PATH="$HOME/.jetski/jetski/bin:$PATH"
+
+export PATH="$HOME/.local/bin:/opt/local/bin:$PATH"
+
+# EDITOR
+if [  -n `command -v subl` ]; then
+    export HOMEBREW_EDITOR='subl -n'
+    export JULIA_EDITOR='subl -n'
+fi
+if [  -n `command -v nvim` ]; then
+    export GIT_EDITOR='nvim'
+elif [  -n `command -v vim` ]; then
+    export GIT_EDITOR='vim'
+fi
+# export EDITOR='nvim'
+
+# homebrew github token
+[ -f ~/.config/secrets ] && . ~/.config/secrets
+
+# hub alias
+# eval "$(hub alias -s)"
+
+# GPG
+if [ -t 1 ] ; then
+    # if [[ -z "$SSH_AUTH_SOCK" ]] && [[ -n `command -v gpgconf` ]]; then
+    #     export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    # fi
+    export GPG_TTY=$(tty)
+    if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ;then
+        export PINENTRY_USER_DATA="USE_CURSES=1"
+    fi
 fi
 
-[[ -f ~/.profile.local ]] && . ~/.profile.local
+# ## Xcode
+# help python to find the C headers
+# export MACOSX_DEPLOYMENT_TARGET=10.9
+# export CPATH=`xcrun --show-sdk-path`/usr/include
