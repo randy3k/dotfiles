@@ -1,6 +1,6 @@
 # aliases
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
-[[ -e ~/.aliases_local ]] && emulate sh -c 'source ~/.aliases_local'
+[[ -e ~/.aliases.local ]] && emulate sh -c 'source ~/.aliases.local'
 
 unsetopt case_glob          # case insensitive
 unsetopt nomatch            # prevent zsh to print an error when no match can be found
@@ -213,4 +213,4 @@ if [ "$TERM" = "xterm-256color" ] && [ -z "$INSIDE_EMACS" ]; then
 fi
 
 # local zshrc
-[[ -e ~/.zshrc_local ]] && emulate sh -c 'source ~/.zshrc_local'
+[[ -e ~/.zshrc.local ]] && emulate sh -c 'source ~/.zshrc.local'
