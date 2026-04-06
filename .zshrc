@@ -150,11 +150,6 @@ citcify() {
     citc_prompt_info "%{$fg[red]%}" "%{$fg[green]%}" "%{$fg[yellow]%}" "%{$reset_color%}"
 }
 
-gitify_citcify() {
-    gitify
-    citcify
-}
-
 
 setopt prompt_subst
 
@@ -175,7 +170,12 @@ function update_prompt() {
     fi
 
     function async() {
-        printf "%s" "$(gitify)$(citcify)" > "/tmp/zsh_prompt_$$"
+        local info
+        info=$(citcify)
+        if [[ -z "$info" ]]; then
+            info=$(gitify)
+        fi
+        printf "%s" "$info" > "/tmp/zsh_prompt_$$"
         kill -s USR1 $$
     }
     if [[ "${ASYNC_PROC}" != 0 ]]; then
