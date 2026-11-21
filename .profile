@@ -9,6 +9,7 @@
 # [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/.jetski/jetski/bin" ] && export PATH="$HOME/.jetski/jetski/bin:$PATH"
+[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 export PATH="$HOME/.local/bin:/opt/local/bin:$PATH"
 
@@ -25,7 +26,9 @@ fi
 # export EDITOR='nvim'
 
 # homebrew github token
-[ -f ~/.config/secrets ] && . ~/.config/secrets
+if command -v gh >/dev/null 2>&1; then
+    export GITHUB_TOKEN="$(gh auth token 2>/dev/null)"
+fi
 
 # hub alias
 # eval "$(hub alias -s)"
